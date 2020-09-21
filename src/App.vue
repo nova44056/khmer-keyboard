@@ -1,12 +1,26 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <typingpage/>
+    <!-- <homepage/> -->
+    <!-- <textpage/> -->
+    <!-- <startpage/> -->
   </div>
 </template>
+
+<script>
+import typingpage from './components/TypingPage'
+// import homepage from './components/Homepage'
+// import textpage from './components/Textpage'
+// import startpage from './components/StartPage'
+export default {
+  components: {
+    typingpage
+    // homepage,
+    // textpage,
+    // startpage,
+  }
+}
+</script>
 
 <style lang="scss">
 #app {
