@@ -53,7 +53,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     width: 20%;
-    margin-right: 5rem;
+    margin-right: 7rem;
 }
 .key {
     display: flex;

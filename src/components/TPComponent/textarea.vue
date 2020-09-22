@@ -19,5 +19,7 @@ export default {
     margin: 10px;
     padding: 1rem;
     text-align: start;
+    background-color: white;
+    color: #1b2448;
 }
 </style>

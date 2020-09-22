@@ -24,6 +24,7 @@ export default {
     margin-top: 6rem;
     box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05),
     0 15px 40px rgba(166, 173, 201, 0.2);
+    background-color: white;
   }
   .text {
     margin-left: 2rem;
