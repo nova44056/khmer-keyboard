@@ -1,18 +1,27 @@
 <template>
-    <div class="text">
-        <h2>ជំរាបសួរ</h2>
+    <div class="text-div">
+        <h2 class="text-wrapper">
+            <span v-for="(rune, index) in runes" :key='index' :class="{space: rune.isSpace}">
+                {{rune.rune}}
+            </span>
+        </h2>
     </div>
 </template>
 
 <script>
 export default {
-  name: 'textareas'
+  name: 'textareas',
+  computed: {
+      runes () {
+          return this.$store.state.runes
+      }
+  }
 }
 </script>
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Kantumruy&display=swap");
-.text {
+.text-div {
     height: 15rem;
     width: 75rem;
     border: 2px solid #1b2448;
@@ -24,5 +33,27 @@ export default {
     background-color: white;
     color: #1b2448;
     font-family: 'Kantumruy', sans-serif;
+}
+
+.text-wrapper{
+  font-weight: normal;
+  word-break: break-all;
+  line-height: 4.6rem;
+  font-size: 3em;
+  max-height: 15.65rem;
+  overflow: hidden;
+  margin: 0 auto;
+  padding: 0
+}
+
+.text-wrapper > span{
+    display: inline-block;
+    padding-top: 4px;
+    width: fit-content;
+}
+
+.space{
+    font-size: 1rem;
+    color: white;
 }
 </style>

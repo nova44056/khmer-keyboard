@@ -1,5 +1,6 @@
 <template>
     <div class="row">
+        {{startGame()}}
         <div class="row1">
         <textareas/>
         <div class="key">
@@ -22,6 +23,8 @@ import timer from './TPComponent/timer'
 import error from './TPComponent/error'
 import score from './TPComponent/score'
 import exit from './TPComponent/exit'
+import splitKhmerRunes from  '../split-khmer'
+import {textsList} from './texts-list'
 export default {
   name: 'typingpage',
   components: {
@@ -31,6 +34,41 @@ export default {
     error,
     score,
     exit
+  },
+  data: () => {
+      return {
+          text: '',
+          runesCounter: 0,
+          totalRunes: 0,
+      }
+  },
+  methods: {
+      startGame() {
+          let random = Math.floor(Math.random() * (textsList.list.length)) // this works
+          this.text = textsList.list[random] // this works
+          this.play()
+      },
+      play(){
+          this.runesCounter = 0 
+          let runesList = splitKhmerRunes(this.text)
+          this.totalRunes = runesList.length
+          this.splitTextintoRunesArray(this.text) // this works
+      },
+      splitTextintoRunesArray(text) {
+          let runesList = splitKhmerRunes(this.text)
+          console.log(runesList)
+        //   for(let i = 0; i < runesList.length; i++){
+        //       console.log(i + ':' +runesList[i].charCodeAt(0))
+        //   }
+          let _runes = []
+          for(let i = 0; i < runesList.length; i++){
+            let isSpace = false
+            if(runesList[i].charCodeAt(0) === 32) {runesList[i] = "⎵"; isSpace = true}
+              _runes.push({'id': 'rune-' + i, 'rune': runesList[i], 'isCurrent': false, 'isCorrect': false, 'isHidden': false, 'isSpace': isSpace})
+          }
+        this.$store.dispatch('set_runes', _runes) // this works
+        // console.log(this.$store.state.runes)
+      }
   }
 }
 </script>
