@@ -46,7 +46,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     width: 70%;
-    margin-top: 5rem;
+    margin-top: 3.5rem;
 }
 .row2 {
     display: flex;
