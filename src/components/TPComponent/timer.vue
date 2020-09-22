@@ -2,7 +2,7 @@
     <div class="lottie">
       <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_AMwwvI.json"  background="transparent"  speed="0.8"  style="width: 100px; height: 110px;"  loop  autoplay></lottie-player>
       <div class="text">
-      <h2>5:00:00</h2>
+      <h2>១ៈ០០ ៣ៈ០០ ៥ៈ០០</h2>
       </div>
     </div>
 </template>
@@ -14,6 +14,7 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Kantumruy&display=swap");
   .lottie {
     border: 1px solid white;
     display: flex;
@@ -30,5 +31,6 @@ export default {
     margin-left: 2rem;
     display: flex;
     justify-content: center;
+    font-family: 'Kantumruy', sans-serif;
   }
 </style>

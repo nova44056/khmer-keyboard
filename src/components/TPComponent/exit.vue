@@ -1,6 +1,6 @@
 <template>
     <div class="box">
-      <button>EXIT</button>
+      <button>ចេញ</button>
     </div>
 </template>
 
@@ -11,6 +11,7 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Kantumruy&display=swap");
   button {
   height: 100px;
   width: 300px;

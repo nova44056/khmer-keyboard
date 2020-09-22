@@ -2864,5 +2864,7 @@ export default {
 svg {
   height: 500px;
   width: 1000px;
+  margin-left: 2rem;
+  margin-top: 1rem;
 }
 </style>
