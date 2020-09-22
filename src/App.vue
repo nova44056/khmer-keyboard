@@ -1,23 +1,23 @@
 <template>
   <div id="app">
+    <homepage/>
+    <textpage/>
+    <startpage/>
     <typingpage/>
-    <!-- <homepage/> -->
-    <!-- <textpage/> -->
-    <!-- <startpage/> -->
   </div>
 </template>
 
 <script>
+import homepage from './components/Homepage'
+import textpage from './components/Textpage'
+import startpage from './components/StartPage'
 import typingpage from './components/TypingPage'
-// import homepage from './components/Homepage'
-// import textpage from './components/Textpage'
-// import startpage from './components/StartPage'
 export default {
   components: {
+    homepage,
+    textpage,
+    startpage,
     typingpage
-    // homepage,
-    // textpage,
-    // startpage,
   }
 }
 </script>

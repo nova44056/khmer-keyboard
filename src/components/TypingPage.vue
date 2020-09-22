@@ -47,6 +47,7 @@ export default {
     justify-content: center;
     width: 70%;
     margin-top: 3.5rem;
+    position: relative;
 }
 .row2 {
     display: flex;
@@ -54,6 +55,12 @@ export default {
     justify-content: center;
     width: 20%;
     margin-right: 7rem;
+}
+h2 {
+    font-family: 'Kantumruy', sans-serif;
+    color: white;
+    margin-top: 1rem;
+    margin-bottom: -5rem;
 }
 .key {
     display: flex;
@@ -63,4 +70,5 @@ export default {
     margin-left: 6.5rem;
     margin-top: -3rem;
 }
+
 </style>

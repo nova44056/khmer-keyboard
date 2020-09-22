@@ -32,7 +32,8 @@ button:hover {
   color: white;
 }
 .box {
-  margin-top: 4rem;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
   margin-left: 0.5rem;
 }
 </style>

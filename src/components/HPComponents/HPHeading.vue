@@ -16,6 +16,7 @@ export default {
         font-size: 4rem;
         font-family: 'Kantumruy', sans-serif;
         font-weight: 700;
+        margin-top: 1rem;
     }
     * {
         padding: 0;
