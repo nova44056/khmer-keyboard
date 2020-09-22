@@ -13,9 +13,11 @@ export default {
 <style scoped>
 .text {
     height: 15rem;
-    width: 80rem;
-    border: 2px solid black;
+    width: 75rem;
+    border: 2px solid #1b2448;
     border-radius: 10px;
     margin: 10px;
+    padding: 1rem;
+    text-align: start;
 }
 </style>

@@ -40,22 +40,27 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border: 2px solid black;
 }
 .row1 {
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 70%;
+    margin-top: 5rem;
 }
 .row2 {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    width: 20%;
+    margin-right: 5rem;
 }
 .key {
     display: flex;
     justify-content: flex-start;
     width: 100%;
     height: 300px;
+    margin-left: 6.5rem;
+    margin-top: -3rem;
 }
 </style>
