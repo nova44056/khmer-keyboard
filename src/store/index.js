@@ -6,15 +6,29 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     runes: [],
+    isActivePage1: false,
+    isActivePage2: false
   },
   mutations: {
-    set_runes(state, runes) {
+    set_runes (state, runes) {
       state.runes = runes
+    },
+    toggleActivePage1 (state) {
+      state.isActivePage1 = !state.isActivePage1
+    },
+    toggleActivePage2 (state) {
+      state.isActivePage2 = !state.isActivePage2
     }
   },
   actions: {
-    set_runes({ commit }, runes) {
+    set_runes ({ commit }, runes) {
       commit('set_runes', runes)
+    },
+    toggleActivePage1 ({ commit }) {
+      commit('toggleActivePage1')
+    },
+    toggleActivePage2 ({ commit }) {
+      commit('toggleActivePage2')
     }
   },
   modules: {

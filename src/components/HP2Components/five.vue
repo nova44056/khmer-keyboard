@@ -27,8 +27,8 @@
 
 <script>
 export default {
-  name: "five",
-};
+  name: 'five'
+}
 </script>
 
 <style scoped>

@@ -70,8 +70,16 @@
         </button>
       </div>
     </div>
-    <div class="button" style="margin-top: 2rem">
+
+    <div class="button-wrapper">
         <button>Next Step</button>
+    </div>
+
+    <div>
+      <!-- <div class="circle-wrapper">
+        <div class="circle"></div>
+        <div class="circle"></div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -86,12 +94,33 @@ export default {
     one,
     three,
     five
+  },
+  created () {
+    this.$store.dispatch('toggleActivePage1')
+  },
+  destroyed () {
+    this.$store.dispatch('toggleActivePage1')
   }
 }
 </script>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Kantumruy:wght@700&display=swap');
+.button-wrapper{
+  height: 13rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-wrapper button{
+  height: 4rem;
+  width: 12rem;
+  border-radius: 2rem;
+  border: none;
+  cursor: pointer;
+}
+
 .big {
   display: flex;
   flex-direction: column;

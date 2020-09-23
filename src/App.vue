@@ -6,11 +6,13 @@
     <!-- <textpage/> -->
     <!-- <startpage/> -->
     <!-- <typingpage/> -->
+    <pgIndicator/>
   </div>
 </template>
 
 <script>
 import heading from './components/HP2Components/heading'
+import pgIndicator from './components/PageIndicator'
 // import navbar from './components/Navbar'
 // import homepage from './components/Homepage'
 // import textpage from './components/Textpage'
@@ -19,6 +21,7 @@ import heading from './components/HP2Components/heading'
 export default {
   components: {
     heading,
+    pgIndicator
     // navbar,
     // homepage,
     // textpage,
