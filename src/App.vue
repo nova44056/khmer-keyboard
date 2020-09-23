@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <heading/>
+    <!-- <heading/> -->
+    <tselector/>
     <!-- <navbar/> -->
     <!-- <homepage/> -->
     <!-- <textpage/> -->
@@ -11,6 +12,7 @@
 </template>
 
 <script>
+import tselector from './components/TXP2Components/Tselector'
 import heading from './components/HP2Components/heading'
 import pgIndicator from './components/PageIndicator'
 // import navbar from './components/Navbar'
@@ -20,7 +22,8 @@ import pgIndicator from './components/PageIndicator'
 // import typingpage from './components/TypingPage'
 export default {
   components: {
-    heading,
+    // heading,
+    tselector,
     pgIndicator
     // navbar,
     // homepage,

@@ -1,7 +1,7 @@
 <template>
     <div class="indicator-wrapper">
         <div class="indicator" :class="{isActive: isActivePage1}"></div>
-        <div class="indicator"></div>
+        <div class="indicator" :class="{isActive: isActivePage2}"></div>
     </div>
 </template>
 <script>
