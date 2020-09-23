@@ -168,7 +168,7 @@ h2 {
   position: relative;
 }
 .card:focus {
-  /* border: 3px solid #005bb8; */
+  border: 6px solid #005bb8;
   /* box-shadow: 0 0px 0px #005bb8,
     0 10px 100px #005bb8; */
   /* fill: red; */
