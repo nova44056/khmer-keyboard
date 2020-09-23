@@ -1,5 +1,5 @@
 <template>
-    <div class="indicator-wrapper">
+    <div class="indicator-wrapper" :class="{showPageIndicator1: isActivePage1, showPageIndicator2: isActivePage2}">
         <div class="indicator" :class="{isActive: isActivePage1}"></div>
         <div class="indicator" :class="{isActive: isActivePage2}"></div>
     </div>
@@ -19,6 +19,13 @@ export default {
 </script>
 
 <style scoped>
+.showPageIndicator1{
+  visibility: visible !important;
+}
+
+.showPageIndicator2{
+  visibility: visible !important;
+}
 .isActive{
     height: 2rem !important;
     width: 2rem !important;
@@ -28,6 +35,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  visibility: hidden;
 }
 
 .indicator{

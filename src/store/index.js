@@ -13,6 +13,9 @@ export default new Vuex.Store({
     set_runes (state, runes) {
       state.runes = runes
     },
+    toggle_current_runes (state, index) {
+      state.runes[index].isCurrent = !state.runes[index].isCurrent
+    },
     toggleActivePage1 (state) {
       state.isActivePage1 = !state.isActivePage1
     },
@@ -23,6 +26,9 @@ export default new Vuex.Store({
   actions: {
     set_runes ({ commit }, runes) {
       commit('set_runes', runes)
+    },
+    toggle_current_runes ({ commit }, index) {
+      commit('toggle_current_runes', index)
     },
     toggleActivePage1 ({ commit }) {
       commit('toggleActivePage1')

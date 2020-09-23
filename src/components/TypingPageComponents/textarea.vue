@@ -1,7 +1,7 @@
 <template>
     <div class="text-div">
         <h2 class="text-wrapper">
-            <span v-for="(rune, index) in runes" :key='index' :class="{space: rune.isSpace}">
+            <span v-for="(rune, index) in runes" :key='index' :class="{space: rune.isSpace, current: rune.isCurrent, correct: rune.isCorrect, hidden: rune.isHidden}">
                 {{rune.rune}}
             </span>
         </h2>
@@ -55,5 +55,17 @@ export default {
 .space{
     font-size: 1rem;
     color: white;
+}
+
+.hidden {
+  display: none;
+}
+
+.current {
+  color: #ffc10a;
+}
+
+.correct {
+  color: #3f51b5;
 }
 </style>

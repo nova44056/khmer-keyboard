@@ -25,6 +25,7 @@ import score from './TypingPageComponents/score'
 import exit from './TypingPageComponents/exit'
 import splitKhmerRunes from '../split-khmer'
 import { textsList } from './texts-list'
+import keyboardMap from '../keyboard-mapping'
 export default {
   name: 'typingpage',
   components: {
@@ -39,7 +40,8 @@ export default {
     return {
       text: '',
       runesCounter: 0,
-      totalRunes: 0
+      totalRunes: 0,
+      letters: []
     }
   },
   methods: {
@@ -53,6 +55,12 @@ export default {
       const runesList = splitKhmerRunes(this.text)
       this.totalRunes = runesList.length
       this.splitTextintoRunesArray(this.text) // this works
+      let keysList = this.getKeysMap(this.text) // this kinda works xD
+      let currentLetters = ''
+      this.$store.dispatch('toggle_current_runes', this.runesCounter) // this works
+      console.log(this.$store.state.runes[this.runesCounter].isCurrent)
+      //   this.runes[this.runesCounter].isCurrent = true
+    //   this.letters[currentLetters.length].isCurrent = true
     },
     splitTextintoRunesArray (text) {
       const runesList = splitKhmerRunes(this.text)
@@ -68,6 +76,19 @@ export default {
       }
       this.$store.dispatch('set_runes', _runes) // this works
       // console.log(this.$store.state.runes)
+    },
+    getKeysMap (text) {
+      const keysList = []
+      for (let i = 0; i < text.length; i++) {
+        const letter = text.substring(i, i + 1)
+        const keys = keyboardMap[letter]
+        if (keys === undefined) {
+          console.log('Mapping undefined' + letter)
+        } else {
+          keysList.push(keys)
+        }
+      }
+      return keysList
     }
   }
 }
@@ -108,5 +129,4 @@ h2 {
     margin-left: 6.5rem;
     margin-top: -3rem;
 }
-
 </style>

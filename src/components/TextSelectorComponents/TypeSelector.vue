@@ -52,7 +52,7 @@
 
     <div class="button-wrapper">
         <button @click="$router.push({name: 'SelectionPage1'})">ត្រឡប់ក្រោយ</button>
-        <button>បន្ត</button>
+        <button @click="$router.push({name: 'TypingPage'})">ចាប់ផ្តើម</button>
     </div>
 
     <div>
