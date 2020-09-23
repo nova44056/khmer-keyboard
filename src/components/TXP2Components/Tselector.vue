@@ -51,7 +51,7 @@
     </div>
 
     <div class="button-wrapper">
-        <button>Next Step</button>
+        <button @click="$router.push({name: 'SelectionPage1'})">ត្រឡប់ក្រោយ</button>
     </div>
 
     <div>

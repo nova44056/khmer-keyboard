@@ -5,7 +5,7 @@
     </div>
     <div class="timer-wrapper">
       <div class="cards-wrapper">
-        <button class="card">
+        <button class="card spin circle">
           <svg
             class="check"
             id="Layer_1"
@@ -72,9 +72,8 @@
     </div>
 
     <div class="button-wrapper">
-        <button>Next Step</button>
+        <button @click="$router.push({name: 'SelectionPage2'})">បន្ត</button>
     </div>
-
     <div>
       <!-- <div class="circle-wrapper">
         <div class="circle"></div>
@@ -106,6 +105,48 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Kantumruy:wght@700&display=swap');
+
+.card::before,
+.card::after {
+    box-sizing: inherit;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.spin::before {
+    border: 6px solid transparent;
+}
+
+.spin:focus::before {
+    border-top-color: #0eb7da;
+    border-right-color: #0eb7da;
+    border-bottom-color: #0eb7da;
+    transition: border-top-color 0.15s linear, border-right-color 0.15s linear 0.10s, border-bottom-color 0.15s linear 0.20s;
+}
+
+.spin::after {
+    border: 0 solid transparent;
+}
+
+.spin:focus::after {
+    border-top: 6px solid #0eb7da;
+    border-left-width: 6px;
+    border-right-width: 6px;
+    transform: rotate(270deg);
+    transition: transform 0.4s linear 0s, border-left-width 0s linear 0.35s, -webkit-transform 0.4s linear 0s;
+}
+
+.circle {
+    border-radius: 100%;
+    box-shadow: none;
+}
+
+.circle::before,
+.circle::after {
+    border-radius: 100%;
+}
 .button-wrapper{
   height: 13rem;
   display: flex;
@@ -186,13 +227,13 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid white;
+  border: 0;
   outline: none;
   cursor: pointer;
   position: relative;
 }
 .card:focus {
-  /* border: 3px solid #005bb8; */
+  /* border: 6px solid #005bb8; */
   /* box-shadow: 0 0px 0px #005bb8,
     0 10px 100px #005bb8; */
   /* fill: red; */
@@ -200,6 +241,7 @@ h1 {
   width: 20rem;
   transition: 1s;
 }
+
 .check {
   position: absolute;
   float: right;

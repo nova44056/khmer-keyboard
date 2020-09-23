@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <!-- <heading/> -->
-    <tselector/>
+    <!-- <tselector/> -->
+    <vue-page-transition name="fade-in-right">
+      <router-view/>
+    </vue-page-transition>
     <!-- <navbar/> -->
     <!-- <homepage/> -->
     <!-- <textpage/> -->
@@ -12,8 +15,8 @@
 </template>
 
 <script>
-import tselector from './components/TXP2Components/Tselector'
-import heading from './components/HP2Components/heading'
+// import tselector from './components/TXP2Components/Tselector'
+// import heading from './components/HP2Components/heading'
 import pgIndicator from './components/PageIndicator'
 // import navbar from './components/Navbar'
 // import homepage from './components/Homepage'
@@ -23,7 +26,7 @@ import pgIndicator from './components/PageIndicator'
 export default {
   components: {
     // heading,
-    tselector,
+    // tselector,
     pgIndicator
     // navbar,
     // homepage,

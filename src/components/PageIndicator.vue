@@ -22,6 +22,7 @@ export default {
 .isActive{
     height: 2rem !important;
     width: 2rem !important;
+    transition: 1s;
 }
 .indicator-wrapper{
   display: flex;
