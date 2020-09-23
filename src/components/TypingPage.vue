@@ -1,18 +1,18 @@
 <template>
-    <div class="row">
+    <div class="col">
         {{startGame()}}
-        <div class="row1">
+        <div class="col1">
+        <timer/>
+        <error/>
+        <score/>
+        </div>
+        <div class="col2">
         <textareas/>
         <div class="key">
         <keyboard/>
         </div>
         </div>
-        <div class="row2">
-        <timer/>
-        <error/>
-        <score/>
-        <exit/>
-        </div>
+        <showstats/>
     </div>
 </template>
 
@@ -22,7 +22,7 @@ import keyboard from './TypingPageComponents/keyboard'
 import timer from './TypingPageComponents/timer'
 import error from './TypingPageComponents/error'
 import score from './TypingPageComponents/score'
-import exit from './TypingPageComponents/exit'
+import showstats from './TypingPageComponents/showstats'
 import splitKhmerRunes from '../split-khmer'
 import { textsList } from './texts-list'
 import keyboardMap from '../keyboard-mapping'
@@ -34,7 +34,7 @@ export default {
     timer,
     error,
     score,
-    exit
+    showstats
   },
   data: () => {
     return {
@@ -95,25 +95,26 @@ export default {
 </script>
 
 <style scoped>
-.row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-.row1 {
+.col {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 70%;
+    align-items: center;
+}
+.col2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* width: 70%; */
     margin-top: 3.5rem;
-    position: relative;
 }
-.row2 {
+.col1 {
     display: flex;
-    flex-direction: column;
+    flex-direction: col;
     justify-content: center;
-    width: 20%;
-    margin-right: 7rem;
+    align-items: center;
+    /* width: 20%; */
+    /* margin-right: 7rem; */
 }
 h2 {
     font-family: 'Kantumruy', sans-serif;
@@ -123,10 +124,11 @@ h2 {
 }
 .key {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     width: 100%;
     height: 300px;
-    margin-left: 6.5rem;
+    /* margin-left: 6.5rem; */
+    margin-left: -1rem;
     margin-top: -3rem;
 }
 </style>

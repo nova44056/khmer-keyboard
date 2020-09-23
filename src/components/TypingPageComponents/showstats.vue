@@ -1,12 +1,12 @@
 <template>
     <div class="box">
-      <button>ចេញ</button>
+      <button>បង្ហាញស្ថិតិ</button>
     </div>
 </template>
 
 <script>
 export default {
-  name: 'exit'
+  name: 'showstats'
 }
 </script>
 
@@ -32,8 +32,8 @@ button:hover {
   color: white;
 }
 .box {
-  margin-top: 3rem;
-  margin-bottom: 2rem;
-  margin-left: 0.5rem;
+  margin-top: 6.8rem;
+  display: flex;
+  margin-left: 95rem;
 }
 </style>

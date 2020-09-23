@@ -27,7 +27,7 @@ export default {
     border: 2px solid #1b2448;
     border-radius: 10px;
     margin-top: -1rem;
-    margin-left: 2rem;
+    /* margin-left: 2rem; */
     padding: 1rem;
     text-align: start;
     background-color: white;
