@@ -10,6 +10,9 @@ export default {
   computed: {
     isActivePage1 () {
       return this.$store.state.isActivePage1
+    },
+    isActivePage2 () {
+      return this.$store.state.isActivePage2
     }
   }
 }
