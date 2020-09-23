@@ -68,9 +68,13 @@
               transform="translate(-650.07 -230.08)"
             />
           </svg>
-          5
+          <five/>
+          <h1>min</h1>
         </button>
       </div>
+    </div>
+    <div class="button" style="margin-top: 2rem">
+        <button>Next Step</button>
     </div>
   </div>
 </template>
@@ -78,11 +82,13 @@
 <script>
 import one from './one.vue'
 import three from './three.vue'
+import five from './five.vue'
 export default {
   name: 'heading',
   components: {
     one,
-    three
+    three,
+    five
   }
 }
 </script>
@@ -106,6 +112,7 @@ export default {
   align-items: center;
   flex-direction: column;
   margin-top: 3rem;
+  height: 20rem;
 }
 .cards-wrapper {
   display: grid;
