@@ -8,41 +8,83 @@
         <button class="card">
           <svg
             class="check"
+            id="Layer_1"
+            data-name="Layer 1"
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
+            viewBox="0 0 620.86 620.83"
           >
             <path
-              d="M21.855 10.303c.086.554.145 1.118.145 1.697 0 6.075-4.925 11-11 11s-11-4.925-11-11 4.925-11 11-11c2.348 0 4.518.741 6.304 1.993l-1.421 1.457c-1.408-.913-3.083-1.45-4.883-1.45-4.963 0-9 4.038-9 9s4.037 9 9 9c4.894 0 8.879-3.928 8.99-8.795l1.865-1.902zm-.951-8.136l-9.404 9.639-3.843-3.614-3.095 3.098 6.938 6.71 12.5-12.737-3.096-3.096z"
+              class="cls-1"
+              d="M960.55,230.08c171.42,0,310.42,139.09,310.38,310.47S1131.84,851,960.45,850.92,650,711.83,650.07,540.45,789.16,230,960.55,230.08Z"
+              transform="translate(-650.07 -230.08)"
+            />
+            <path
+              class="cls-2"
+              d="M927.54,624.69c2.07-1.4,3-3.64,4.21-5.56q63.06-96.27,126-192.59c7.47-11.41,19-16.21,30.82-13,18.13,4.95,25.76,25.4,15.3,41.59-14.72,22.79-29.68,45.43-44.53,68.13q-51.95,79.38-103.86,158.77c-7.54,11.55-26.64,16.76-39,5.93-19.57-17.08-38.39-35-57.49-52.63-10.41-9.6-20.9-19.12-31.1-28.94a26.7,26.7,0,0,1-5.75-30.8A27.14,27.14,0,0,1,848.91,560c7.34.48,13.16,4.07,18.44,9q28.71,26.75,57.56,53.32C925.76,623.12,926.64,623.89,927.54,624.69Z"
+              transform="translate(-650.07 -230.08)"
             />
           </svg>
           <one />
+          <h1> min </h1>
         </button>
-        <button class="card"><three /></button>
-        <button class="card">5</button>
-      </div>
-    </div>
-    <div class="text-wrapper">
-      <div class="card-text">
-        <h3>1 Minute</h3>
-        <h3>2 Minutes</h3>
-        <h3>3 Minutes</h3>
+        <button class="card">
+          <three />
+          <h1> min </h1>
+          <svg
+            class="check"
+            id="Layer_1"
+            data-name="Layer 1"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 620.86 620.83"
+          >
+            <path
+              class="cls-1"
+              d="M960.55,230.08c171.42,0,310.42,139.09,310.38,310.47S1131.84,851,960.45,850.92,650,711.83,650.07,540.45,789.16,230,960.55,230.08Z"
+              transform="translate(-650.07 -230.08)"
+            />
+            <path
+              class="cls-2"
+              d="M927.54,624.69c2.07-1.4,3-3.64,4.21-5.56q63.06-96.27,126-192.59c7.47-11.41,19-16.21,30.82-13,18.13,4.95,25.76,25.4,15.3,41.59-14.72,22.79-29.68,45.43-44.53,68.13q-51.95,79.38-103.86,158.77c-7.54,11.55-26.64,16.76-39,5.93-19.57-17.08-38.39-35-57.49-52.63-10.41-9.6-20.9-19.12-31.1-28.94a26.7,26.7,0,0,1-5.75-30.8A27.14,27.14,0,0,1,848.91,560c7.34.48,13.16,4.07,18.44,9q28.71,26.75,57.56,53.32C925.76,623.12,926.64,623.89,927.54,624.69Z"
+              transform="translate(-650.07 -230.08)"
+            />
+          </svg>
+        </button>
+        <button class="card">
+          <svg
+            class="check"
+            id="Layer_1"
+            data-name="Layer 1"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 620.86 620.83"
+          >
+            <path
+              class="cls-1"
+              d="M960.55,230.08c171.42,0,310.42,139.09,310.38,310.47S1131.84,851,960.45,850.92,650,711.83,650.07,540.45,789.16,230,960.55,230.08Z"
+              transform="translate(-650.07 -230.08)"
+            />
+            <path
+              class="cls-2"
+              d="M927.54,624.69c2.07-1.4,3-3.64,4.21-5.56q63.06-96.27,126-192.59c7.47-11.41,19-16.21,30.82-13,18.13,4.95,25.76,25.4,15.3,41.59-14.72,22.79-29.68,45.43-44.53,68.13q-51.95,79.38-103.86,158.77c-7.54,11.55-26.64,16.76-39,5.93-19.57-17.08-38.39-35-57.49-52.63-10.41-9.6-20.9-19.12-31.1-28.94a26.7,26.7,0,0,1-5.75-30.8A27.14,27.14,0,0,1,848.91,560c7.34.48,13.16,4.07,18.44,9q28.71,26.75,57.56,53.32C925.76,623.12,926.64,623.89,927.54,624.69Z"
+              transform="translate(-650.07 -230.08)"
+            />
+          </svg>
+          5
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import one from "./one.vue";
-import three from "./three.vue";
+import one from './one.vue'
+import three from './three.vue'
 export default {
-  name: "heading",
+  name: 'heading',
   components: {
     one,
-    three,
-  },
-};
+    three
+  }
+}
 </script>
 
 <style scoped>
@@ -50,7 +92,6 @@ export default {
   display: flex;
   flex-direction: column;
   width: 100vw;
-  border: 1px solid black;
   overflow: hidden;
 }
 .header {
@@ -63,6 +104,8 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  margin-top: 3rem;
 }
 .cards-wrapper {
   display: grid;
@@ -70,6 +113,7 @@ export default {
   grid-template-columns: auto auto auto;
   margin: 1rem;
   width: 60%;
+  position: relative;
 }
 .text-wrapper {
   display: flex;
@@ -83,6 +127,7 @@ export default {
   grid-template-columns: auto auto auto;
   margin: 1rem;
   width: 60%;
+  position: sticky;
 }
 .card-text h3 {
   margin: 2rem;
@@ -93,34 +138,55 @@ export default {
 .card {
   margin: 2rem;
   background-color: white;
+  transition: 1s;
   box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05),
     0 15px 40px rgba(166, 173, 201, 0.2);
   border-radius: 50%;
   height: 15rem;
   width: 15rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   border: 1px solid white;
   outline: none;
   cursor: pointer;
+  position: relative;
 }
 .card:focus {
-  border: 3px solid #1b2448;
-  fill: red;
-  transition: ease 0.2s;
+  /* border: 3px solid #005bb8; */
+  /* box-shadow: 0 0px 0px #005bb8,
+    0 10px 100px #005bb8; */
+  /* fill: red; */
+  height: 20rem;
+  width: 20rem;
+  transition: 1s;
 }
 .check {
-    position: relative;
-    float: right;
-    top: -60px;
-    left: 140px;
-    fill: blue;
-    background-color: red;
+  position: absolute;
+  float: right;
+  top: 4rem;
+  left: 13.5rem;
+  height: 2rem;
+  visibility: hidden;
 }
+
+.card:focus .check {
+  visibility: visible;
+  left: 17.5rem;
+  transition: ease 1s;
+}
+
 /* .card:after {
     content: ' ';
     display: block;
     position: relative;
 } */
+
+.cls-1 {
+  fill: #005bb8;
+}
+.cls-2 {
+  fill: #f6f6f6;
+}
 </style>

@@ -28,8 +28,8 @@
 
 <script>
 export default {
-  name: "one",
-};
+  name: 'one'
+}
 </script>
 
 <style scoped>
@@ -45,7 +45,7 @@ export default {
 svg {
   height: 6rem;
 }
-svg:focus {
+/* svg:focus {
   fill: ;
-}
+} */
 </style>

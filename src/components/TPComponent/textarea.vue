@@ -12,9 +12,9 @@
 export default {
   name: 'textareas',
   computed: {
-      runes () {
-          return this.$store.state.runes
-      }
+    runes () {
+      return this.$store.state.runes
+    }
   }
 }
 </script>
