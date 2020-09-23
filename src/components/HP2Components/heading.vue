@@ -1,7 +1,7 @@
 <template>
   <div class="big">
     <div class="header">
-      <h1>Select Timer</h1>
+      <h1>ជ្រើសរើសនាទី</h1>
     </div>
     <div class="timer-wrapper">
       <div class="cards-wrapper">
@@ -25,11 +25,9 @@
             />
           </svg>
           <one />
-          <h1> min </h1>
         </button>
         <button class="card">
           <three />
-          <h1> min </h1>
           <svg
             class="check"
             id="Layer_1"
@@ -69,7 +67,6 @@
             />
           </svg>
           <five/>
-          <h1>min</h1>
         </button>
       </div>
     </div>
@@ -94,11 +91,16 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Kantumruy:wght@700&display=swap');
 .big {
   display: flex;
   flex-direction: column;
   width: 100vw;
   overflow: hidden;
+}
+h1 {
+    font-family: 'Kantumruy', sans-serif;
+    font-size: 3rem;
 }
 .header {
   display: flex;
