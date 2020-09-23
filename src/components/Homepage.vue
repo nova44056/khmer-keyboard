@@ -1,7 +1,7 @@
 <template>
     <div>
-        <hpheading/>
-        <hpbtn/>
+        <!-- <hpheading/> -->
+        <!-- <hpbtn/> -->
     </div>
 </template>
 
@@ -17,3 +17,7 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+</style>

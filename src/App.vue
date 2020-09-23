@@ -1,23 +1,29 @@
 <template>
   <div id="app">
-    <homepage/>
-    <textpage/>
-    <startpage/>
-    <typingpage/>
+    <heading/>
+    <!-- <navbar/> -->
+    <!-- <homepage/> -->
+    <!-- <textpage/> -->
+    <!-- <startpage/> -->
+    <!-- <typingpage/> -->
   </div>
 </template>
 
 <script>
-import homepage from './components/Homepage'
-import textpage from './components/Textpage'
-import startpage from './components/StartPage'
-import typingpage from './components/TypingPage'
+import heading from './components/HP2Components/heading'
+// import navbar from './components/Navbar'
+// import homepage from './components/Homepage'
+// import textpage from './components/Textpage'
+// import startpage from './components/StartPage'
+// import typingpage from './components/TypingPage'
 export default {
   components: {
-    homepage,
-    textpage,
-    startpage,
-    typingpage
+    heading,
+    // navbar,
+    // homepage,
+    // textpage,
+    // startpage,
+    // typingpage
   }
 }
 </script>
