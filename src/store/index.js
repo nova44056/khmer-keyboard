@@ -7,7 +7,8 @@ export default new Vuex.Store({
   state: {
     runes: [],
     isActivePage1: false,
-    isActivePage2: false
+    isActivePage2: false,
+    userInfo: {userName: "", password: ""}
   },
   mutations: {
     set_runes (state, runes) {

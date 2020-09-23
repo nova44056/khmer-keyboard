@@ -3,7 +3,8 @@ import VueRouter from 'vue-router'
 import timeselector from '../components/TimeSelectorComponents/TimeSelector'
 import typeselector from '../components/TextSelectorComponents/TypeSelector'
 import typingpage from '../components/TypingPage'
-
+import logIn from '../views/logIn.vue'
+import signIn from '../views/signIn.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -25,6 +26,16 @@ const routes = [
     path: '/3',
     name: 'TypingPage',
     component: typingpage
+  },
+  {
+    path: '/logIn',
+    name: 'logIn',
+    component: logIn
+  },
+  {
+    path: '/signIn',
+    name: 'signIn',
+    component: signIn,
   }
 ]
 
