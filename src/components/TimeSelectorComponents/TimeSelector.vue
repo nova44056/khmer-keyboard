@@ -1,5 +1,5 @@
 <template>
-  <div class="big">
+  <div class="page-wrapper">
     <div class="header">
       <h1>ជ្រើសរើសនាទី</h1>
     </div>
@@ -88,7 +88,7 @@ import one from './one.vue'
 import three from './three.vue'
 import five from './five.vue'
 export default {
-  name: 'heading',
+  name: 'timeselector',
   components: {
     one,
     three,
@@ -118,9 +118,12 @@ export default {
   border-radius: 2rem;
   border: none;
   cursor: pointer;
+  outline: none;
+  font-family: 'Kantumruy', sans-serif;
+  font-size: 1rem;
 }
 
-.big {
+.page-wrapper {
   display: flex;
   flex-direction: column;
   width: 100vw;

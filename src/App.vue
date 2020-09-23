@@ -1,37 +1,28 @@
 <template>
   <div id="app">
-    <!-- <heading/> -->
-    <!-- <tselector/> -->
+    <!-- <timeselector/> -->
+    <!-- <typeselector/> -->
     <vue-page-transition name="fade-in-right">
       <router-view/>
     </vue-page-transition>
     <!-- <navbar/> -->
-    <!-- <homepage/> -->
-    <!-- <textpage/> -->
-    <!-- <startpage/> -->
     <!-- <typingpage/> -->
     <pgIndicator/>
   </div>
 </template>
 
 <script>
-// import tselector from './components/TXP2Components/Tselector'
-// import heading from './components/HP2Components/heading'
+// import timeselector from './components/TimeSelectorComponents/TimeSelector'
+// import typeselector from './components/TypeSelectorComponents/TypeSelector'
 import pgIndicator from './components/PageIndicator'
 // import navbar from './components/Navbar'
-// import homepage from './components/Homepage'
-// import textpage from './components/Textpage'
-// import startpage from './components/StartPage'
 // import typingpage from './components/TypingPage'
 export default {
   components: {
-    // heading,
-    // tselector,
+    // timeselector,
+    // typeselector,
     pgIndicator
     // navbar,
-    // homepage,
-    // textpage,
-    // startpage,
     // typingpage
   }
 }

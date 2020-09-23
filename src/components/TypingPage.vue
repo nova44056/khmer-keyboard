@@ -17,12 +17,12 @@
 </template>
 
 <script>
-import textareas from './TPComponent/textarea'
-import keyboard from './TPComponent/keyboard'
-import timer from './TPComponent/timer'
-import error from './TPComponent/error'
-import score from './TPComponent/score'
-import exit from './TPComponent/exit'
+import textareas from './TypingPageComponents/textarea'
+import keyboard from './TypingPageComponents/keyboard'
+import timer from './TypingPageComponents/timer'
+import error from './TypingPageComponents/error'
+import score from './TypingPageComponents/score'
+import exit from './TypingPageComponents/exit'
 import splitKhmerRunes from '../split-khmer'
 import { textsList } from './texts-list'
 export default {

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import heading from '../components/HP2Components/heading'
-import tselector from '../components/TXP2Components/Tselector'
+import timeselector from '../components/TimeSelectorComponents/TimeSelector'
+import typeselector from '../components/TextSelectorComponents/TypeSelector'
 
 Vue.use(VueRouter)
 
@@ -13,12 +13,12 @@ const routes = [
   {
     path: '/1',
     name: 'SelectionPage1',
-    component: heading
+    component: timeselector
   },
   {
     path: '/2',
     name: 'SelectionPage2',
-    component: tselector
+    component: typeselector
   }
 ]
 

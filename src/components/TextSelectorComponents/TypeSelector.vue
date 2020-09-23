@@ -1,9 +1,9 @@
 <template>
-  <div class="big">
+  <div class="page-wrapper">
     <div class="header">
       <h1>ជ្រើសរើសប្រភេទនៃការវាយ</h1>
     </div>
-    <div class="timer-wrapper">
+    <div class="type-wrapper">
       <div class="cards-wrapper">
         <button class="card">
           <svg
@@ -52,6 +52,7 @@
 
     <div class="button-wrapper">
         <button @click="$router.push({name: 'SelectionPage1'})">ត្រឡប់ក្រោយ</button>
+        <button>បន្ត</button>
     </div>
 
     <div>
@@ -65,7 +66,7 @@
 
 <script>
 export default {
-  name: 'tselector',
+  name: 'typeselector',
   created () {
     this.$store.dispatch('toggleActivePage2')
   },
@@ -91,9 +92,13 @@ export default {
   border-radius: 2rem;
   border: none;
   cursor: pointer;
+  margin-right: 1rem;
+  outline: none;
+  font-family: 'Kantumruy', sans-serif;
+  font-size: 1rem;
 }
 
-.big {
+.page-wrapper {
   display: flex;
   flex-direction: column;
   width: 100vw;
@@ -113,7 +118,7 @@ h2 {
   align-items: flex-end;
   height: 10rem;
 }
-.timer-wrapper {
+.type-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
