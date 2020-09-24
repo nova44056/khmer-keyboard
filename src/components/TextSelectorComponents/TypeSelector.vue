@@ -95,7 +95,7 @@ export default {
   margin-right: 1rem;
   outline: none;
   font-family: 'Kantumruy', sans-serif;
-  font-size: 1rem;
+  font-size: 1.5rem;
 }
 
 .page-wrapper {

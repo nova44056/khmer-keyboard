@@ -39,7 +39,47 @@ export default {
     height: 7rem;
     margin-right: 3rem;
   }
-
+  @media screen and (max-width: 1080px) and (min-width: 845px) {
+    .lottie {
+      width: 15rem;
+    }
+  }
+  @media screen and (max-width: 845px) and (min-width: 600px) {
+    .lottie {
+      width: 10rem;
+      display: flex;
+      flex-direction: column;
+      height: 10rem;
+      justify-content: center;
+      align-items: center;
+    }
+    svg {
+      margin-bottom: 1rem;
+    }
+    h2 {
+      margin-left: -1.5rem;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .lottie {
+      width: 6rem;
+      display: flex;
+      flex-direction: column;
+      height: 10rem;
+      justify-content: center;
+      align-items: center;
+    }
+    svg {
+      margin-top: 1.3rem;
+      display: flex;
+      justify-content: center;
+      padding-right: 0.6rem;
+    }
+    h2 {
+      margin-top: 0.8rem;
+      margin-left: -2rem;
+    }
+  }
   .text {
     margin-left: 2rem;
     display: flex;

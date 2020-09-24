@@ -120,7 +120,7 @@ export default {
   cursor: pointer;
   outline: none;
   font-family: 'Kantumruy', sans-serif;
-  font-size: 1rem;
+  font-size: 1.5rem;
 }
 
 .page-wrapper {

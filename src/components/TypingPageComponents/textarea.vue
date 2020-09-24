@@ -34,7 +34,51 @@ export default {
     color: #1b2448;
     font-family: 'Kantumruy', sans-serif;
 }
-
+@media screen and (max-width: 1255px) and (min-width: 1175px) {
+  .text-div {
+    width: 70rem;
+  }
+}
+@media screen and (max-width: 1175px) and (min-width: 1030px) {
+  .text-div {
+    width: 60rem;
+  }
+}
+@media screen and (max-width: 1030px) and (min-width: 961px) {
+  .text-div {
+    width: 55rem;
+  }
+}
+@media screen and (max-width: 961px) and (min-width: 860px) {
+  .text-div {
+    width: 50rem;
+  }
+}
+@media screen and (max-width: 860px) and (min-width: 770px) {
+  .text-div {
+    width: 45rem;
+  }
+}
+@media screen and (max-width: 770px) and (min-width: 695px){
+  .text-div {
+    width: 40rem;
+  }
+}
+@media screen and (max-width: 695px) and (min-width: 610px) {
+  .text-div {
+    width: 35rem;
+  }
+}
+@media screen and (max-width: 610px) and (min-width: 530px) {
+  .text-div {
+    width: 30rem;
+  }
+}
+@media screen and (max-width: 530px) and (min-width: 500px) {
+  .text-div {
+    width: 27rem;
+  }
+}
 .text-wrapper{
   font-weight: normal;
   word-break: break-all;

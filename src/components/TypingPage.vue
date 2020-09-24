@@ -7,7 +7,9 @@
         <score/>
         </div>
         <div class="col2">
+          <div class="area">
         <textareas/>
+          </div>
         <div class="key">
         <keyboard/>
         </div>
@@ -105,12 +107,13 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     /* width: 70%; */
     margin-top: 3.5rem;
 }
 .col1 {
     display: flex;
-    flex-direction: col;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     /* width: 20%; */
@@ -122,13 +125,25 @@ h2 {
     margin-top: 1rem;
     margin-bottom: -5rem;
 }
+.area {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
 .key {
     display: flex;
     justify-content: center;
-    width: 100%;
-    height: 300px;
+    align-items: center;
+    width: 60rem;
+    height: 30rem;
     /* margin-left: 6.5rem; */
-    margin-left: -1rem;
-    margin-top: -3rem;
+    /* margin-left: -1rem; */
+    /* margin-top: 3rem; */
+}
+
+@media screen and (max-width: 1110px){
+  .key {
+    display: none;
+  }
 }
 </style>

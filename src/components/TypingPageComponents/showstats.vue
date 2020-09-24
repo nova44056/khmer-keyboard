@@ -16,7 +16,7 @@ export default {
   height: 100px;
   width: 300px;
   border-radius: 8px;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-family: "Kantumruy", sans-serif;
   background-color: white;
   cursor: pointer;
@@ -32,8 +32,27 @@ button:hover {
   color: white;
 }
 .box {
-  margin-top: 6.8rem;
+  margin-top: -9rem;
   display: flex;
   margin-left: 95rem;
+}
+@media screen and (max-width: 1830px) {
+  .box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 2rem;
+    margin-top: 3rem;
+  }
+}
+@media screen and (max-width: 1110px)
+{
+  .box {
+    margin-top: 5rem;
+    display: flex;
+    margin-left: 0rem;
+    justify-content: center;
+    align-items: center;
+  }
 }
 </style>

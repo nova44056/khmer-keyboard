@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="keyboard">
     <svg
       xmlns:dc="http://purl.org/dc/elements/1.1/"
       xmlns:cc="http://creativecommons.org/ns#"
@@ -2862,9 +2862,9 @@ export default {
 
 <style scoped>
 svg {
-  height: 500px;
-  width: 1000px;
-  margin-left: 2rem;
-  margin-top: 1rem;
+  height: 30rem;
+  width: 70rem;
+  /* margin-left: 2rem; */
+  /* margin-top: 1rem; */
 }
 </style>
