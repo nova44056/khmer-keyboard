@@ -1,76 +1,94 @@
 <template>
   <main>
-    <div class="col">
+
+    <div
+      class="col"
+    >
       <div class="col1">
-          <timer/>
+        <div class="lottie">
+              <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_AMwwvI.json"  background="transparent"  speed="0.8"  style="width: 100px; height: 110px;"  loop  autoplay></lottie-player>
+              <div class="text">
+              <h3>៥ៈ០០</h3>
+              <!-- ១ៈ០០ ៣ៈ០០  -->
+              </div>
+        </div>
+          <!-- <timer/> -->
           <error/>
           <score/>
       </div>
-      <div class="col2">
-        <div class="area">
-          <!-- text areas -->
-          <div class="text-div">
-            <h2 class="text-wrapper">
-                <span v-for="(rune, index) in runes" :key='index' :class="{space: rune.isSpace, current: rune.isCurrent, correct: rune.isCorrect, hidden: rune.isHidden}">
-                    {{rune.rune}}
-                </span>
-            </h2>
-          </div>
-          <div>
-            <h4 id="decomposition-vk">
-              <span>​</span>
-              <span
-                v-for="letter in letters"
-                :key="letter.id"
-                :class="{current: letter.isCurrent, correct: letter.isCorrect}"
-                :id="letter.id"
-              >{{ letter.letter }}</span>
-            </h4>
-          </div>
+      
+      <div class="row">
+        <!-- Text Counter -->
+        <div class="runesWrap">
+          <strong>{{ convertToKhmerNum(runesCounter) }}</strong>
+          / {{ convertToKhmerNum(totalRunes) }}
         </div>
-    </div>
-        <div class="key">
-          <keyboard id="keyboard-vk" />
+
+        <!-- Errors -->
+        <div class="errorsWrap">
+          <strong :class="{'error': alertError}">{{ errors }}</strong> errors
         </div>
       </div>
-          <leftHand id="leftHand-vk" />
-          <rightHand id="rightHand-vk" />
-      <showstats/>
 
-    <div class="row2">
-      <timer />
-      <error />
-      <score />
-      <!-- <exit /> -->
+      <!-- <div id="text-div" :class="{'error-bg': alertError}">
+        <h2 id="text-wrapper">
+            <span v-for="(rune, index) in runes" :key='index' :class="{space: rune.isSpace, current: rune.isCurrent, correct: rune.isCorrect, hidden: rune.isHidden}" class="runes" :id="rune.id">
+                {{rune.rune}}
+            </span>
+        </h2>
+      </div> -->
+
+      <div
+        id="text-div"
+        :class="{'error-bg': alertError}"
+      >
+        <h2 id="text-wrapper">
+          <span
+            v-for="rune in runes"
+            :key="rune.id"
+            class="runes"
+            :class="{current: rune.isCurrent, correct: rune.isCorrect, hidden: rune.isHidden, space: rune.isSpace}"
+            :id="rune.id"
+          >{{ rune.rune }}</span>
+        </h2>
+      </div>
+
+      <div>
+        <h4 id="decomposition-vk">
+          <span>​</span>
+          <span
+            v-for="letter in letters"
+            :key="letter.id"
+            :class="{current: letter.isCurrent, correct: letter.isCorrect}"
+            :id="letter.id"
+          >{{ letter.letter }}</span>
+        </h4>
+      </div>
+
+      <div id="handsAndKeyboardWrap-vk">
+        <div class="row">
+          <leftHand id="leftHand-vk" />
+          <keyboard id="keyboard-vk" />
+          <rightHand id="rightHand-vk" />
+        </div>
+      </div>
     </div>
   </main>
 </template>
 
 <script>
-import textareas from './TypingPageComponents/textarea'
-import keyboard from './TypingPageComponents/keyboard'
-import timer from './TypingPageComponents/timer'
 import error from './TypingPageComponents/error'
+import timer from './TypingPageComponents/timer'
 import score from './TypingPageComponents/score'
-import showstats from './TypingPageComponents/showstats'
-import splitKhmerRunes from '../split-khmer'
-import { textsList } from './texts-list'
-import mapping from '../keyboard-mapping'
-import hands from './hands'
-import leftHand from './LeftHand'
-import rightHand from  './RightHand'
-export default {
-  name: "typingpage",
-  components: {
-    keyboard,
-    timer,
-    error,
-    score,
-    showstats,
-    leftHand,
-    rightHand
-  },
-  data: () => {
+import keyboard from "./TypingPageComponents/keyboard";
+import splitKhmerRunes from "../split-khmer";
+import { textsList } from "./texts-list";
+import mapping from "../keyboard-mapping";
+import hands from "./hands"
+import leftHand from "./LeftHand"
+import rightHand from "./RightHand"
+
+  function initialState () {
     return {
       text: '',
       seconds: 0,
@@ -81,13 +99,52 @@ export default {
       errors: 0,
       alertError: false,
       idsBreakBefore: null
-    };
-  },
+    }
+  }
+
+  export default {
+    name: 'VisualKeyboard',
+    components: {
+      leftHand,
+      rightHand,
+      keyboard,
+      timer,
+      error,
+      score
+    },
+    data: initialState,
+    mounted () {
+      this.startGame()
+    },
     methods: {
+      convertToKhmerNum (num) {
+        let numData = {
+          '0' : '០',
+          '1' : '១',
+          '2' : '២',
+          '3' : '៣',
+          '4' : '៤',
+          '5' : '៥',
+          '6' : '៦',
+          '7' : '៧',
+          '8' : '៨',
+          '9' : '៩',
+        }
+
+        let khmNum = ""
+        for(let i = 0; i < num.toString().length; i++){
+          khmNum += numData[num.toString()[i]]
+        }
+      return khmNum
+      },
       /**
        * Initializes the game by changing the DOM
        */
       startGame: function () {
+        
+        // Make the game content visible
+        // document.getElementById('gameWrap-vk').style.display = 'inline'
+        
         // Select random text from the texts list
         var random = Math.floor(Math.random() * (textsList.list.length))
         this.text = textsList.list[random]
@@ -124,8 +181,6 @@ export default {
         this.splitRuneIntoSpannedLetters(listRunes[this.runesCounter])
         var listKeys = this.getAllKeys(this.text)
         var currentLetters = ''
-        console.log(currentLetters)
-        console.log(currentLetters.length)
         // Highlights
         this.runes[this.runesCounter].isCurrent = true
         this.letters[currentLetters.length].isCurrent = true
@@ -150,7 +205,6 @@ export default {
               // We show to the user that the grapheme is completed
               vm.runes[vm.runesCounter].isCurrent = false
               vm.runes[vm.runesCounter].isCorrect = true
-              console.log('DOG')
               // Current grapheme is completed, we start again to track the next one
               currentLetters = ''
               vm.letters = []
@@ -204,37 +258,6 @@ export default {
           localStorage.setItem('visualKeyboard.speed.errors', this.errors)
           localStorage.setItem('visualKeyboard.speed.runes', this.runesCounter)
         }
-        // Display results
-        // this.$modal.show('dialog', {
-        //   title: this.$i18n.t('message.finishedPlaying'),
-        //   text: this.$i18n.t('message.scoreVisualKeyboard', { errors: this.errors, minutes: minutes }),
-        //   buttons: [
-        //     {
-        //       title: this.$i18n.t('Home'),
-        //       default: true, // Will be triggered by default if 'Enter' pressed.
-        //       handler: () => {
-        //         this.$router.push('landind-page')
-        //       }
-        //     },
-        //     {
-        //       title: this.$i18n.t('High scores'),
-        //       handler: () => {
-        //         this.$router.push('highScores')
-        //       }
-        //     },
-        //     {
-        //       title: this.$i18n.t('Play again'),
-        //       default: true, // Will be triggered by default if 'Enter' pressed.
-        //       handler: () => {
-        //         this.$modal.hide('dialog')
-        //         // Reset data
-        //         Object.assign(this.$data, initialState())
-        //         // Start new game
-        //         this.startGame()
-        //       }
-        //     }
-        //   ]
-        // })
       },
       /**
        * Display the text to be typed by the user
@@ -246,7 +269,9 @@ export default {
         // Split the string to an array of grapheme clusters (one string each)
         var graphemes = splitKhmerRunes(text)
         for (var i = 0; i < graphemes.length; i++) {
-          this.runes.push({'id': 'rune-' + i, 'rune': graphemes[i], 'isCurrent': false, 'isCorrect': false, 'isHidden': false})
+          var isSpace = false
+          if (graphemes[i].charCodeAt(0) === 32) { graphemes[i] = '⎵'; isSpace = true }
+          this.runes.push({'id': 'rune-' + i, 'rune': graphemes[i], 'isCurrent': false, 'isCorrect': false, 'isHidden': false, 'isSpace': isSpace})
         }
       },
       /**
@@ -273,6 +298,7 @@ export default {
       getRunesIdsBreakBefore: function () {
         var idBreakBefore = []
         var runes = document.getElementsByClassName('runes')
+        console.log(runes)
         // Loop through all the runes
         for (var i = 0; i < runes.length; i++) {
           // If a rune has minimal offsetLeft, it means it's on the left of the element, ie at the beginning of a new line
@@ -331,16 +357,6 @@ export default {
 
         // Careful if typing in english letters
         if (keyPressed === undefined) {
-        //   this.$modal.show('dialog', {
-        //     title: this.$i18n.t('Alert!'),
-        //     text: this.$i18n.t('message.alertVisualKeyboard'),
-        //     buttons: [
-        //       {
-        //         title: this.$i18n.t('Close'),
-        //         default: true // Will be triggered by default if 'Enter' pressed.
-        //       }
-        //     ]
-        //   })
           isCorrect = false
         } else if (keyToPress.length > 1) {
         // More than one key to press means the first key is ALT or SHIFT
@@ -397,15 +413,12 @@ export default {
             document.getElementById('leftHand').getElementById('left-finger-1').setAttributeNS(null, 'fill', color)
             document.getElementById('rightHand').getElementById('right-finger-1').setAttributeNS(null, 'fill', color)
           } else {
-            // var hand = finger.split('-')[0]
+            var hand = finger.split('-')[0]
             // Highlight the correct finger on the correct hand
-            // document.getElementById(hand + 'Hand').getElementById(finger).setAttributeNS(null, 'fill', color)
+            document.getElementById(hand + 'Hand').getElementById(finger).setAttributeNS(null, 'fill', color)
           }
           // Highlight the correct key on the keyboard
-          // console.log(key)
           document.getElementById('keyboard').getElementById(key).setAttributeNS(null, 'fill', color)
-          // var test = document.getElementById('keyboard').getElementById('C')
-          // test.setAttributeNS('fill', 'red')
         }
       },
       /**
@@ -419,7 +432,7 @@ export default {
         // Loop through all the fingers
         for (var i = 0; i < fingers.length; i++) {
           hand = fingers[i].split('-')[0]
-          // document.getElementById(hand + 'Hand').getElementById(fingers[i]).setAttributeNS(null, 'fill', 'none')
+          document.getElementById(hand + 'Hand').getElementById(fingers[i]).setAttributeNS(null, 'fill', 'none')
         }
         var svgKeyboard = document.getElementById('keyboard')
         // Loop through all the normal keys
@@ -432,21 +445,55 @@ export default {
         }
       }
     },
-  beforeDestroy () {
-    document.onkeypress = null
-    clearInterval(this.timer)
-  },
-  updated () {
-    // The dom hass changed, update the list of breaking points in case it's needed
-    this.idsBreakBefore = this.getRunesIdsBreakBefore()
-  },
-  created () {
-    this.startGame()
+    beforeDestroy () {
+      document.onkeypress = null
+      clearInterval(this.timer)
+    },
+    updated () {
+      // The dom hass changed, update the list of breaking points in case it's needed
+      this.idsBreakBefore = this.getRunesIdsBreakBefore()
+    }
   }
-};
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Kantumruy&display=swap");
+#leftHand-vk, #rightHand-vk{
+  display: none;
+}
+.error-bg {
+  animation: errorAnimationBackground 0.5s;
+}
+
+@keyframes errorAnimationBackground {
+  0% {
+    background-color: #ddd;
+  }
+  33% {
+    background-color: #ffc10a;
+  }
+  100% {
+    background-color: #ddd;
+  }
+}
+
+.error {
+  animation: errorAnimation 0.5s;
+}
+
+@keyframes errorAnimation {
+  0% {
+    color: #ffc10a;
+  }
+  33% {
+    color: black;
+  }
+  100% {
+    color: #ffc10a;
+  }
+}
+
+
 .col {
     display: flex;
     flex-direction: column;
@@ -466,13 +513,12 @@ export default {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-left: 10rem;
     /* width: 20%; */
     /* margin-right: 7rem; */
 }
 h2 {
   font-family: "Kantumruy", sans-serif;
-  color: white;
+  color: black;
   margin-top: 1rem;
   margin-bottom: -5rem;
 }
@@ -485,7 +531,7 @@ h2 {
   margin-top: -3rem;
 }
 
-.text-div {
+#text-div {
     height: 15rem;
     width: 75rem;
     border: 2px solid #1b2448;
@@ -497,9 +543,10 @@ h2 {
     background-color: white;
     color: #1b2448;
     font-family: 'Kantumruy', sans-serif;
+    /* min-width: 500px; */
 }
 
-.text-wrapper{
+#text-wrapper{
   font-weight: normal;
   word-break: break-all;
   line-height: 4.6rem;
@@ -519,7 +566,7 @@ h2 {
 
 .space{
     font-size: 1rem;
-    color: white;
+    color: white !important;
 }
 .area {
   display: flex;
@@ -543,7 +590,7 @@ h2 {
   }
 }
 
-.text-div {
+#text-div {
     height: 15rem;
     width: 75rem;
     border: 2px solid #1b2448;
@@ -555,57 +602,58 @@ h2 {
     background-color: white;
     color: #1b2448;
     font-family: 'Kantumruy', sans-serif;
-    display: flex;
-    justify-content: center;
 }
+
+#keyboard-vk svg{
+  width: 100px;
+}
+
 @media screen and (max-width: 1255px) and (min-width: 1175px) {
-  .text-div {
+  #text-div {
     width: 70rem;
   }
 }
 @media screen and (max-width: 1175px) and (min-width: 1030px) {
-  .text-div {
+  #text-div {
     width: 60rem;
+  }
+  #handsAndKeyboardWrap-vk {
+    display: none;
   }
 }
 @media screen and (max-width: 1030px) and (min-width: 961px) {
-  .text-div {
+  #text-div {
     width: 55rem;
   }
 }
 @media screen and (max-width: 961px) and (min-width: 860px) {
-  .text-div {
+  #text-div {
     width: 50rem;
   }
 }
 @media screen and (max-width: 860px) and (min-width: 770px) {
-  .text-div {
+  #text-div {
     width: 45rem;
   }
 }
 @media screen and (max-width: 770px) and (min-width: 695px){
-  .text-div {
+  #text-div {
     width: 40rem;
   }
 }
 @media screen and (max-width: 695px) and (min-width: 610px) {
-  .text-div {
+  #text-div {
     width: 35rem;
   }
 }
 @media screen and (max-width: 610px) and (min-width: 530px) {
-  .text-div {
+  #text-div {
     width: 30rem;
   }
 }
 @media screen and (max-width: 530px) and (min-width: 500px) {
-  .text-div {
-    width: 25rem;
-  }
-}
-@media screen and (max-width: 500px) and (min-width: 490px) {
-  .text-div {
-    width: 20rem;
+  #text-div {
+    width: 27rem;
   }
 }
 .text-wrapper{
@@ -641,4 +689,85 @@ h2 {
 .correct {
   color: #3f51b5;
 }
+
+
+#decomposition-vk,
+#text-vk {
+  font-weight: normal;
+  word-break: break-all;
+}
+
+#text-vk {
+  line-height: 1.5em;
+  font-size: 3em;
+  max-height: 3em;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+#decomposition-vk {
+  font-size: 2em;
+  margin: 1% auto 3% auto;
+}
+
+#textWrap-vk {
+  background-color: #ddd;
+  border-radius: 5px;
+}
+.lottie {
+    border: 1px solid white;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 10px;
+    margin-top: 6rem;
+    box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05),
+    0 15px 40px rgba(166, 173, 201, 0.2);
+    background-color: white;
+    width: 20rem;
+    height: 7rem;
+    margin-right: 3rem;
+    margin-top: 2rem;
+  }
+  @media screen and (max-width: 1080px) and (min-width: 845px) {
+    .lottie {
+      width: 15rem;
+    }
+  }
+  @media screen and (max-width: 845px) and (min-width: 600px){
+    .lottie {
+      width: 10rem;
+      display: flex;
+      flex-direction: column;
+      height: 10rem;
+      justify-content: center;
+      align-items: center;
+    }
+    .text > h3 {
+      margin-top: -1rem;
+      margin-left: -1.5rem;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .lottie {
+      width: 6rem;
+      display: flex;
+      flex-direction: column;
+      height: 10rem;
+      justify-content: center;
+      align-items: center;
+    }
+    .text > h3 {
+      margin-top: -1rem;
+      margin-left: -1.7rem;
+    }
+  }
+  .text {
+    margin-left: 2rem;
+    display: flex;
+    justify-content: center;
+    font-family: 'Kantumruy', sans-serif;
+    font-size: 1.2rem;
+  }
 </style>

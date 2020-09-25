@@ -5,6 +5,8 @@ import typeselector from '../components/TextSelectorComponents/TypeSelector'
 import typingpage from '../components/TypingPage'
 import logIn from '../views/logIn.vue'
 import signIn from '../views/signIn.vue'
+import test from '../components/Test'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -25,7 +27,7 @@ const routes = [
   {
     path: '/3',
     name: 'TypingPage',
-    component: typingpage
+    component: test
   },
   {
     path: '/logIn',
