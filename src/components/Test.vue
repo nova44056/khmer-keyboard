@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div class="col" v-bind:class="{transparent: !isKhmer}">
+    <div class="col">
       <div class="col1">
         <!-- timerstats -->
         <div class="lottie">
@@ -15,7 +15,7 @@
           ></lottie-player>
           <!-- <div class="text">
           </div> -->
-            <countdown :time="this.time * 30000" @end="endGame">
+            <countdown :time="this.time * 30000" @end="endGame" ref="countdown" :auto-start="false">
               <template slot-scope="props">{{ props.minutes }} : {{ props.seconds }} </template>
             </countdown>
             <!-- ១ៈ០០ ៣ៈ០០  -->
@@ -112,12 +112,6 @@
           <rightHand id="rightHand-vk" />
         </div>
       </div>
-
-
-    
-
-
-
     </div>
 
     <keyboardMessage v-bind:class="{showError: !isKhmer}" />
@@ -152,7 +146,7 @@ function initialState() {
     errors: 0,
     alertError: false,
     idsBreakBefore: null,
-    isKhmer : false, 
+    isKhmer : true, 
   };
 }
 
@@ -262,18 +256,18 @@ export default {
       document.onkeypress = function (ev) {
         ev.preventDefault();
         // console.log(ev.shiftKey)
-
-      if(ev.shiftKey) {
-          if (ev.shiftLeft) {
-            console.log('shift-left'); 
-          }
-          else
-          {
-            console.log('shift-right');
-          }
-      }
-
-        vm.isKhmerWord(ev.key)
+      // if(ev.shiftKey) {
+      //     if (ev.shiftLeft) {
+      //       console.log('shift-left'); 
+      //     }
+      //     else
+      //     {
+      //       console.log('shift-right');
+      //     }
+      // }
+      vm.isKhmerWord(ev.key)
+      if(vm.isKhmer){  
+        vm.$refs.countdown.start();
         var isCorrect = vm.areRightKeysPressed(ev, listKeys, currentLetters);
         // Pressed key is correct
         if (isCorrect) {
@@ -316,7 +310,8 @@ export default {
           // Pressed key is wrong
           vm.alertWrongKey();
         }
-      };
+      }
+      }
     },
     /**
      * Displays the modal with the scores
@@ -767,7 +762,7 @@ h2 {
 }
 
 .showError{
-  display: flex;
+  visibility: visible;
 }
 
 @media screen and (max-width: 1110px) {
