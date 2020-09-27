@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div class="col">
+    <div class="col" v-bind:class="{transparent: !isKhmer}">
       <div class="col1">
         <!-- timerstats -->
         <div class="lottie">
@@ -111,7 +111,16 @@
           <rightHand id="rightHand-vk" />
         </div>
       </div>
+
+
+    
+
+
+
     </div>
+
+    <keyboardMessage v-bind:class="{showError: !isKhmer}" />
+    
   </main>
 </template>
 
@@ -127,6 +136,8 @@ import hands from "./hands";
 import leftHand from "./LeftHand";
 import rightHand from "./RightHand";
 import khmerWord from "../mapping.js"
+import keyboardMessage from "../components/displayWrongKeyboard"
+import threeVue from './TimeSelectorComponents/three.vue';
 
 function initialState() {
   return {
@@ -141,6 +152,7 @@ function initialState() {
     errors: 0,
     alertError: false,
     idsBreakBefore: null,
+    isKhmer : false, 
   };
 }
 
@@ -153,11 +165,15 @@ export default {
     // timer,
     // error,
     score,
+    keyboardMessage,
   },
   data: initialState,
+
   mounted() {
     this.startGame();
   },
+
+ 
   methods: {
     testFunction () {
       console.log('Hello World')
@@ -184,9 +200,12 @@ export default {
     },
 
      isKhmerWord: function(userWord){
-      if(!khmerWord.includes(userWord)){
-        return false
+      if(khmerWord.includes(userWord)){
+        this.isKhmer = true
         }
+      else {
+        this.isKhmer = false
+      }
     
 
       
@@ -622,6 +641,12 @@ export default {
   }
 }
 
+.transparent {
+  
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+
+}
+
 .col {
   display: flex;
   flex-direction: column;
@@ -724,6 +749,10 @@ h2 {
   /* margin-left: 6.5rem; */
   /* margin-left: -1rem; */
   /* margin-top: 3rem; */
+}
+
+.showError{
+  display: flex;
 }
 
 @media screen and (max-width: 1110px) {
