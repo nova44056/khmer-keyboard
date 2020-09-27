@@ -247,7 +247,6 @@ h1 {
 .cls-2 {
   fill: #f6f6f6;
 }
-
 @media screen and (max-width: 920px) and (min-width: 720px) {
   .card {
     height: 12rem;
