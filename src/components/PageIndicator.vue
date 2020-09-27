@@ -1,7 +1,7 @@
 <template>
     <div class="indicator-wrapper" :class="{showPageIndicator1: isActivePage1, showPageIndicator2: isActivePage2}">
-        <div class="indicator" :class="{isActive: isActivePage1}"></div>
-        <div class="indicator" :class="{isActive: isActivePage2}"></div>
+        <div class="indicator" :class="{isActive: isActivePage1}" @click="$router.push({name: 'SelectionPage1'})"></div>
+        <div class="indicator" :class="{isActive: isActivePage2}" @click="$router.push({name: 'SelectionPage2'})"></div>
     </div>
 </template>
 <script>
@@ -44,5 +44,9 @@ export default {
   width: 1rem;
   background-color: #005bb8;
   margin: 1rem;
+}
+
+.indicator:hover{
+  cursor: pointer;
 }
 </style>

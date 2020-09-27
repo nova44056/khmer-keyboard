@@ -5,7 +5,7 @@
     </div>
     <div class="type-wrapper">
       <div class="cards-wrapper">
-        <button class="card" @click="chooseTimer()">
+        <button class="card">
           <svg
             class="check"
             id="Layer_1"
@@ -26,7 +26,7 @@
           </svg>
           <h2>ពាក្យ</h2>
         </button>
-        <button class="card" @click="chooseTimer()">
+        <button class="card">
           <svg
             class="check"
             id="Layer_1"
@@ -74,14 +74,21 @@ export default {
   }, 
   created () {
     this.$store.dispatch('toggleActivePage2')
+    this.checkFocus()
   },
   destroyed () {
     this.$store.dispatch('toggleActivePage2')
   },
    methods:{
-  chooseTimer(){
-    this.isTypeSelected = true
-  },
+  checkFocus () {
+		setInterval(() => {
+      if ($(".card").is(":focus")) {
+        this.isTypeSelected = true
+      }else {
+        this.isTypeSelected = false
+      }
+		},1000)
+	}
    }
 }
 </script>
@@ -89,6 +96,11 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Kantumruy:wght@700&display=swap');
 @import url(//db.onlinewebfonts.com/c/56f089d4a1aecfe1368a63828e078332?family=Khmer+UI);
+
+* {
+  overflow: visible !important;
+}
+
 .button-wrapper{
   height: 13rem;
   display: flex;

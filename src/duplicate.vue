@@ -1,38 +1,105 @@
 <template>
   <main>
-    <div>
-      <div class="outerWrap">
-        <div class="scoreWrap">
-          <p>Score</p>
-          <span class="score">{{ score }}</span>
+    <div class="col">
+      <div class="col1">
+        <!-- timerstats -->
+        <div class="lottie">
+          <lottie-player
+            id="lottie"
+            src="https://assets10.lottiefiles.com/packages/lf20_AMwwvI.json"
+            background="transparent"
+            speed="0.8"
+            style="width: 100px; height: 110px;"
+            loop
+            autoplay
+          ></lottie-player>
+          <!-- <div class="text">
+          </div> -->
+            <!-- <countdown :time="this.time * 30000" @end="endGame" ref="countdown" :auto-start="false">
+              <template slot-scope="props">{{ props.minutes }} : {{ props.seconds }} </template>
+            </countdown> -->
+            <span>{{ seconds }}</span>
+            <!-- ១ៈ០០ ៣ៈ០០  -->
         </div>
-        <div class="timeWrap">
-          <p>Time Left</p>
-          <span class="time">{{ seconds }}</span>
+        <div class="lottie">
+          <lottie-player
+            id="lottie"
+            src="https://assets4.lottiefiles.com/packages/lf20_Ex9JsF.json"
+            background="transparent"
+            speed="0.5"
+            style="width: 100px; height: 120px"
+            loop
+            autoplay
+          ></lottie-player>
+            <span>{{ score }}</span>
         </div>
+        <!-- <timer/> -->
+        <!-- <error/> -->
+        <!-- <score /> -->
       </div>
-      <div class="wordsWrap">
-        <p class="words">
+
+        <!-- Text Counter -->
+      <!-- <div class="row">
+        <div class="runesWrap">
+          <strong>{{ convertToKhmerNum(runesCounter) }}</strong>
+          / {{ convertToKhmerNum(totalRunes) }}
+        </div> -->
+
+        <!-- Errors -->
+        <!-- <div class="errorsWrap">
+          <strong :class="{ error: alertError }">{{ errors }}</strong> errors
+        </div>
+      </div> -->
+
+      <!-- <div id="text-div" :class="{'error-bg': alertError}">
+        <h2 id="text-wrapper">
+            <span v-for="(rune, index) in runes" :key='index' :class="{space: rune.isSpace, current: rune.isCurrent, correct: rune.isCorrect, hidden: rune.isHidden}" class="runes" :id="rune.id">
+                {{rune.rune}}
+            </span>
+        </h2>
+      </div> -->
+
+      <div id="text-div">
+        <h2 id="text-wrapper">
           <span
-            class="spans"
-            v-for="span in spans"
-            :key="span.id"
-          >{{ span }}</span>
-        </p>
+            v-for="rune in runes"
+            :key="rune.id"
+            class="runes"
+            :class="{
+              current: rune.isCurrent,
+              correct: rune.isCorrect,
+              hidden: rune.isHidden,
+              space: rune.isSpace,
+            }"
+            :id="rune.id"
+            >{{ rune.rune }}</span
+          >
+        </h2>
       </div>
-      <h3 class="buffer-title">
-        What are you playing ?
-      </h3>
-      <div class="buffer">
-        {{ buffer }}
+
+      <div>
+        <h4 id="decomposition-vk">
+          <span>​</span>
+          <span
+            v-for="letter in letters"
+            :key="letter.id"
+            :class="{ current: letter.isCurrent, correct: letter.isCorrect }"
+            :id="letter.id"
+            >{{ letter.letter }}</span
+          >
+        </h4>
       </div>
-      <div
-        id="keyboardWrap-tf"
-        @click="zoomKeyboard"
-      >
-        <keyboard id="keyboard-tf" />
+
+      <div id="handsAndKeyboardWrap-vk">
+        <div class="row">
+          <leftHand id="leftHand-vk" />
+          <keyboard id="keyboard-vk" />
+          <rightHand id="rightHand-vk" />
+        </div>
       </div>
     </div>
+
+    <keyboardMessage v-bind:class="{showError: !isKhmer}" />
   </main>
 </template>
 
