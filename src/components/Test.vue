@@ -13,7 +13,7 @@
             autoplay
           ></lottie-player>
           <div class="text">
-            <countdown :time="this.time * 60000" @end="endGame" style="margin-right: 1.2rem">
+            <countdown :time="this.time * 30000" @end="endGame" style="margin-right: 1.2rem">
               <template slot-scope="props">{{ props.minutes }} : {{ props.seconds }} </template>
             </countdown>
             <!-- ១ៈ០០ ៣ៈ០០  -->
