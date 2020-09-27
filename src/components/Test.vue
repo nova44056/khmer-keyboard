@@ -112,6 +112,10 @@
         </div>
       </div>
     </div>
+    <div class="popup">
+      <h1>Score</h1>
+      <h1>Error</h1>
+    </div>
   </main>
 </template>
 
@@ -1043,7 +1047,17 @@ h2 {
   90% { transform: translate(1px, 2px) rotate(0deg); }
   100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
-
+.popup {
+  position: absolute;
+  visibility: visible;
+  height: 5vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  color: white;
+}
 main {
   overflow: hidden;
 }
