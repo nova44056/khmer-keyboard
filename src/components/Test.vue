@@ -13,7 +13,9 @@
             autoplay
           ></lottie-player>
           <div class="text">
-            <h3>៥ៈ០០</h3>
+            <countdown :time="this.time * 60000" @end="endGame">
+              <template slot-scope="props">{{ props.minutes }} minutes : {{ props.seconds }} seconds</template>
+            </countdown>
             <!-- ១ៈ០០ ៣ៈ០០  -->
           </div>
         </div>
@@ -128,6 +130,8 @@ import rightHand from "./RightHand";
 function initialState() {
   return {
     text: "",
+    time: 3,
+    test: null,
     seconds: 0,
     runes: [],
     letters: [],
@@ -154,6 +158,9 @@ export default {
     this.startGame();
   },
   methods: {
+    testFunction () {
+      console.log('Hello World')
+    },
     convertToKhmerNum(num) {
       let numData = {
         0: "០",
