@@ -218,4 +218,99 @@ h2 {
 .cls-2 {
   fill: #f6f6f6;
 }
+@media screen and (max-width: 920px) and (min-width: 720px) {
+  .card {
+    height: 12rem;
+    width: 12rem;
+  }
+  .card:focus {
+    height: 15rem;
+    width: 15rem;
+  }
+  .check {
+    top: 3rem;
+    left: 11.2rem;
+  }
+  .card:focus .check {
+    left: 12.8rem;
+  }
+  .button-wrapper {
+    margin-top: -3rem;
+  }
+}
+@media screen and (max-width: 720px) and (min-width: 660px) {
+  .card {
+    height: 10rem;
+    width: 10rem;
+    margin-top: -1rem;
+  }
+  .card:focus {
+    height: 12rem;
+    width: 12rem;
+  }
+  .check {
+    top: 2.5rem;
+    left: 9.2rem;
+  }
+  .card:focus .check {
+    left: 10.2rem;
+  }
+  .button-wrapper {
+    margin-top: -3rem;
+  }
+}
+@media screen and (max-width: 660px) and (min-width: 580px) {
+  .card {
+    height: 11.5rem;
+    width: 11.5rem;
+    margin-top: -1rem;
+  }
+  .card:focus {
+    height: 14rem;
+    width: 14rem;
+  }
+  .check {
+    top: 1.8rem;
+    left: 10.5rem;
+  }
+  .card:focus .check {
+    left: 11.3rem;
+  }
+  .button-wrapper {
+    margin-top: -5rem;
+  }
+}
+@media screen and (max-width: 580px) and (min-width: 492px) {
+  .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: -2rem;
+  }
+  .header > h1 {
+    font-size: 2.5rem;
+  }
+  .card {
+    height: 10.5rem;
+    width: 10.5rem;
+    margin-top: -2rem;
+  }
+  .card:focus {
+    height: 13rem;
+    width: 13rem;
+  }
+  .check {
+    height: 1.7rem;
+    top: 1.5rem;
+    left: 9rem;
+  }
+  .card:focus .check {
+    left: 10.5rem;
+  }
+  .button-wrapper {
+    margin-top: -5rem;
+  }
+  .type-wrapper {
+    margin-top: 1rem;
+  }
+}
 </style>

@@ -13,8 +13,8 @@
             autoplay
           ></lottie-player>
           <div class="text">
-            <countdown :time="this.time * 60000" @end="endGame">
-              <template slot-scope="props">{{ props.minutes }} minutes : {{ props.seconds }} seconds</template>
+            <countdown :time="this.time * 30000" @end="endGame" style="margin-right: 1.2rem">
+              <template slot-scope="props">{{ props.minutes }} : {{ props.seconds }} </template>
             </countdown>
             <!-- ១ៈ០០ ៣ៈ០០  -->
           </div>
@@ -30,7 +30,7 @@
             autoplay
           ></lottie-player>
           <div class="text">
-            <h3><strong :class="{ error: alertError }">{{ errors }}</strong></h3>
+            <h3 :class="{ error: alertError }">{{ errors }}</h3>
           </div>
         </div>
         <div class="lottie">
@@ -43,7 +43,7 @@
             autoplay
           ></lottie-player>
           <div class="text">
-            <h3><strong>{{ convertToKhmerNum(runesCounter) }}</strong>
+            <h3>{{ convertToKhmerNum(runesCounter) }}
           / {{ convertToKhmerNum(totalRunes) }}</h3>
           </div>
         </div>
@@ -121,6 +121,10 @@
 
     <keyboardMessage v-bind:class="{showError: !isKhmer}" />
     
+    <div class="popup">
+      <h1>Score</h1>
+      <h1>Error</h1>
+    </div>
   </main>
 </template>
 
@@ -142,7 +146,7 @@ import threeVue from './TimeSelectorComponents/three.vue';
 function initialState() {
   return {
     text: "",
-    time: 3,
+    time: 1,
     test: null,
     seconds: 0,
     runes: [],
@@ -667,8 +671,10 @@ export default {
   justify-content: center;
   align-items: center;
   width: 100rem;
-  margin-top: 2rem;
-  margin-bottom: 3rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  margin-left: auto;
+  margin-right: auto;
   /* width: 20%; */
   /* margin-right: 7rem; */
 }
@@ -700,7 +706,7 @@ h2 {
   width: 75rem;
   border: 2px solid #1b2448;
   border-radius: 10px;
-  margin-top: 3rem;
+  margin-top: -2rem;
   /* margin-left: -3rem; */
   padding: 1rem;
   text-align: start;
@@ -716,7 +722,7 @@ h2 {
 #text-wrapper {
   font-weight: normal;
   word-break: break-all;
-  line-height: 4.6rem;
+  line-height: 4.8rem;
   font-size: 3em;
   max-height: 15.65rem;
   overflow: hidden;
@@ -782,15 +788,35 @@ h2 {
 #keyboard-vk svg {
   width: 100px;
 }
-
+@media screen and (max-width: 1620px) and (min-width: 1255px) {
+  .col1 {
+    width: 70rem;
+  }
+}
 @media screen and (max-width: 1255px) and (min-width: 1175px) {
   #text-div {
     width: 70rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #text-wrapper {
+    font-size: 2.8em;
+  }
+  .col1 {
+    width: 60rem;
   }
 }
 @media screen and (max-width: 1175px) and (min-width: 1030px) {
   #text-div {
     width: 60rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #text-wrapper {
+    font-size: 2.6em;
+  }
+  .col1 {
+    width: 50rem;
   }
   #handsAndKeyboardWrap-vk {
     display: none;
@@ -799,36 +825,113 @@ h2 {
 @media screen and (max-width: 1030px) and (min-width: 961px) {
   #text-div {
     width: 55rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #text-wrapper {
+    font-size: 2.4em;
+  }
+  .col1 {
+    width: 40rem;
+  }
+  #handsAndKeyboardWrap-vk {
+    display: none;
   }
 }
 @media screen and (max-width: 961px) and (min-width: 860px) {
   #text-div {
     width: 50rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #text-wrapper {
+    font-size: 2.2em;
+  }
+  .col1 {
+    width: 30rem;
+  }
+  #handsAndKeyboardWrap-vk {
+    display: none;
   }
 }
 @media screen and (max-width: 860px) and (min-width: 770px) {
   #text-div {
     width: 45rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #text-wrapper {
+    font-size: 2em;
+  }
+  .col1 {
+    width: 20rem;
+  }
+  #handsAndKeyboardWrap-vk {
+    display: none;
   }
 }
 @media screen and (max-width: 770px) and (min-width: 695px) {
   #text-div {
     width: 40rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #text-wrapper {
+    font-size: 1.8em;
+  }
+  .col1 {
+    width: 15rem;
+  }
+  #handsAndKeyboardWrap-vk {
+    display: none;
   }
 }
 @media screen and (max-width: 695px) and (min-width: 610px) {
   #text-div {
     width: 35rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #text-wrapper {
+    font-size: 1.6em;
+  }
+  .col1 {
+    width: 15rem;
+  }
+  #handsAndKeyboardWrap-vk {
+    display: none;
   }
 }
 @media screen and (max-width: 610px) and (min-width: 530px) {
   #text-div {
     width: 30rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #text-wrapper {
+    font-size: 1.4em;
+  }
+  .col1 {
+    width: 15rem;
+  }
+  #handsAndKeyboardWrap-vk {
+    display: none;
   }
 }
-@media screen and (max-width: 530px) and (min-width: 500px) {
+@media screen and (max-width: 530px) and (min-width: 492px) {
   #text-div {
     width: 27rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #text-wrapper {
+    font-size: 1.4em;
+  }
+  .col1 {
+    width: 10rem;
+  }
+  #handsAndKeyboardWrap-vk {
+    display: none;
   }
 }
 .text-wrapper {
@@ -903,6 +1006,7 @@ h2 {
   height: 7rem;
   margin-right: 3rem;
   margin-top: 2rem;
+  margin: 1rem;
 }
 .lottie > lottie-player {
   display: flex;
@@ -944,9 +1048,15 @@ h2 {
 .text {
   margin-left: 2rem;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  align-items: center;
   font-family: "Kantumruy", sans-serif;
   font-size: 1.2rem;
+}
+.text > h3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #shaking{
   animation: shake 0.5s;
@@ -965,5 +1075,19 @@ h2 {
   80% { transform: translate(-1px, -1px) rotate(1deg); }
   90% { transform: translate(1px, 2px) rotate(0deg); }
   100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+.popup {
+  position: absolute;
+  visibility: visible;
+  height: 5vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  color: white;
+}
+main {
+  overflow: hidden;
 }
 </style>
