@@ -1,14 +1,14 @@
 <template>
   <main>
-    <h1>Typing Game</h1>
+    <!-- <h1>Typing Game</h1>
     <p>Type as many words as you can</p>
     <button
       v-if="seconds == 0"
       @click="startGame"
     >
       Start
-    </button>
-    <div v-if="seconds > 0">
+    </button> -->
+    <div>
       <div class="outerWrap">
         <div class="scoreWrap">
           <p>Score</p>
@@ -202,6 +202,9 @@
       document.onkeypress = null
       document.onkeydown = null
       clearInterval(this.timer)
+    },
+    created () {
+      this.startGame();
     }
   }
 </script>

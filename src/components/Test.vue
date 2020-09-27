@@ -5,23 +5,25 @@
         <!-- timerstats -->
         <div class="lottie">
           <lottie-player
+            id="lottie"
             src="https://assets10.lottiefiles.com/packages/lf20_AMwwvI.json"
             background="transparent"
             speed="0.8"
-            style="width: 100px; height: 110px"
+            style="width: 100px; height: 110px;"
             loop
             autoplay
           ></lottie-player>
-          <div class="text">
-            <countdown :time="this.time * 30000" @end="endGame" style="margin-right: 1.2rem">
+          <!-- <div class="text">
+          </div> -->
+            <countdown :time="this.time * 30000" @end="endGame">
               <template slot-scope="props">{{ props.minutes }} : {{ props.seconds }} </template>
             </countdown>
             <!-- ១ៈ០០ ៣ៈ០០  -->
-          </div>
         </div>
         <!-- errorstats -->
         <div class="lottie" :class="{ 'error-bg': alertError }">
           <lottie-player
+            id="lottie"
             src="https://assets2.lottiefiles.com/private_files/lf30_jq4i7W.json"
             background="transparent"
             speed="1"
@@ -29,12 +31,13 @@
             loop
             autoplay
           ></lottie-player>
-          <div class="text">
-            <h3 :class="{ error: alertError }">{{ errors }}</h3>
-          </div>
+          <span :class="{ error: alertError }">{{ errors }}</span>
+          <!-- <div class="text">
+          </div> -->
         </div>
         <div class="lottie">
           <lottie-player
+            id="lottie"
             src="https://assets4.lottiefiles.com/packages/lf20_Ex9JsF.json"
             background="transparent"
             speed="0.5"
@@ -42,10 +45,8 @@
             loop
             autoplay
           ></lottie-player>
-          <div class="text">
-            <h3>{{ convertToKhmerNum(runesCounter) }}
-          / {{ convertToKhmerNum(totalRunes) }}</h3>
-          </div>
+            <span>{{ convertToKhmerNum(runesCounter) }}
+          / {{ convertToKhmerNum(totalRunes) }}</span>
         </div>
         <!-- <timer/> -->
         <!-- <error/> -->
@@ -120,11 +121,6 @@
     </div>
 
     <keyboardMessage v-bind:class="{showError: !isKhmer}" />
-    
-    <div class="popup">
-      <h1>Score</h1>
-      <h1>Error</h1>
-    </div>
   </main>
 </template>
 
@@ -265,6 +261,18 @@ export default {
       // Game progress
       document.onkeypress = function (ev) {
         ev.preventDefault();
+        // console.log(ev.shiftKey)
+
+      if(ev.shiftKey) {
+          if (ev.shiftLeft) {
+            console.log('shift-left'); 
+          }
+          else
+          {
+            console.log('shift-right');
+          }
+      }
+
         vm.isKhmerWord(ev.key)
         var isCorrect = vm.areRightKeysPressed(ev, listKeys, currentLetters);
         // Pressed key is correct
@@ -398,7 +406,7 @@ export default {
     getRunesIdsBreakBefore: function () {
       var idBreakBefore = [];
       var runes = document.getElementsByClassName("runes");
-      console.log(runes);
+      // console.log(runes);
       // Loop through all the runes
       for (var i = 0; i < runes.length; i++) {
         // If a rune has minimal offsetLeft, it means it's on the left of the element, ie at the beginning of a new line
@@ -656,6 +664,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  /* visibility: hidden; */
 }
 .col2 {
   display: flex;
@@ -670,7 +679,7 @@ export default {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 100rem;
+  /* width: 100rem; */
   margin-top: 1rem;
   margin-bottom: 2rem;
   margin-left: auto;
@@ -792,6 +801,10 @@ h2 {
   .col1 {
     width: 70rem;
   }
+
+  #text-wrapper {
+    font-size: 2.8em;
+  }
 }
 @media screen and (max-width: 1255px) and (min-width: 1175px) {
   #text-div {
@@ -800,7 +813,7 @@ h2 {
     margin-right: auto;
   }
   #text-wrapper {
-    font-size: 2.8em;
+    font-size: 2em;
   }
   .col1 {
     width: 60rem;
@@ -848,7 +861,7 @@ h2 {
     font-size: 2.2em;
   }
   .col1 {
-    width: 30rem;
+    /* width: 30rem; */
   }
   #handsAndKeyboardWrap-vk {
     display: none;
@@ -864,7 +877,7 @@ h2 {
     font-size: 2em;
   }
   .col1 {
-    width: 20rem;
+    /* width: 20rem; */
   }
   #handsAndKeyboardWrap-vk {
     display: none;
@@ -880,7 +893,7 @@ h2 {
     font-size: 1.8em;
   }
   .col1 {
-    width: 15rem;
+    /* width: 15rem; */
   }
   #handsAndKeyboardWrap-vk {
     display: none;
@@ -896,7 +909,7 @@ h2 {
     font-size: 1.6em;
   }
   .col1 {
-    width: 15rem;
+    /* width: 15rem; */
   }
   #handsAndKeyboardWrap-vk {
     display: none;
@@ -912,7 +925,7 @@ h2 {
     font-size: 1.4em;
   }
   .col1 {
-    width: 15rem;
+    /* width: 15rem; */
   }
   #handsAndKeyboardWrap-vk {
     display: none;
@@ -928,7 +941,7 @@ h2 {
     font-size: 1.4em;
   }
   .col1 {
-    width: 10rem;
+    /* width: 10rem; */
   }
   #handsAndKeyboardWrap-vk {
     display: none;
@@ -995,7 +1008,7 @@ h2 {
   border: 1px solid white;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   align-items: center;
   border-radius: 10px;
   margin-top: 6rem;
@@ -1008,14 +1021,15 @@ h2 {
   margin-top: 2rem;
   margin: 1rem;
 }
-.lottie > lottie-player {
+
+/* .lottie > lottie-player {
   display: flex;
   justify-content: flex-start;
-}
+} */
 @media screen and (max-width: 1080px) and (min-width: 845px) {
-  .lottie {
+  /* .lottie {
     width: 15rem;
-  }
+  } */
 }
 @media screen and (max-width: 845px) and (min-width: 600px) {
   .lottie {
@@ -1025,24 +1039,35 @@ h2 {
     height: 10rem;
     justify-content: center;
     align-items: center;
+    /* border-radius: 50%; */
   }
   .text > h3 {
     margin-top: -1rem;
     margin-left: -1.5rem;
+  }
+  #lottie{
+    /* visibility: hidden; */
+    /* display: none; */
   }
 }
 @media screen and (max-width: 600px) {
   .lottie {
     width: 6rem;
     display: flex;
-    flex-direction: column;
-    height: 10rem;
+    flex-direction: row;
+    height: 6rem;
     justify-content: center;
     align-items: center;
+    border-radius: 50%;
   }
   .text > h3 {
     margin-top: -1rem;
     margin-left: -1.7rem;
+  }
+
+  #lottie{
+    /* visibility:hidden; */
+    display: none;
   }
 }
 .text {
@@ -1076,18 +1101,16 @@ h2 {
   90% { transform: translate(1px, 2px) rotate(0deg); }
   100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
-.popup {
+#popup {
   position: absolute;
-  visibility: visible;
-  height: 5vh;
+  visibility: hidden;
+  height: 100vh;
   width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: black;
   color: white;
-}
-main {
   overflow: hidden;
 }
 </style>

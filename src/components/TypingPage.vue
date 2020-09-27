@@ -124,8 +124,8 @@ export default {
         this.splitRuneIntoSpannedLetters(listRunes[this.runesCounter])
         var listKeys = this.getAllKeys(this.text)
         var currentLetters = ''
-        console.log(currentLetters)
-        console.log(currentLetters.length)
+        // console.log(currentLetters)
+        // console.log(currentLetters.length)
         // Highlights
         this.runes[this.runesCounter].isCurrent = true
         this.letters[currentLetters.length].isCurrent = true
@@ -136,6 +136,7 @@ export default {
         // Game progress
         document.onkeypress = function (ev) {
           ev.preventDefault()
+          console.log(ev.key)
           var isCorrect = vm.areRightKeysPressed(ev, listKeys, currentLetters)
           // Pressed key is correct
           if (isCorrect) {
@@ -150,7 +151,7 @@ export default {
               // We show to the user that the grapheme is completed
               vm.runes[vm.runesCounter].isCurrent = false
               vm.runes[vm.runesCounter].isCorrect = true
-              console.log('DOG')
+              // console.log('DOG')
               // Current grapheme is completed, we start again to track the next one
               currentLetters = ''
               vm.letters = []
