@@ -1043,4 +1043,8 @@ h2 {
   90% { transform: translate(1px, 2px) rotate(0deg); }
   100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
+
+main {
+  overflow: hidden;
+}
 </style>
