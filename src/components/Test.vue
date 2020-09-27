@@ -693,7 +693,7 @@ h2 {
 #text-wrapper {
   font-weight: normal;
   word-break: break-all;
-  line-height: 4.6rem;
+  line-height: 4.8rem;
   font-size: 3em;
   max-height: 15.65rem;
   overflow: hidden;
