@@ -126,6 +126,7 @@ import mapping from "../keyboard-mapping";
 import hands from "./hands";
 import leftHand from "./LeftHand";
 import rightHand from "./RightHand";
+import khmerWord from "../mapping.js"
 
 function initialState() {
   return {
@@ -181,6 +182,15 @@ export default {
       }
       return khmNum;
     },
+
+     isKhmerWord: function(userWord){
+      if(!khmerWord.includes(userWord)){
+        return false
+        }
+    
+
+      
+    },
     /**
      * Initializes the game by changing the DOM
      */
@@ -232,6 +242,7 @@ export default {
       // Game progress
       document.onkeypress = function (ev) {
         ev.preventDefault();
+        vm.isKhmerWord(ev.key)
         var isCorrect = vm.areRightKeysPressed(ev, listKeys, currentLetters);
         // Pressed key is correct
         if (isCorrect) {
@@ -555,6 +566,9 @@ export default {
           .setAttributeNS(null, "fill", "#C1C0C0");
       }
     },
+
+
+   
   },
   beforeDestroy() {
     document.onkeypress = null;

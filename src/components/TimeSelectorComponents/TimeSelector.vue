@@ -5,7 +5,7 @@
     </div>
     <div class="timer-wrapper">
       <div class="cards-wrapper">
-        <button class="card spin circle">
+        <button class="card spin circle" @click="chooseTimer()">
           <svg
             class="check"
             id="Layer_1"
@@ -26,7 +26,7 @@
           </svg>
           <one />
         </button>
-        <button class="card">
+        <button class="card" @click="chooseTimer()" >
           <three />
           <svg
             class="check"
@@ -47,7 +47,7 @@
             />
           </svg>
         </button>
-        <button class="card">
+        <button class="card" @click="chooseTimer()">
           <svg
             class="check"
             id="Layer_1"
@@ -72,7 +72,7 @@
     </div>
 
     <div class="button-wrapper">
-        <button @click="$router.push({name: 'SelectionPage2'})">បន្ត</button>
+        <button :disabled="!isTimerChosen" @click="$router.push({name: 'SelectionPage2'})">បន្ត</button>
     </div>
     <div>
       <!-- <div class="circle-wrapper">
@@ -94,11 +94,28 @@ export default {
     three,
     five
   },
+  data(){
+    return{
+    isTimerChosen: false,
+    }
+  },
   created () {
     this.$store.dispatch('toggleActivePage1')
   },
   destroyed () {
     this.$store.dispatch('toggleActivePage1')
+  },
+
+  methods:{
+  chooseTimer(){
+    this.isTimerChosen = true
+  },
+
+  changeFalse(){
+    this.isTimerChosen = false 
+  }
+
+ 
   }
 }
 </script>

@@ -5,7 +5,7 @@
     </div>
     <div class="type-wrapper">
       <div class="cards-wrapper">
-        <button class="card">
+        <button class="card" @click="chooseTimer()">
           <svg
             class="check"
             id="Layer_1"
@@ -26,7 +26,7 @@
           </svg>
           <h2>ពាក្យ</h2>
         </button>
-        <button class="card">
+        <button class="card" @click="chooseTimer()">
           <svg
             class="check"
             id="Layer_1"
@@ -52,7 +52,7 @@
 
     <div class="button-wrapper">
         <button @click="$router.push({name: 'SelectionPage1'})">ត្រឡប់ក្រោយ</button>
-        <button @click="$router.push({name: 'TypingPage'})">ចាប់ផ្តើម</button>
+        <button :disabled="!isTypeSelected" @click="$router.push({name: 'TypingPage'})">ចាប់ផ្តើម</button>
     </div>
 
     <div>
@@ -67,12 +67,22 @@
 <script>
 export default {
   name: 'typeselector',
+  data(){
+    return {
+      isTypeSelected: false
+    }
+  }, 
   created () {
     this.$store.dispatch('toggleActivePage2')
   },
   destroyed () {
     this.$store.dispatch('toggleActivePage2')
-  }
+  },
+   methods:{
+  chooseTimer(){
+    this.isTypeSelected = true
+  },
+   }
 }
 </script>
 
