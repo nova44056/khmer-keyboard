@@ -7,7 +7,9 @@ export default new Vuex.Store({
   state: {
     isActivePage1: false,
     isActivePage2: false,
-    userInfo: {userName: "", password: ""}
+    userInfo: {userName: "", password: ""}, 
+    // timer: null, 
+    // typeOfWord: null,
   },
   mutations: {
     toggleActivePage1 (state) {
@@ -15,7 +17,11 @@ export default new Vuex.Store({
     },
     toggleActivePage2 (state) {
       state.isActivePage2 = !state.isActivePage2
-    }
+    }, 
+    // setTimer (state, minute){
+    //   state.timer = minute
+    // }, 
+
   },
   actions: {
     toggleActivePage1 ({ commit }) {
