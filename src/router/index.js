@@ -6,6 +6,7 @@ import typingpage from '../components/TypingPage'
 import logIn from '../views/logIn.vue'
 import signIn from '../views/signIn.vue'
 import test from '../components/Test'
+import typeFast from '../Typefast'
 
 Vue.use(VueRouter)
 
@@ -30,14 +31,9 @@ const routes = [
     component: test
   },
   {
-    path: '/logIn',
-    name: 'logIn',
-    component: logIn
-  },
-  {
-    path: '/signIn',
-    name: 'signIn',
-    component: signIn,
+    path: '/4',
+    name: 'typeFast',
+    component: typeFast
   }
 ]
 
