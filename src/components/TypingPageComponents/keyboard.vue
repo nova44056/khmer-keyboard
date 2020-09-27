@@ -2862,9 +2862,9 @@ export default {
 
 <style scoped>
 svg {
-  height: 30rem;
-  width: 70rem;
+  height: 25rem;
+  width: 65rem;
   /* margin-left: 2rem; */
-  /* margin-top: 1rem; */
+  margin-top: -1rem;
 }
 </style>
