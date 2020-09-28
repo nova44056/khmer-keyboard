@@ -1,12 +1,12 @@
 <template>
   <div class="pop-up">
     <div class="ani">
-      <button @click="$router.push({name: 'SelectionPage1'})">X</button>
       <lottie-player src="https://assets7.lottiefiles.com/datafiles/3RKIaYNZqu6RrV0/data.json" mode="bounce" background="transparent"  speed="0.3"  style="width: 300px; height: 300px;"  autoplay></lottie-player>
     </div>
     <div class="text">
       <h1>ក្នុងរយះពេល​ {{convertToKhmerNum(this.$store.state.timerMinute)}} នាទីអ្នកវាយបាន {{convertToKhmerNum(this.$store.state.totalWordsTyped)}} ពាក្យ</h1>
     </div>
+    <button id="home"  @click="$router.push({name: 'SelectionPage1'})">ទៅទំព័រដើម</button>
   </div>
 </template>
 
@@ -41,6 +41,8 @@ export default {
 .pop-up {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   height: 30rem;
   width: 50rem;
   border: 2px solid white;
@@ -56,26 +58,34 @@ export default {
   justify-content: center;
   align-items: center;
   color: white;
+  margin-top: -10rem;
+}
+
+.text {
   margin-top: -2rem;
 }
 
-.ani > button{
-  color: black;
-  height: 2rem;
-  width: 2rem;
-  border: none;
+#home {
+  margin-top: 3rem;
+  height: 3.7rem;
+  width: 10rem;
+  font-family: 'Kantumruy', sans-serif;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid white;
   outline: none;
-  background-color: transparent;
-  font-size: 2rem;
-  display: block;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-end;
-  z-index: 1;
-  float: right;
-  position: absolute;
-  right: 1rem;
-  top: 1rem;
+  background-color: #1b2448;
+  box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05),
+    0 15px 40px rgba(166, 173, 201, 0.2);
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
 }
 
+#home:hover {
+  box-shadow: 0px 0px 8px 0px rgba(0,92,184,0.6);
+  border: none;
+}
 </style>
