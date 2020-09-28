@@ -56,7 +56,7 @@ const routes = [
   {
     path: '/4',
     name: 'typeFast',
-    component: typeFast,
+    component: test2,
     beforeEnter: (to,from,next)=>{
       if(store.state.wordType === 1){
         next(); 

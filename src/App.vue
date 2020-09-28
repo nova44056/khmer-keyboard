@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <!-- <message/> -->
+    <message/>
     <!-- <timeselector/> -->
     <!-- <typeselector/> -->
     <vue-page-transition name="fade-in-right">

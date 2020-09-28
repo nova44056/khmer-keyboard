@@ -19,14 +19,40 @@
         </button>
     </div> -->
     <div class="ani">
-      <button>X</button>
-      <lottie-player src="https://assets7.lottiefiles.com/datafiles/3RKIaYNZqu6RrV0/data.json" mode="bounce" background="transparent"  speed="0.7"  style="width: 300px; height: 300px;"  autoplay></lottie-player>
+      <button @click="$router.push({name: 'SelectionPage1'})">X</button>
+      <lottie-player src="https://assets7.lottiefiles.com/datafiles/3RKIaYNZqu6RrV0/data.json" mode="bounce" background="transparent"  speed="0.7"  style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+    </div>
+    <div class="text">
+      <h1>ក្នុងរយះពេល​ {{convertToKhmerNum(this.$store.state.timerMinute)}} នាទីអ្នកវាយបាន {{convertToKhmerNum(this.$store.state.totalWordsTyped)}} ពាក្យ</h1>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    convertToKhmerNum(num) {
+      let numData = {
+        0: "០",
+        1: "១",
+        2: "២",
+        3: "៣",
+        4: "៤",
+        5: "៥",
+        6: "៦",
+        7: "៧",
+        8: "៨",
+        9: "៩",
+      };
+
+      let khmNum = "";
+      for (let i = 0; i < num.toString().length; i++) {
+        khmNum += numData[num.toString()[i]];
+      }
+      return khmNum;
+    },
+  }
+};
 </script>
 
 <style lang="scss" scoped>

@@ -17,8 +17,8 @@
           ></lottie-player>
           <!-- <div class="text">
           </div> -->
-            <countdown :time="this.time * 30000" @end="endGame" ref="countdown" :auto-start="false">
-              <template slot-scope="props">{{ props.minutes }} : {{ props.seconds }} </template>
+            <countdown :time="this.time * 60000" @end="endGame" ref="countdown" :auto-start="false">
+              <template slot-scope="props">{{ convertToKhmerNum(props.minutes) }} នាទី {{ convertToKhmerNum(props.seconds) }}​​ វិនាទី</template>
             </countdown>
             <!-- ១ៈ០០ ៣ៈ០០  -->
         </div>
@@ -33,7 +33,7 @@
             loop
             autoplay
           ></lottie-player>
-          <span :class="{ error: alertError }">{{ errors }}</span>
+          <span :class="{ error: alertError }">​{{ convertToKhmerNum(errors) }}</span>
           <!-- <div class="text">
           </div> -->
         </div>
@@ -144,7 +144,7 @@ import result from '../components/result.vue'
 function initialState() {
   return {
     text: "",
-    time: 1,
+    time: this.$store.state.timerMinute,
     test: null,
     seconds: 0,
     runes: [],
