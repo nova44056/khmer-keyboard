@@ -10,6 +10,7 @@ import test2 from '../duplicate'
 import typeFast from '../Typefast'
 import result from '../components/result'
 import store from '../store/index'
+import testing from '../components/Test2'
 
 Vue.use(VueRouter)
 
@@ -19,7 +20,11 @@ const routes = [
     redirect: '/timeSelector'
   },
   {
-    path: '/timeSelector',
+    path: '*',
+    redirect: '/1'
+  },
+  {
+    path: '/1',
     name: 'SelectionPage1',
     component: timeselector
   },
@@ -27,11 +32,10 @@ const routes = [
     path: '/typeSelector',
     name: 'SelectionPage2',
     component: typeselector,
-    beforeEnter: (to,from,next)=>{
+    beforeRouteEnter: (to,from,next)=>{
       if(store.state.timer === null){
-        // next({ path: '/' })
-        router.replace("/1")
-
+         router.push("/timeSelector")
+        // next(false)
       }else 
       {
       next()
@@ -42,11 +46,11 @@ const routes = [
     path: '/typingArticle',
     name: 'TypingPage',
     component: test,
-    beforeEnter: (to,from,next)=>{
+    beforeRouteEnter: (to,from,next)=>{
       if(store.state.typeOfWord === null){
         // next({path:'/1'}); 
-        router.replace("/1")
-
+        router.push("/1")
+        // next({ name: 'SelectionPage1' })
       }
       else {
         next()
@@ -57,12 +61,13 @@ const routes = [
     path: '/typingWord',
     name: 'typeFast',
     component: test2,
-    beforeEnter: (to,from,next)=>{
+    beforeRouteEnter: (to,from,next)=>{
       if(store.state.wordType === 1){
         next(); 
       }else {
         // next({path:'/1'}); 
-        router.replace("/1")
+        // router.push("/1")
+        next({ name: 'SelectionPage1' })
       }
     }
     
@@ -76,6 +81,11 @@ const routes = [
     path: '/result',
     name: 'result',
     component: result
+  },
+  {
+    path: '/testing',
+    name: 'testing',
+    component: testing
   }
 ]
 

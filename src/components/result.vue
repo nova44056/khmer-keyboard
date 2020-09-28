@@ -1,30 +1,12 @@
 <template>
-  
   <div class="pop-up">
-    <!-- <div id="party-popper">🎉</div> -->
-
-    <!-- <p class="result">ល្អណាស់!</p> -->
-    <!-- <p class="bestScore">
-      Your best score so far is <span id="best">1600.</span> If you save now,
-      your place on leaderboard will be <span id="rank">3</span>.
-    </p> -->
-
-    <!-- <div class="buttons">
-        <button class="saveScore">
-            Save your best score
-        </button>
-
-        <button class="tryAgain">
-            Try Again !
-        </button>
-    </div> -->
     <div class="ani">
-      <button @click="$router.push({name: 'SelectionPage1'})">X</button>
-      <lottie-player src="https://assets7.lottiefiles.com/datafiles/3RKIaYNZqu6RrV0/data.json" mode="bounce" background="transparent"  speed="0.7"  style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+      <lottie-player src="https://assets7.lottiefiles.com/datafiles/3RKIaYNZqu6RrV0/data.json" mode="bounce" background="transparent"  speed="0.3"  style="width: 300px; height: 300px;"  autoplay></lottie-player>
     </div>
     <div class="text">
       <h1>ក្នុងរយះពេល​ {{convertToKhmerNum(this.$store.state.timerMinute)}} នាទីអ្នកវាយបាន {{convertToKhmerNum(this.$store.state.totalWordsTyped)}} ពាក្យ</h1>
     </div>
+    <button id="home"  @click="$router.push({name: 'SelectionPage1'})">ទៅទំព័រដើម</button>
   </div>
 </template>
 
@@ -44,7 +26,6 @@ export default {
         8: "៨",
         9: "៩",
       };
-
       let khmNum = "";
       for (let i = 0; i < num.toString().length; i++) {
         khmNum += numData[num.toString()[i]];
@@ -56,101 +37,55 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.wrap {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+@import url("https://fonts.googleapis.com/css2?family=Kantumruy&display=swap");
 .pop-up {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   height: 30rem;
   width: 50rem;
-  border: 2px solid black;
-  background-color: black;
+  border: 2px solid white;
+  background-color: white;
+  border-radius: 2rem;
+  box-shadow: 0px 0px 30px -6px rgba(0,0,0,0.75);
+  font-family: 'Kantumruy', sans-serif;
 }
+
 .ani {
   display: flex;
   flex-direction: row-reverse;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
   color: white;
+  margin-top: -10rem;
+}
+
+.text {
   margin-top: -2rem;
 }
-.ani > button{
-  color: white;
-  height: 2rem;
-  width: 2rem;
-  border: none;
+
+#home {
+  margin-top: 3rem;
+  height: 3.7rem;
+  width: 10rem;
+  font-family: 'Kantumruy', sans-serif;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid white;
   outline: none;
-  background-color: transparent;
-  font-size: 2rem;
-  display: block;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-end;
-  z-index: 1;
-  float: right;
-  position: absolute;
-  right: 1rem;
-  top: 1rem;
-}
-#party-popper {
-  font-size: 50px;
+  background-color: #1b2448;
+  box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05),
+    0 15px 40px rgba(166, 173, 201, 0.2);
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
 }
 
-.bestScore {
-  line-height: 2.5rem;
-  font-weight: 700;
+#home:hover {
+  box-shadow: 0px 0px 8px 0px rgba(0,92,184,0.6);
+  border: none;
 }
-
-.result {
-  font-weight: bold;
-  font-size: 2rem;
-}
-
-#best {
-  color: orange;
-}
-
-#rank {
-  color: orange;
-}
-
-.buttons {
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
-    margin-top: 1rem;
-}
-.saveScore{
-    outline: none;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
-    background-color: rgb(131, 233, 105);
-    color: white;
-    font-weight: 600;
-    width: 45%;
-}
-
-.tryAgain{
-    outline: none;
-    width: 45%;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
-    background-color: rgb(221, 71, 91);
-    color: white;
-    font-weight: 600;
-}
-
-.tryAgain,.saveScore:hover{
-    cursor: pointer;
-}
-
-
 </style>
