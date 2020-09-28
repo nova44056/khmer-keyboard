@@ -52,7 +52,8 @@
     color: white;
 }
 .close:hover{
-    background-color: rgb(174, 169, 169);
+    // background-color: rgb(174, 169, 169);
+    color: blue;
     cursor: pointer;
 }
 </style>

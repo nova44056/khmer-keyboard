@@ -271,7 +271,7 @@ export default {
       //     }
       // }
       vm.isKhmerWord(ev.key)
-      if(vm.isKhmer){  
+      if(vm.$store.state.isKhmer){  
         vm.$refs.countdown.start();
         var isCorrect = vm.areRightKeysPressed(ev, listKeys, currentLetters);
         // Pressed key is correct
