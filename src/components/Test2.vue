@@ -159,8 +159,7 @@ function initialState() {
 }
 
 export default {
-  props: ['isKhmer'],
-  name: "VisualKeyboard",
+  name: "keyboard",
   components: {
     leftHand,
     rightHand,

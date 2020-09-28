@@ -62,11 +62,9 @@ export default new Vuex.Store({
     }, 
     timer3(state){
       state.timerMinute = 3
-      console.log(state.timerMinute)
     }, 
     timer5(state){
       state.timerMinute = 5
-      console.log(state.timerMinute)
     }, 
 
   },

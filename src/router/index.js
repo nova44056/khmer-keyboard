@@ -16,21 +16,21 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    redirect: '/1'
+    redirect: '/timeSelector'
   },
   {
-    path: '/1',
+    path: '/timeSelector',
     name: 'SelectionPage1',
     component: timeselector
   },
   {
-    path: '/2',
+    path: '/typeSelector',
     name: 'SelectionPage2',
     component: typeselector,
     beforeEnter: (to,from,next)=>{
       if(store.state.timer === null){
         // next({ path: '/' })
-        router.push("/1")
+        router.replace("/1")
 
       }else 
       {
@@ -39,13 +39,13 @@ const routes = [
     }
   },
   {
-    path: '/3',
+    path: '/typingArticle',
     name: 'TypingPage',
     component: test,
     beforeEnter: (to,from,next)=>{
       if(store.state.typeOfWord === null){
         // next({path:'/1'}); 
-        router.push("/1")
+        router.replace("/1")
 
       }
       else {
@@ -54,7 +54,7 @@ const routes = [
     }
   },
   {
-    path: '/4',
+    path: '/typingWord',
     name: 'typeFast',
     component: test2,
     beforeEnter: (to,from,next)=>{
@@ -62,7 +62,7 @@ const routes = [
         next(); 
       }else {
         // next({path:'/1'}); 
-        router.push("/1")
+        router.replace("/1")
       }
     }
     

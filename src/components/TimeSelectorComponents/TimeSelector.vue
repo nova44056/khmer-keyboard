@@ -72,7 +72,7 @@
     </div>
 
     <div class="button-wrapper">
-        <button :disabled="!isTimerChosen" @click="$router.push('/2')">បន្ត</button>
+        <button :disabled="!isTimerChosen" @click="$router.push('/typeSelector')">បន្ត</button>
     </div>
     <div>
       <!-- <div class="circle-wrapper">
