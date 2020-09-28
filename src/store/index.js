@@ -9,11 +9,16 @@ export default new Vuex.Store({
     isActivePage2: false,
     userInfo: { userName: "", password: "" },
     timer: null,
+    timerMinute: 0, 
     isKhmer: true, 
     typeOfWord: null,
     wordType: 0, 
+    totalWordsTyped: null
   },
   mutations: {
+    set_totalWordsTyped(state, totalWordsTyped) {
+      state.totalWordsTyped = totalWordsTyped
+    },
     toggleActivePage1(state) {
       state.isActivePage1 = !state.isActivePage1
     },
@@ -55,6 +60,9 @@ export default new Vuex.Store({
 
   },
   actions: {
+    set_totalWordsTyped({ commit }, totalWordsTyped) {
+      commit('totalWordsTyped', totalWordsTyped)
+    },
     toggleActivePage1({ commit }) {
       commit('toggleActivePage1')
     },
