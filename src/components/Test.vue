@@ -35,11 +35,11 @@
         <div class="lottie">
           <lottie-player
             class="lottie-player"
+            id="score-lottie"
             src="https://assets4.lottiefiles.com/packages/lf20_Ex9JsF.json"
             background="transparent"
-            speed="0.5"
+            speed="1"
             style="width: 100px; height: 120px"
-            loop
             autoplay
           ></lottie-player>
           <span>{{ convertToKhmerNum(runesCounter) }}
@@ -238,6 +238,8 @@ export default {
       if(vm.$store.state.isKhmer){  
         vm.$refs.countdown.start();
         var isCorrect = vm.areRightKeysPressed(ev, listKeys, currentLetters);
+        const player = document.getElementById('score-lottie')
+        const lottie = player.getLottie()
         // Pressed key is correct
         if (isCorrect) {
           // completeText += ev.key
@@ -254,6 +256,8 @@ export default {
             // Current grapheme is completed, we start again to track the next one
             currentLetters = "";
             vm.letters = [];
+            lottie.stop()
+            lottie.play()
             vm.runesCounter++;
             // Display decomposition of the next grapheme if exists
             if (vm.runesCounter < listRunes.length) {
