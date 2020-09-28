@@ -72,7 +72,7 @@ export default new Vuex.Store({
   },
   actions: {
     set_totalWordsTyped({ commit }, totalWordsTyped) {
-      commit('totalWordsTyped', totalWordsTyped)
+      commit('set_totalWordsTyped', totalWordsTyped)
     },
     toggleActivePage1({ commit }) {
       commit('toggleActivePage1')

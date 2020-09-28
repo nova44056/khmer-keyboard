@@ -17,7 +17,7 @@
               <!-- <countdown :time="this.time * 30000" @end="endGame" ref="countdown" :auto-start="false">
               <template slot-scope="props">{{ props.minutes }} : {{ props.seconds }} </template>
             </countdown> -->
-            <span>{{ seconds }}</span>
+            <span>{{convertToKhmerNum(seconds)}} វិនាទី​</span>
         </div>
         <div class="lottie">
           <lottie-player
@@ -52,11 +52,13 @@
     <!-- <div id="keyboardWrap-tf">
     </div> -->
     <keyboardMessage v-bind:class="{showError: !$store.state.isKhmer}" />
+    <result :class="{showError: result}"  class="result"/>
   </main>
 </template>
 
 <script>
   import splitKhmerRunes from './split-khmer'
+  import result from './components/result'
   import keyboard2 from './components/TypingPageComponents/keyboard2'
   import {wordsList} from './words-list'
   import khmerWord from "./mapping.js"
@@ -74,17 +76,38 @@
         score: 0,
         seconds: 0,
         spans: [],
-        buffer: ''
+        buffer: '',
+        result: false
       }
     },
     methods: {
+      convertToKhmerNum(num) {
+      let numData = {
+        0: "០",
+        1: "១",
+        2: "២",
+        3: "៣",
+        4: "៤",
+        5: "៥",
+        6: "៦",
+        7: "៧",
+        8: "៨",
+        9: "៩",
+      };
+
+      let khmNum = "";
+      for (let i = 0; i < num.toString().length; i++) {
+        khmNum += numData[num.toString()[i]];
+      }
+      return khmNum;
+    },
       /**
        * Starts the game by running the timer, changing the DOM, setting th first word
        * and listenning to the user's typing inputs
        */
       startGame: function () {
         var timer
-        this.seconds = 999999
+        this.seconds = this.$store.state.timerMinute * 60 
         this.score = 0
         // Start the timer
         clearInterval(timer)
@@ -123,6 +146,8 @@
        */
       endGame: function () {
         // Store highest score
+        this.result = true
+        this.$store.dispatch('set_totalWordsTyped', this.score)
         var previousHighest = localStorage.getItem('typefast.score') ? localStorage.getItem('typefast.score') : 0
         if (this.score > previousHighest) {
           localStorage.setItem('typefast.score', this.score)
@@ -391,6 +416,8 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100vw;
+  height: 100vh;
   /* visibility: hidden; */
 }
 .col2 {
@@ -858,5 +885,18 @@ h2 {
   background-color: black;
   color: white;
   overflow: hidden;
+}
+
+.showError{
+  visibility: visible;
+}
+
+.result{
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  visibility: hidden;
 }
 </style>

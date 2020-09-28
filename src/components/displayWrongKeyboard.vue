@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="message">
-            Wrong Keyboard! 
+            សូមប្តូរក្តារចុចទៅជាភាសាខ្មែរ 
         </div>
 
 
