@@ -4,6 +4,7 @@
       <div class="col1">
 
       <!-- timerstats -->
+       <!-- timerstats -->
         <div class="lottie">
           <lottie-player
             id="lottie"
@@ -117,7 +118,9 @@
 
     <keyboardMessage v-bind:class="{showError: !this.$store.state.isKhmer}" />
     <result v-bind:class="{showError: result}" class="result"/>
-    <button id="result" @click="showResult()">result</button>
+
+    <!-- <button @click="showResult()">result</button> -->
+    
     
   </main>
 </template>
@@ -330,6 +333,8 @@ export default {
      * In case user wants to play again, resets data
      */
     endGame: function () {
+      this.$store.dispatch('set_totalWordsTyped', this.runesCounter)
+      this.result = true
       clearInterval(this.timer);
       var minutes = Math.round((this.seconds / 60) * 100) / 100;
       var newSpeed = this.runesCounter / (this.seconds / 60);
@@ -713,8 +718,10 @@ h2 {
 .result{
   position: absolute;
   z-index: 2;
-  top: 20%;
-  left: 33%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  visibility: hidden;
 }
 .key {
   display: flex;

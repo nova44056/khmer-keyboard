@@ -5,7 +5,7 @@
     </div>
     <div class="timer-wrapper">
       <div class="cards-wrapper">
-        <button class="card spin circle">
+        <button class="card spin circle" @click="$store.dispatch('timer1')"> 
           <svg
             class="check"
             id="Layer_1"
@@ -26,7 +26,7 @@
           </svg>
           <one />
         </button>
-        <button class="card">
+        <button class="card" @click="$store.dispatch('timer3')">
           <three />
           <svg
             class="check"
@@ -47,7 +47,7 @@
             />
           </svg>
         </button>
-        <button class="card">
+        <button class="card" @click="$store.dispatch('timer5')">
           <svg
             class="check"
             id="Layer_1"
