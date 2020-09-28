@@ -6,10 +6,10 @@ import typingpage from '../components/TypingPage'
 import logIn from '../views/logIn.vue'
 import signIn from '../views/signIn.vue'
 import test from '../components/Test'
-import typeFast from '../Typefast'
-import store from '../store/index.js'
 import test2 from '../duplicate'
-import result from '../components/result.vue'
+import typeFast from '../Typefast'
+import result from '../components/result'
+import store from '../store/index'
 
 Vue.use(VueRouter)
 

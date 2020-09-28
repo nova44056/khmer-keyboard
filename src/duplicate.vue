@@ -31,8 +31,8 @@
             <span>{{ score }}</span>
         </div>
       </div>
-
-      <div class="wordsWrap">
+      <div class="box">
+        <div class="wordsWrap">
         <p class="words">
           <span
             class="spans"
@@ -40,33 +40,28 @@
             :key="span.id"
           >{{ span }}</span>
         </p>
+        </div>
+        <div class="buffer">
+        <span>{{ buffer }}</span>
+        </div>
       </div>
     </div>
-
-
-    <h3 class="buffer-title">
-        What are you playing ?
-    </h3>
-    <div class="buffer">
-      {{ buffer }}
-    </div>
-
     <!-- <div id="keyboardWrap-tf">
     </div> -->
-    <keyboard/>
+    <keyboard2 />
     <!-- <keyboardMessage v-bind:class="{showError: !isKhmer}" /> -->
   </main>
 </template>
 
 <script>
   import splitKhmerRunes from './split-khmer'
-  import keyboard from './components/TypingPageComponents/keyboard'
+  import keyboard2 from './components/TypingPageComponents/keyboard2'
   import {wordsList} from './words-list'
 
   export default {
     name: 'Typefast',
     components: {
-      keyboard
+      keyboard2
     },
     data () {
       return {
@@ -224,6 +219,15 @@
 </script>
 
 <style scoped>
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+* {
+  overflow: visible !important;
+}
 .fadeout {
   visibility: hidden;
   opacity: 0;
@@ -266,7 +270,19 @@
 .wordsWrap p {
   margin: 0;
 }
-
+.box {
+  height: 15rem;
+  width: 40rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid white;
+  border-radius: 1.5rem;
+  box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05),
+    0 15px 40px rgba(166, 173, 201, 0.2);
+  margin-bottom: 2rem;
+}
 .words span {
   font-size: 3em;
   letter-spacing: 1px;
@@ -274,14 +290,23 @@
 }
 
 .buffer {
-  min-height: 1.5em;
-  font-size: 3em;
+  min-height: 2.5em;
+  font-size: 2em;
   letter-spacing: 1px;
   background-color: #ddd;
   color: #3f51b5;
-  border-radius: 5px;
+  border-radius: 1.5rem;
+  width: 30rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 #keyboardWrap-tf {
   display: flex;
   justify-content: flex-end;
@@ -527,8 +552,27 @@ h2 {
   .col1 {
     width: 40rem;
   }
-  #handsAndKeyboardWrap-vk {
-    display: none;
+  #keyboard{
+    height: 10rem !important;
+    width: 10rem !important;
+  }
+}
+@media screen and (max-width: 670px) and (min-width: 600px) {
+  .box {
+    width: 35rem;
+  }
+}
+@media screen and (max-width: 600px) and (min-width: 540px) {
+  .box {
+    width: 32rem;
+  }
+}
+@media screen and (max-width: 540px) and (min-width: 492px) {
+  .box {
+    width: 29rem;
+  }
+  .buffer {
+    width: 25rem;
   }
 }
 @media screen and (max-width: 961px) and (min-width: 860px) {
@@ -734,11 +778,11 @@ h2 {
   .lottie {
     width: 6rem;
     display: flex;
-    flex-direction: row;
-    height: 6rem;
+    flex-direction: column;
+    height: 10rem;
     justify-content: center;
     align-items: center;
-    border-radius: 50%;
+    /* border-radius: 50%; */
   }
   .text > h3 {
     margin-top: -1rem;
@@ -747,7 +791,7 @@ h2 {
 
   #lottie{
     /* visibility:hidden; */
-    display: none;
+    /* display: none; */
   }
 }
 .text {

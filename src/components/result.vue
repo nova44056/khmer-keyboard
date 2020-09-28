@@ -3,7 +3,7 @@
   <div class="pop-up">
     <div id="party-popper">🎉</div>
 
-    <p class="result">Woah, you are good !</p>
+    <p class="result">ល្អណាស់!</p>
     <p class="bestScore">
       Your best score so far is <span id="best">1600.</span> If you save now,
       your place on leaderboard will be <span id="rank">3</span>.

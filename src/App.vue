@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <!-- <message/> -->
     <!-- <timeselector/> -->
     <!-- <typeselector/> -->
     <vue-page-transition name="fade-in-right">
@@ -12,6 +13,7 @@
 </template>
 
 <script>
+import message from './components/message'
 // import timeselector from './components/TimeSelectorComponents/TimeSelector'
 // import typeselector from './components/TypeSelectorComponents/TypeSelector'
 import pgIndicator from './components/PageIndicator'
@@ -19,6 +21,7 @@ import pgIndicator from './components/PageIndicator'
 // import typingpage from './components/TypingPage'
 export default {
   components: {
+    message,
     // timeselector,
     // typeselector,
     pgIndicator
