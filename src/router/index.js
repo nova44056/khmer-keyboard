@@ -48,7 +48,7 @@ const routes = [
     path: '/3',
     name: 'TypingPage',
     component: test,
-    beforeRouteEnter: (to,from,next)=>{
+    beforeEnter: (to,from,next)=>{
       if(store.state.typeOfWord === null){
         // next({path:'/1'}); 
         // router.push("/1")
@@ -64,13 +64,13 @@ const routes = [
     path: '/4',
     name: 'typeFast',
     component: test2,
-    beforeRouteEnter: (to,from,next)=>{
-      if(store.state.wordType === 1){
-        next(); 
+    beforeEnter: (to,from,next)=>{
+      if(store.state.typeOfWord === null){
+        next({ name: 'SelectionPage1' })
       }else {
         // next({path:'/1'}); 
+        next(); 
         // router.push("/1")
-        next({ name: 'SelectionPage1' })
       }
     }
     
