@@ -29,10 +29,13 @@ const routes = [
     component: typeselector,
     beforeEnter: (to,from,next)=>{
       if(store.state.timer === null){
-        next('/1'); 
-      }else {
-        next();   
-      }
+        // next({ path: '/' })
+        router.push("/1")
+
+      }else 
+      {
+      next()
+    }
     }
   },
   {
@@ -41,9 +44,12 @@ const routes = [
     component: test,
     beforeEnter: (to,from,next)=>{
       if(store.state.typeOfWord === null){
-        next('/1'); 
-      }else {
-        next();   
+        // next({path:'/1'}); 
+        router.push("/1")
+
+      }
+      else {
+        next()
       }
     }
   },
@@ -55,7 +61,8 @@ const routes = [
       if(store.state.wordType === 1){
         next(); 
       }else {
-        next('/1');   
+        // next({path:'/1'}); 
+        router.push("/1")
       }
     }
     
