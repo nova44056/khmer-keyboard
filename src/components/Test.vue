@@ -3,7 +3,7 @@
     <div class="col" v-bind:class="{transparent: !this.$store.state.isKhmer, transparent2: result}">
       <div class="col1">
 
-        <!-- timerstats -->
+      <!-- timerstats -->
         <div class="lottie">
           <lottie-player
             id="lottie"
@@ -117,7 +117,7 @@
 
     <keyboardMessage v-bind:class="{showError: !this.$store.state.isKhmer}" />
     <result v-bind:class="{showError: result}" class="result"/>
-    <button @click="showResult()">result</button>
+    <button id="result" @click="showResult()">result</button>
     
   </main>
 </template>
@@ -646,6 +646,7 @@ export default {
 .error {
   animation: errorAnimation 0.5s;
 }
+
 
 @keyframes errorAnimation {
   0% {

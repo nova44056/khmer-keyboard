@@ -1,6 +1,6 @@
 <template>
-  <main>
-    <div class="col">
+  <main >
+    <div class="col" v-bind:class="{transparent: !$store.state.isKhmer}">
       <div class="col1">
         <!-- timerstats -->
         <div class="lottie">
@@ -45,11 +45,12 @@
         <span>{{ buffer }}</span>
         </div>
       </div>
+      <keyboard2 />
+
     </div>
     <!-- <div id="keyboardWrap-tf">
     </div> -->
-    <keyboard2 />
-    <!-- <keyboardMessage v-bind:class="{showError: !isKhmer}" /> -->
+    <keyboardMessage v-bind:class="{showError: !$store.state.isKhmer}" />
   </main>
 </template>
 
@@ -57,11 +58,14 @@
   import splitKhmerRunes from './split-khmer'
   import keyboard2 from './components/TypingPageComponents/keyboard2'
   import {wordsList} from './words-list'
+  import khmerWord from "./mapping.js"
+  import keyboardMessage from './components/displayWrongKeyboard.vue'
 
   export default {
     name: 'Typefast',
     components: {
-      keyboard2
+      keyboard2,
+      keyboardMessage,
     },
     data () {
       return {
@@ -99,6 +103,18 @@
         document.onkeypress = this.typing
         document.onkeydown = this.clear
       },
+
+      isKhmerWord: function(userWord){
+      if(khmerWord.includes(userWord)){
+        this.$store.dispatch('setKhmer')
+        }
+      else {
+        this.$store.dispatch('unSetKhmer')
+      }
+    
+
+      
+    },
       /**
        * Displays the modal with the scores
        * Also saves the highest score
@@ -144,6 +160,7 @@
        */
       typing: function (e) {
         var vue = this
+        vue.isKhmerWord(e.key)
         const noChars = ['Shift', 'Control', 'Alt', 'Tab', 'CapsLock', 'Home', 'PageUp',
           'PageDown', 'End', 'ScrollLock', 'Pause', 'Insert', 'Delete', 'Enter'
         ]
@@ -224,6 +241,10 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.transparent{
+  opacity: 0.3;
 }
 * {
   overflow: visible !important;
