@@ -9,6 +9,7 @@ import test from '../components/Test'
 import typeFast from '../Typefast'
 import store from '../store/index.js'
 import test2 from '../duplicate'
+import result from '../components/result.vue'
 
 Vue.use(VueRouter)
 
@@ -40,7 +41,7 @@ const routes = [
     component: test,
     beforeEnter: (to,from,next)=>{
       if(store.state.typeOfWord === null){
-        next('/2'); 
+        next('/1'); 
       }else {
         next();   
       }
@@ -49,12 +50,25 @@ const routes = [
   {
     path: '/4',
     name: 'typeFast',
-    component: typeFast
+    component: typeFast,
+    beforeEnter: (to,from,next)=>{
+      if(store.state.wordType === 1){
+        next(); 
+      }else {
+        next('/1');   
+      }
+    }
+    
   },
   {
     path: '/test',
     name: 'test',
     component: test2
+  },
+  {
+    path: '/result',
+    name: 'result',
+    component: result
   }
 ]
 

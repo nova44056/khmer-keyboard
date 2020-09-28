@@ -116,6 +116,8 @@
     </div>
 
     <keyboardMessage v-bind:class="{showError: !this.$store.state.isKhmer}" />
+    <result class="result"/>
+    
   </main>
 </template>
 
@@ -133,6 +135,7 @@ import rightHand from "./RightHand";
 import khmerWord from "../mapping.js"
 import keyboardMessage from "../components/displayWrongKeyboard"
 import threeVue from './TimeSelectorComponents/three.vue';
+import result from '../components/result.vue'
 
 function initialState() {
   return {
@@ -161,6 +164,7 @@ export default {
     // error,
     score,
     keyboardMessage,
+    result,
   },
   data: initialState,
 
@@ -695,6 +699,12 @@ h2 {
   color: black;
   margin-top: 1rem;
   margin-bottom: -5rem;
+}
+.result{
+  position: absolute;
+  z-index: 2;
+  top: 20%;
+  left: 33%;
 }
 .key {
   display: flex;

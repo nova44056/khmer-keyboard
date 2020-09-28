@@ -11,6 +11,7 @@ export default new Vuex.Store({
     timer: null,
     isKhmer: true, 
     typeOfWord: null,
+    wordType: 0, 
   },
   mutations: {
     toggleActivePage1(state) {
@@ -40,7 +41,17 @@ export default new Vuex.Store({
     }, 
     unSetKhmer(state){
       state.isKhmer = false
+    },
+
+    wordType1(state){
+      state.wordType = 1
+    }, 
+
+    wordType2(state){
+      state.wordType = 2
     }
+
+    
 
   },
   actions: {
@@ -68,6 +79,13 @@ export default new Vuex.Store({
     }, 
     unSetKhmer({commit}){
       commit('unSetKhmer')
+    }, 
+
+    wordType1({commit}){
+      commit('wordType1')
+    },
+    wordType2({commit}){
+      commit('wordType2')
     }
 
   },

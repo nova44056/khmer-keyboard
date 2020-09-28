@@ -5,7 +5,7 @@
     </div>
     <div class="type-wrapper">
       <div class="cards-wrapper">
-        <button class="card">
+        <button class="card" @click="$store.dispatch('wordType1')">
           <svg
             class="check"
             id="Layer_1"
@@ -26,7 +26,7 @@
           </svg>
           <h2>ពាក្យ</h2>
         </button>
-        <button class="card">
+        <button class="card" @click="$store.dispatch('wordType2')">
           <svg
             class="check"
             id="Layer_1"
@@ -52,7 +52,7 @@
 
     <div class="button-wrapper">
         <button @click="$router.push({name: 'SelectionPage1'})">ត្រឡប់ក្រោយ</button>
-        <button :disabled="!isTypeSelected" @click="$router.push({name: 'TypingPage'})">ចាប់ផ្តើម</button>
+        <button :disabled="!isTypeSelected" @click="changePage()">ចាប់ផ្តើម</button>
     </div>
 
     <div>
@@ -91,8 +91,18 @@ export default {
 
       }
 		},1000)
-	}
-   }
+  },
+  
+   changePage(){
+     if(this.$store.state.wordType === 1){
+       this.$router.push("/4")
+     }else {
+       this.$router.push("/3")
+     }
+   },
+   },
+
+  
 }
 </script>
 
