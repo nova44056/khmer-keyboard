@@ -7,6 +7,7 @@ import logIn from '../views/logIn.vue'
 import signIn from '../views/signIn.vue'
 import test from '../components/Test'
 import typeFast from '../Typefast'
+import test2 from '../duplicate'
 
 Vue.use(VueRouter)
 
@@ -34,6 +35,11 @@ const routes = [
     path: '/4',
     name: 'typeFast',
     component: typeFast
+  },
+  {
+    path: '/test',
+    name: 'test',
+    component: test2
   }
 ]
 
