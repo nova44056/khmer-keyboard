@@ -646,8 +646,7 @@ export default {
 }
 
 .transparent {
-  
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    opacity: 0.1;
 
 }
 
