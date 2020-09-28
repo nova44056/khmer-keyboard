@@ -10,6 +10,7 @@ import test2 from '../duplicate'
 import typeFast from '../Typefast'
 import result from '../components/result'
 import store from '../store/index'
+import testing from '../components/Test2'
 
 Vue.use(VueRouter)
 
@@ -76,6 +77,11 @@ const routes = [
     path: '/result',
     name: 'result',
     component: result
+  },
+  {
+    path: '/testing',
+    name: 'testing',
+    component: testing
   }
 ]
 
