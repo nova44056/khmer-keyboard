@@ -20,6 +20,10 @@ const routes = [
     redirect: '/1'
   },
   {
+    path: '*',
+    redirect: '/1'
+  },
+  {
     path: '/1',
     name: 'SelectionPage1',
     component: timeselector
@@ -28,10 +32,11 @@ const routes = [
     path: '/2',
     name: 'SelectionPage2',
     component: typeselector,
-    beforeEnter: (to,from,next)=>{
+    beforeRouteEnter: (to,from,next)=>{
       if(store.state.timer === null){
-        // next({ path: '/' })
-        router.push("/1")
+        next({ name: 'SelectionPage1' })
+        // router.push("/1")
+        // next(false)
 
       }else 
       {
@@ -43,10 +48,11 @@ const routes = [
     path: '/3',
     name: 'TypingPage',
     component: test,
-    beforeEnter: (to,from,next)=>{
+    beforeRouteEnter: (to,from,next)=>{
       if(store.state.typeOfWord === null){
         // next({path:'/1'}); 
-        router.push("/1")
+        // router.push("/1")
+        next({ name: 'SelectionPage1' })
 
       }
       else {
@@ -58,12 +64,13 @@ const routes = [
     path: '/4',
     name: 'typeFast',
     component: test2,
-    beforeEnter: (to,from,next)=>{
+    beforeRouteEnter: (to,from,next)=>{
       if(store.state.wordType === 1){
         next(); 
       }else {
         // next({path:'/1'}); 
-        router.push("/1")
+        // router.push("/1")
+        next({ name: 'SelectionPage1' })
       }
     }
     

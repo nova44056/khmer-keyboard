@@ -802,6 +802,7 @@ export default {
   margin-right: 3rem;
   margin-top: 2rem;
   margin: 1rem;
+  font-family: 'Kantumruy', sans-serif;
 }
 
 .text {
