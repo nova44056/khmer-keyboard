@@ -25,26 +25,26 @@ const routes = [
   {
     path: '/2',
     name: 'SelectionPage2',
-    component: typeselector,
-    beforeEnter: (to,from,next)=>{
-      if(store.state.timer === null){
-        next('/1'); 
-      }else {
-        next();   
-      }
-    }
+    component: typeselector
+    // beforeEnter: (to,from,next)=>{
+    //   if(store.state.timer === null){
+    //     next('/1'); 
+    //   }else {
+    //     next();   
+    //   }
+    // }
   },
   {
     path: '/3',
     name: 'TypingPage',
-    component: test,
-    beforeEnter: (to,from,next)=>{
-      if(store.state.typeOfWord === null){
-        next('/2'); 
-      }else {
-        next();   
-      }
-    }
+    component: test
+    // beforeEnter: (to,from,next)=>{
+    //   if(store.state.typeOfWord === null){
+    //     next('/1'); 
+    //   }else {
+    //     next();   
+    //   }
+    // }
   },
   {
     path: '/4',

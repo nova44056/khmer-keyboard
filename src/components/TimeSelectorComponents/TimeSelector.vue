@@ -126,7 +126,7 @@ export default {
         this.$store.dispatch('unSetTime')
 
       }
-		},1000)
+		},100)
 	}
 
  
