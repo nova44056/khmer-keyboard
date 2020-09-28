@@ -1,26 +1,8 @@
 <template>
-  
   <div class="pop-up">
-    <!-- <div id="party-popper">🎉</div> -->
-
-    <!-- <p class="result">ល្អណាស់!</p> -->
-    <!-- <p class="bestScore">
-      Your best score so far is <span id="best">1600.</span> If you save now,
-      your place on leaderboard will be <span id="rank">3</span>.
-    </p> -->
-
-    <!-- <div class="buttons">
-        <button class="saveScore">
-            Save your best score
-        </button>
-
-        <button class="tryAgain">
-            Try Again !
-        </button>
-    </div> -->
     <div class="ani">
       <button @click="$router.push({name: 'SelectionPage1'})">X</button>
-      <lottie-player src="https://assets7.lottiefiles.com/datafiles/3RKIaYNZqu6RrV0/data.json" mode="bounce" background="transparent"  speed="0.7"  style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+      <lottie-player src="https://assets7.lottiefiles.com/datafiles/3RKIaYNZqu6RrV0/data.json" mode="bounce" background="transparent"  speed="0.3"  style="width: 300px; height: 300px;"  autoplay></lottie-player>
     </div>
     <div class="text">
       <h1>ក្នុងរយះពេល​ {{convertToKhmerNum(this.$store.state.timerMinute)}} នាទីអ្នកវាយបាន {{convertToKhmerNum(this.$store.state.totalWordsTyped)}} ពាក្យ</h1>
@@ -44,7 +26,6 @@ export default {
         8: "៨",
         9: "៩",
       };
-
       let khmNum = "";
       for (let i = 0; i < num.toString().length; i++) {
         khmNum += numData[num.toString()[i]];
@@ -56,32 +37,30 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.wrap {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+@import url("https://fonts.googleapis.com/css2?family=Kantumruy&display=swap");
 .pop-up {
   display: flex;
   flex-direction: column;
   height: 30rem;
   width: 50rem;
-  border: 2px solid black;
-  background-color: black;
+  border: 2px solid white;
+  background-color: white;
+  border-radius: 2rem;
+  box-shadow: 0px 0px 30px -6px rgba(0,0,0,0.75);
+  font-family: 'Kantumruy', sans-serif;
 }
+
 .ani {
   display: flex;
   flex-direction: row-reverse;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
   color: white;
   margin-top: -2rem;
 }
+
 .ani > button{
-  color: white;
+  color: black;
   height: 2rem;
   width: 2rem;
   border: none;
@@ -98,59 +77,5 @@ export default {
   right: 1rem;
   top: 1rem;
 }
-#party-popper {
-  font-size: 50px;
-}
-
-.bestScore {
-  line-height: 2.5rem;
-  font-weight: 700;
-}
-
-.result {
-  font-weight: bold;
-  font-size: 2rem;
-}
-
-#best {
-  color: orange;
-}
-
-#rank {
-  color: orange;
-}
-
-.buttons {
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
-    margin-top: 1rem;
-}
-.saveScore{
-    outline: none;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
-    background-color: rgb(131, 233, 105);
-    color: white;
-    font-weight: 600;
-    width: 45%;
-}
-
-.tryAgain{
-    outline: none;
-    width: 45%;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
-    background-color: rgb(221, 71, 91);
-    color: white;
-    font-weight: 600;
-}
-
-.tryAgain,.saveScore:hover{
-    cursor: pointer;
-}
-
 
 </style>

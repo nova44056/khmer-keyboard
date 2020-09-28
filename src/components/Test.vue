@@ -1,11 +1,10 @@
 <template>
   <main>
     <div class="col" v-bind:class="{transparent: !this.$store.state.isKhmer, transparent2: result}">
+			<!-- lottiecard -->
       <div class="col1">
-
-      <!-- timerstats -->
-       <!-- timerstats -->
-        <div class="lottie">
+      	<!-- timerstats -->
+      	<div class="lottie">
           <lottie-player
             id="lottie"
             src="https://assets10.lottiefiles.com/packages/lf20_AMwwvI.json"
@@ -15,13 +14,10 @@
             loop
             autoplay
           ></lottie-player>
-          <!-- <div class="text">
-          </div> -->
-            <countdown :time="this.time * 60000" @end="endGame" ref="countdown" :auto-start="false">
-              <template slot-scope="props">{{ convertToKhmerNum(props.minutes) }} នាទី {{ convertToKhmerNum(props.seconds) }}​​ វិនាទី</template>
-            </countdown>
-            <!-- ១ៈ០០ ៣ៈ០០  -->
-        </div>
+          <countdown :time="this.time * 60000" @end="endGame" ref="countdown" :auto-start="false">
+            <template slot-scope="props">{{ convertToKhmerNum(props.minutes) }} នាទី {{ convertToKhmerNum(props.seconds) }}​​ វិនាទី</template>
+          </countdown>
+      	</div>
         <!-- errorstats -->
         <div class="lottie" :class="{ 'error-bg': alertError }">
           <lottie-player
@@ -34,9 +30,8 @@
             autoplay
           ></lottie-player>
           <span :class="{ error: alertError }">​{{ convertToKhmerNum(errors) }}</span>
-          <!-- <div class="text">
-          </div> -->
         </div>
+				<!-- scorestats -->
         <div class="lottie">
           <lottie-player
             id="lottie"
@@ -47,35 +42,11 @@
             loop
             autoplay
           ></lottie-player>
-            <span>{{ convertToKhmerNum(runesCounter) }}
+          <span>{{ convertToKhmerNum(runesCounter) }}
           / {{ convertToKhmerNum(totalRunes) }}</span>
         </div>
-        <!-- <timer/> -->
-        <!-- <error/> -->
-        <!-- <score /> -->
       </div>
-
-        <!-- Text Counter -->
-      <!-- <div class="row">
-        <div class="runesWrap">
-          <strong>{{ convertToKhmerNum(runesCounter) }}</strong>
-          / {{ convertToKhmerNum(totalRunes) }}
-        </div> -->
-
-        <!-- Errors -->
-        <!-- <div class="errorsWrap">
-          <strong :class="{ error: alertError }">{{ errors }}</strong> errors
-        </div>
-      </div> -->
-
-      <!-- <div id="text-div" :class="{'error-bg': alertError}">
-        <h2 id="text-wrapper">
-            <span v-for="(rune, index) in runes" :key='index' :class="{space: rune.isSpace, current: rune.isCurrent, correct: rune.isCorrect, hidden: rune.isHidden}" class="runes" :id="rune.id">
-                {{rune.rune}}
-            </span>
-        </h2>
-      </div> -->
-
+			<!-- textbox -->
       <div id="text-div">
         <h2 id="text-wrapper">
           <span
@@ -93,7 +64,7 @@
           >
         </h2>
       </div>
-
+			<!-- letters from word -->
       <div>
         <h4 id="decomposition-vk">
           <span>​</span>
@@ -106,7 +77,7 @@
           >
         </h4>
       </div>
-
+			<!-- keyboard -->
       <div id="handsAndKeyboardWrap-vk">
         <div class="row">
           <leftHand id="leftHand-vk" />
@@ -117,17 +88,12 @@
     </div>
 
     <keyboardMessage v-bind:class="{showError: !this.$store.state.isKhmer}" />
-    <result v-bind:class="{showError: result}" class="result"/>
-
-    <!-- <button @click="showResult()">result</button> -->
-    
+    <result v-bind:class="{showError: result}" class="result"/>    
     
   </main>
 </template>
 
 <script>
-// import error from './TypingPageComponents/error'
-// import timer from './TypingPageComponents/timer'
 import score from "./TypingPageComponents/score";
 import keyboard from "./TypingPageComponents/keyboard";
 import splitKhmerRunes from "../split-khmer";
@@ -165,19 +131,14 @@ export default {
     leftHand,
     rightHand,
     keyboard,
-    // timer,
-    // error,
     score,
     keyboardMessage,
     result,
   },
   data: initialState,
-
   mounted() {
     this.startGame();
   },
-
- 
   methods: {
     testFunction () {
       console.log('Hello World')
@@ -195,26 +156,20 @@ export default {
         8: "៨",
         9: "៩",
       };
-
       let khmNum = "";
       for (let i = 0; i < num.toString().length; i++) {
         khmNum += numData[num.toString()[i]];
       }
       return khmNum;
     },
-
-     isKhmerWord: function(userWord){
+    isKhmerWord: function(userWord){
       if(khmerWord.includes(userWord)){
         this.$store.dispatch('setKhmer')
         }
       else {
         this.$store.dispatch('unSetKhmer')
       }
-    
-
-      
     },
-
     showResult(){
       this.result = !this.result
     }, 
@@ -608,9 +563,6 @@ export default {
           .setAttributeNS(null, "fill", "#C1C0C0");
       }
     },
-
-
-   
   },
   beforeDestroy() {
     document.onkeypress = null;
@@ -625,111 +577,10 @@ export default {
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Kantumruy&display=swap");
+/* ID */
 #leftHand-vk,
 #rightHand-vk {
   display: none;
-}
-.error-bg {
-  animation: errorAnimationBackground 0.5s;
-  animation: shake 0.5s;
-  animation-iteration-count: 2;
-  box-shadow: 1px 1px 18px 2px rgba(255,0,0,1) !important;
-}
-
-@keyframes errorAnimationBackground {
-  0% {
-    background-color: #ddd;
-  }
-  33% {
-    background-color: #ffc10a;
-  }
-  100% {
-    background-color: #ddd;
-  }
-}
-
-.error {
-  animation: errorAnimation 0.5s;
-}
-
-
-@keyframes errorAnimation {
-  0% {
-    color: #ffc10a;
-  }
-  33% {
-    color: black;
-  }
-  100% {
-    color: #ffc10a;
-  }
-}
-
-.transparent {
-    opacity: 0.1;
-}
-
-.transparent2 {
-  opacity: 0.1;
-}
-
-.col {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  /* visibility: hidden; */
-}
-.col2 {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  /* width: 70%; */
-  margin-top: 3.5rem;
-}
-.col1 {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  /* width: 100rem; */
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-  margin-left: auto;
-  margin-right: auto;
-  /* width: 20%; */
-  /* margin-right: 7rem; */
-}
-.row {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  align-items: center;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-h2 {
-  font-family: "Kantumruy", sans-serif;
-  color: black;
-  margin-top: 1rem;
-  margin-bottom: -5rem;
-}
-.result{
-  position: absolute;
-  z-index: 2;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  visibility: hidden;
-}
-.key {
-  display: flex;
-  justify-content: flex-start;
-  width: 100%;
-  height: 300px;
-  margin-left: 6.5rem;
-  margin-top: -3rem;
 }
 
 #text-div {
@@ -738,7 +589,6 @@ h2 {
   border: 2px solid #1b2448;
   border-radius: 10px;
   margin-top: -2rem;
-  /* margin-left: -3rem; */
   padding: 1rem;
   text-align: start;
   background-color: white;
@@ -747,7 +597,6 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* min-width: 500px; */
 }
 
 #text-wrapper {
@@ -762,49 +611,12 @@ h2 {
   color: black;
 }
 
-.text-wrapper > span {
-  display: inline-block;
-  padding-top: 4px;
-  width: fit-content;
-}
-
-.space {
-  font-size: 1rem;
-  color: white !important;
-}
-.area {
-  display: flex;
-  justify-content: center;
-  margin-top: 1rem;
-}
-.key {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 60rem;
-  height: 30rem;
-  /* margin-left: 6.5rem; */
-  /* margin-left: -1rem; */
-  /* margin-top: 3rem; */
-}
-
-.showError{
-  visibility: visible;
-}
-
-@media screen and (max-width: 1110px) {
-  .key {
-    display: none;
-  }
-}
-
 #text-div {
   height: 15rem;
   width: 75rem;
   border: 2px solid #1b2448;
   border-radius: 10px;
   margin-top: -1rem;
-  /* margin-left: 2rem; */
   padding: 1rem;
   text-align: start;
   background-color: white;
@@ -819,156 +631,128 @@ h2 {
 #keyboard-vk svg {
   width: 100px;
 }
-@media screen and (max-width: 1620px) and (min-width: 1255px) {
-  .col1 {
-    width: 70rem;
-  }
 
-  #text-wrapper {
-    font-size: 2.8em;
-  }
+#decomposition-vk,
+#text-vk {
+  font-weight: normal;
+  word-break: break-all;
 }
-@media screen and (max-width: 1255px) and (min-width: 1175px) {
-  #text-div {
-    width: 70rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  #text-wrapper {
-    font-size: 2em;
-  }
-  .col1 {
-    width: 60rem;
-  }
+
+#text-vk {
+  line-height: 1.5em;
+  font-size: 3em;
+  max-height: 3em;
+  overflow: hidden;
+  margin: 0 auto;
 }
-@media screen and (max-width: 1175px) and (min-width: 1030px) {
-  #text-div {
-    width: 60rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  #text-wrapper {
-    font-size: 2.6em;
-  }
-  .col1 {
-    width: 50rem;
-  }
-  #handsAndKeyboardWrap-vk {
-    display: none;
-  }
+
+#decomposition-vk {
+  font-size: 2em;
+  margin: 1% auto 3% auto;
 }
-@media screen and (max-width: 1030px) and (min-width: 961px) {
-  #text-div {
-    width: 55rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  #text-wrapper {
-    font-size: 2.4em;
-  }
-  .col1 {
-    width: 40rem;
-  }
-  #handsAndKeyboardWrap-vk {
-    display: none;
-  }
+
+#textWrap-vk {
+  background-color: #ddd;
+  border-radius: 5px;
 }
-@media screen and (max-width: 961px) and (min-width: 860px) {
-  #text-div {
-    width: 50rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  #text-wrapper {
-    font-size: 2.2em;
-  }
-  .col1 {
-    /* width: 30rem; */
-  }
-  #handsAndKeyboardWrap-vk {
-    display: none;
-  }
+
+#popup {
+  position: absolute;
+  visibility: hidden;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  color: white;
+  overflow: hidden;
 }
-@media screen and (max-width: 860px) and (min-width: 770px) {
-  #text-div {
-    width: 45rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  #text-wrapper {
-    font-size: 2em;
-  }
-  .col1 {
-    /* width: 20rem; */
-  }
-  #handsAndKeyboardWrap-vk {
-    display: none;
-  }
+/* END OF ID */
+
+/* CLASS */
+.transparent {
+    opacity: 0.1;
 }
-@media screen and (max-width: 770px) and (min-width: 695px) {
-  #text-div {
-    width: 40rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  #text-wrapper {
-    font-size: 1.8em;
-  }
-  .col1 {
-    /* width: 15rem; */
-  }
-  #handsAndKeyboardWrap-vk {
-    display: none;
-  }
+
+.transparent2 {
+  opacity: 0.1;
 }
-@media screen and (max-width: 695px) and (min-width: 610px) {
-  #text-div {
-    width: 35rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  #text-wrapper {
-    font-size: 1.6em;
-  }
-  .col1 {
-    /* width: 15rem; */
-  }
-  #handsAndKeyboardWrap-vk {
-    display: none;
-  }
+
+.col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-@media screen and (max-width: 610px) and (min-width: 530px) {
-  #text-div {
-    width: 30rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  #text-wrapper {
-    font-size: 1.4em;
-  }
-  .col1 {
-    /* width: 15rem; */
-  }
-  #handsAndKeyboardWrap-vk {
-    display: none;
-  }
+
+.col1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  margin-left: auto;
+  margin-right: auto;
 }
-@media screen and (max-width: 530px) and (min-width: 492px) {
-  #text-div {
-    width: 27rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  #text-wrapper {
-    font-size: 1.4em;
-  }
-  .col1 {
-    /* width: 10rem; */
-  }
-  #handsAndKeyboardWrap-vk {
-    display: none;
-  }
+
+.row {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
+
+.result{
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  visibility: hidden;
+}
+
+.key {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  height: 300px;
+  margin-left: 6.5rem;
+  margin-top: -3rem;
+}
+
+.text-wrapper > span {
+  display: inline-block;
+  padding-top: 4px;
+  width: fit-content;
+}
+
+.space {
+  font-size: 1rem;
+  color: white !important;
+}
+
+.area {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.key {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60rem;
+  height: 30rem;
+}
+
+.showError{
+  visibility: visible;
+}
+
 .text-wrapper {
   font-weight: normal;
   word-break: break-all;
@@ -1003,29 +787,6 @@ h2 {
   color: #3f51b5;
 }
 
-#decomposition-vk,
-#text-vk {
-  font-weight: normal;
-  word-break: break-all;
-}
-
-#text-vk {
-  line-height: 1.5em;
-  font-size: 3em;
-  max-height: 3em;
-  overflow: hidden;
-  margin: 0 auto;
-}
-
-#decomposition-vk {
-  font-size: 2em;
-  margin: 1% auto 3% auto;
-}
-
-#textWrap-vk {
-  background-color: #ddd;
-  border-radius: 5px;
-}
 .lottie {
   border: 1px solid white;
   display: flex;
@@ -1044,15 +805,236 @@ h2 {
   margin: 1rem;
 }
 
-/* .lottie > lottie-player {
+.text {
+  margin-left: 2rem;
   display: flex;
-  justify-content: flex-start;
-} */
-@media screen and (max-width: 1080px) and (min-width: 845px) {
-  /* .lottie {
-    width: 15rem;
-  } */
+  justify-content: flex-end;
+  align-items: center;
+  font-family: "Kantumruy", sans-serif;
+  font-size: 1.2rem;
 }
+
+.text > h3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* END OF CLASS */
+
+/* ANIMATIONS */
+.error-bg {
+  animation: errorAnimationBackground 0.5s;
+  animation: shake 0.5s;
+  animation-iteration-count: 2;
+  box-shadow: 1px 1px 18px 2px rgba(255,0,0,1) !important;
+}
+
+@keyframes errorAnimationBackground {
+  0% {
+    background-color: #ddd;
+  }
+  33% {
+    background-color: #ffc10a;
+  }
+  100% {
+    background-color: #ddd;
+  }
+}
+
+.error {
+  animation: errorAnimation 0.5s;
+}
+
+@keyframes errorAnimation {
+  0% {
+    color: #ffc10a;
+  }
+  33% {
+    color: black;
+  }
+  100% {
+    color: #ffc10a;
+  }
+}
+
+#shaking{
+  animation: shake 0.5s;
+  animation-iteration-count: 1;
+  box-shadow: 1px 1px 18px 2px rgba(255,0,0,1);
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+/* END OF ANIMATIONS */
+
+/* GLOBAL */
+h2 {
+  font-family: "Kantumruy", sans-serif;
+  color: black;
+  margin-top: 1rem;
+  margin-bottom: -5rem;
+}
+/* END OF GLOBAL */
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 1110px) {
+  .key {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1620px) and (min-width: 1255px) {
+  .col1 {
+    width: 70rem;
+  }
+  #text-wrapper {
+    font-size: 2.8em;
+  }
+}
+
+@media screen and (max-width: 1255px) and (min-width: 1175px) {
+  #text-div {
+    width: 70rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #text-wrapper {
+    font-size: 2em;
+  }
+  .col1 {
+    width: 60rem;
+  }
+}
+
+@media screen and (max-width: 1175px) and (min-width: 1030px) {
+  #text-div {
+    width: 60rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #text-wrapper {
+    font-size: 2.6em;
+  }
+  .col1 {
+    width: 50rem;
+  }
+  #handsAndKeyboardWrap-vk {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1030px) and (min-width: 961px) {
+  #text-div {
+    width: 55rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #text-wrapper {
+    font-size: 2.4em;
+  }
+  .col1 {
+    width: 40rem;
+  }
+  #handsAndKeyboardWrap-vk {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 961px) and (min-width: 860px) {
+  #text-div {
+    width: 50rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #text-wrapper {
+    font-size: 2.2em;
+  }
+  #handsAndKeyboardWrap-vk {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 860px) and (min-width: 770px) {
+  #text-div {
+    width: 45rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #text-wrapper {
+    font-size: 2em;
+  }
+  #handsAndKeyboardWrap-vk {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 770px) and (min-width: 695px) {
+  #text-div {
+    width: 40rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #text-wrapper {
+    font-size: 1.8em;
+  }
+  #handsAndKeyboardWrap-vk {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 695px) and (min-width: 610px) {
+  #text-div {
+    width: 35rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #text-wrapper {
+    font-size: 1.6em;
+  }
+  #handsAndKeyboardWrap-vk {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 610px) and (min-width: 530px) {
+  #text-div {
+    width: 30rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #text-wrapper {
+    font-size: 1.4em;
+  }
+  #handsAndKeyboardWrap-vk {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 530px) and (min-width: 492px) {
+  #text-div {
+    width: 27rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #text-wrapper {
+    font-size: 1.4em;
+  }
+  #handsAndKeyboardWrap-vk {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 845px) and (min-width: 600px) {
   .lottie {
     width: 10rem;
@@ -1061,17 +1043,13 @@ h2 {
     height: 10rem;
     justify-content: center;
     align-items: center;
-    /* border-radius: 50%; */
   }
   .text > h3 {
     margin-top: -1rem;
     margin-left: -1.5rem;
   }
-  #lottie{
-    /* visibility: hidden; */
-    /* display: none; */
-  }
 }
+
 @media screen and (max-width: 600px) {
   .lottie {
     width: 6rem;
@@ -1086,53 +1064,9 @@ h2 {
     margin-top: -1rem;
     margin-left: -1.7rem;
   }
-
   #lottie{
-    /* visibility:hidden; */
     display: none;
   }
 }
-.text {
-  margin-left: 2rem;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  font-family: "Kantumruy", sans-serif;
-  font-size: 1.2rem;
-}
-.text > h3 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-#shaking{
-  animation: shake 0.5s;
-  animation-iteration-count: 1;
-  box-shadow: 1px 1px 18px 2px rgba(255,0,0,1);
-}
-@keyframes shake {
-  0% { transform: translate(1px, 1px) rotate(0deg); }
-  10% { transform: translate(-1px, -2px) rotate(-1deg); }
-  20% { transform: translate(-3px, 0px) rotate(1deg); }
-  30% { transform: translate(3px, 2px) rotate(0deg); }
-  40% { transform: translate(1px, -1px) rotate(1deg); }
-  50% { transform: translate(-1px, 2px) rotate(-1deg); }
-  60% { transform: translate(-3px, 1px) rotate(0deg); }
-  70% { transform: translate(3px, 1px) rotate(-1deg); }
-  80% { transform: translate(-1px, -1px) rotate(1deg); }
-  90% { transform: translate(1px, 2px) rotate(0deg); }
-  100% { transform: translate(1px, -2px) rotate(-1deg); }
-}
-#popup {
-  position: absolute;
-  visibility: hidden;
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: black;
-  color: white;
-  overflow: hidden;
-}
+/* END OF MEDIA QUERIES */
 </style>
