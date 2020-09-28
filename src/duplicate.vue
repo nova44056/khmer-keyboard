@@ -13,13 +13,10 @@
             loop
             autoplay
           ></lottie-player>
-          <!-- <div class="text">
-          </div> -->
-            <!-- <countdown :time="this.time * 30000" @end="endGame" ref="countdown" :auto-start="false">
+              <!-- <countdown :time="this.time * 30000" @end="endGame" ref="countdown" :auto-start="false">
               <template slot-scope="props">{{ props.minutes }} : {{ props.seconds }} </template>
             </countdown> -->
             <span>{{ seconds }}</span>
-            <!-- ១ៈ០០ ៣ៈ០០  -->
         </div>
         <div class="lottie">
           <lottie-player
@@ -33,73 +30,31 @@
           ></lottie-player>
             <span>{{ score }}</span>
         </div>
-        <!-- <timer/> -->
-        <!-- <error/> -->
-        <!-- <score /> -->
       </div>
 
-        <!-- Text Counter -->
-      <!-- <div class="row">
-        <div class="runesWrap">
-          <strong>{{ convertToKhmerNum(runesCounter) }}</strong>
-          / {{ convertToKhmerNum(totalRunes) }}
-        </div> -->
-
-        <!-- Errors -->
-        <!-- <div class="errorsWrap">
-          <strong :class="{ error: alertError }">{{ errors }}</strong> errors
-        </div>
-      </div> -->
-
-      <!-- <div id="text-div" :class="{'error-bg': alertError}">
-        <h2 id="text-wrapper">
-            <span v-for="(rune, index) in runes" :key='index' :class="{space: rune.isSpace, current: rune.isCurrent, correct: rune.isCorrect, hidden: rune.isHidden}" class="runes" :id="rune.id">
-                {{rune.rune}}
-            </span>
-        </h2>
-      </div> -->
-
-      <div id="text-div">
-        <h2 id="text-wrapper">
+      <div class="wordsWrap">
+        <p class="words">
           <span
-            v-for="rune in runes"
-            :key="rune.id"
-            class="runes"
-            :class="{
-              current: rune.isCurrent,
-              correct: rune.isCorrect,
-              hidden: rune.isHidden,
-              space: rune.isSpace,
-            }"
-            :id="rune.id"
-            >{{ rune.rune }}</span
-          >
-        </h2>
-      </div>
-
-      <div>
-        <h4 id="decomposition-vk">
-          <span>​</span>
-          <span
-            v-for="letter in letters"
-            :key="letter.id"
-            :class="{ current: letter.isCurrent, correct: letter.isCorrect }"
-            :id="letter.id"
-            >{{ letter.letter }}</span
-          >
-        </h4>
-      </div>
-
-      <div id="handsAndKeyboardWrap-vk">
-        <div class="row">
-          <leftHand id="leftHand-vk" />
-          <keyboard id="keyboard-vk" />
-          <rightHand id="rightHand-vk" />
-        </div>
+            class="spans"
+            v-for="span in spans"
+            :key="span.id"
+          >{{ span }}</span>
+        </p>
       </div>
     </div>
 
-    <keyboardMessage v-bind:class="{showError: !isKhmer}" />
+
+    <h3 class="buffer-title">
+        What are you playing ?
+    </h3>
+    <div class="buffer">
+      {{ buffer }}
+    </div>
+
+    <!-- <div id="keyboardWrap-tf">
+    </div> -->
+    <keyboard/>
+    <!-- <keyboardMessage v-bind:class="{showError: !isKhmer}" /> -->
   </main>
 </template>
 
@@ -129,7 +84,7 @@
        */
       startGame: function () {
         var timer
-        this.seconds = 60
+        this.seconds = 999999
         this.score = 0
         // Start the timer
         clearInterval(timer)
@@ -335,5 +290,507 @@
 #keyboard-tf {
   width: 10%;
   cursor: zoom-in;
+}
+
+
+/* Test.vue css */
+#leftHand-vk,
+#rightHand-vk {
+  display: none;
+}
+.error-bg {
+  animation: errorAnimationBackground 0.5s;
+  animation: shake 0.5s;
+  animation-iteration-count: 2;
+  box-shadow: 1px 1px 18px 2px rgba(255,0,0,1) !important;
+}
+
+@keyframes errorAnimationBackground {
+  0% {
+    background-color: #ddd;
+  }
+  33% {
+    background-color: #ffc10a;
+  }
+  100% {
+    background-color: #ddd;
+  }
+}
+
+.error {
+  animation: errorAnimation 0.5s;
+}
+
+@keyframes errorAnimation {
+  0% {
+    color: #ffc10a;
+  }
+  33% {
+    color: black;
+  }
+  100% {
+    color: #ffc10a;
+  }
+}
+
+.transparent {
+  
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* visibility: hidden; */
+}
+.col2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* width: 70%; */
+  margin-top: 3.5rem;
+}
+.col1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /* width: 100rem; */
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  /* width: 20%; */
+  /* margin-right: 7rem; */
+}
+.row {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+h2 {
+  font-family: "Kantumruy", sans-serif;
+  color: black;
+  margin-top: 1rem;
+  margin-bottom: -5rem;
+}
+.key {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  height: 300px;
+  margin-left: 6.5rem;
+  margin-top: -3rem;
+}
+
+#text-div {
+  height: 15rem;
+  width: 75rem;
+  border: 2px solid #1b2448;
+  border-radius: 10px;
+  margin-top: -2rem;
+  /* margin-left: -3rem; */
+  padding: 1rem;
+  text-align: start;
+  background-color: white;
+  color: #1b2448;
+  font-family: "Kantumruy", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* min-width: 500px; */
+}
+
+#text-wrapper {
+  font-weight: normal;
+  word-break: break-all;
+  line-height: 4.8rem;
+  font-size: 3em;
+  max-height: 15.65rem;
+  overflow: hidden;
+  margin: 0 auto;
+  padding: 0;
+  color: black;
+}
+
+.text-wrapper > span {
+  display: inline-block;
+  padding-top: 4px;
+  width: fit-content;
+}
+
+.space {
+  font-size: 1rem;
+  color: white !important;
+}
+.area {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+.key {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60rem;
+  height: 30rem;
+  /* margin-left: 6.5rem; */
+  /* margin-left: -1rem; */
+  /* margin-top: 3rem; */
+}
+
+.showError{
+  visibility: visible;
+}
+
+@media screen and (max-width: 1110px) {
+  .key {
+    display: none;
+  }
+}
+
+#text-div {
+  height: 15rem;
+  width: 75rem;
+  border: 2px solid #1b2448;
+  border-radius: 10px;
+  margin-top: -1rem;
+  /* margin-left: 2rem; */
+  padding: 1rem;
+  text-align: start;
+  background-color: white;
+  color: #1b2448;
+  font-family: "Kantumruy", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: -2rem;
+}
+
+#keyboard-vk svg {
+  width: 100px;
+}
+@media screen and (max-width: 1620px) and (min-width: 1255px) {
+  .col1 {
+    width: 70rem;
+  }
+
+  #text-wrapper {
+    font-size: 2.8em;
+  }
+}
+@media screen and (max-width: 1255px) and (min-width: 1175px) {
+  #text-div {
+    width: 70rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #text-wrapper {
+    font-size: 2em;
+  }
+  .col1 {
+    width: 60rem;
+  }
+}
+@media screen and (max-width: 1175px) and (min-width: 1030px) {
+  #text-div {
+    width: 60rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #text-wrapper {
+    font-size: 2.6em;
+  }
+  .col1 {
+    width: 50rem;
+  }
+  #handsAndKeyboardWrap-vk {
+    display: none;
+  }
+}
+@media screen and (max-width: 1030px) and (min-width: 961px) {
+  #text-div {
+    width: 55rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #text-wrapper {
+    font-size: 2.4em;
+  }
+  .col1 {
+    width: 40rem;
+  }
+  #handsAndKeyboardWrap-vk {
+    display: none;
+  }
+}
+@media screen and (max-width: 961px) and (min-width: 860px) {
+  #text-div {
+    width: 50rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #text-wrapper {
+    font-size: 2.2em;
+  }
+  .col1 {
+    /* width: 30rem; */
+  }
+  #handsAndKeyboardWrap-vk {
+    display: none;
+  }
+}
+@media screen and (max-width: 860px) and (min-width: 770px) {
+  #text-div {
+    width: 45rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #text-wrapper {
+    font-size: 2em;
+  }
+  .col1 {
+    /* width: 20rem; */
+  }
+  #handsAndKeyboardWrap-vk {
+    display: none;
+  }
+}
+@media screen and (max-width: 770px) and (min-width: 695px) {
+  #text-div {
+    width: 40rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #text-wrapper {
+    font-size: 1.8em;
+  }
+  .col1 {
+    /* width: 15rem; */
+  }
+  #handsAndKeyboardWrap-vk {
+    display: none;
+  }
+}
+@media screen and (max-width: 695px) and (min-width: 610px) {
+  #text-div {
+    width: 35rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #text-wrapper {
+    font-size: 1.6em;
+  }
+  .col1 {
+    /* width: 15rem; */
+  }
+  #handsAndKeyboardWrap-vk {
+    display: none;
+  }
+}
+@media screen and (max-width: 610px) and (min-width: 530px) {
+  #text-div {
+    width: 30rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #text-wrapper {
+    font-size: 1.4em;
+  }
+  .col1 {
+    /* width: 15rem; */
+  }
+  #handsAndKeyboardWrap-vk {
+    display: none;
+  }
+}
+@media screen and (max-width: 530px) and (min-width: 492px) {
+  #text-div {
+    width: 27rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #text-wrapper {
+    font-size: 1.4em;
+  }
+  .col1 {
+    /* width: 10rem; */
+  }
+  #handsAndKeyboardWrap-vk {
+    display: none;
+  }
+}
+.text-wrapper {
+  font-weight: normal;
+  word-break: break-all;
+  line-height: 4.6rem;
+  font-size: 3em;
+  max-height: 15.65rem;
+  overflow: hidden;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.text-wrapper > span {
+  display: inline-block;
+  padding-top: 4px;
+  width: fit-content;
+}
+
+.space {
+  font-size: 1rem;
+  color: white;
+}
+
+.hidden {
+  display: none;
+}
+
+.current {
+  color: #ffc10a;
+}
+
+.correct {
+  color: #3f51b5;
+}
+
+#decomposition-vk,
+#text-vk {
+  font-weight: normal;
+  word-break: break-all;
+}
+
+#text-vk {
+  line-height: 1.5em;
+  font-size: 3em;
+  max-height: 3em;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+#decomposition-vk {
+  font-size: 2em;
+  margin: 1% auto 3% auto;
+}
+
+#textWrap-vk {
+  background-color: #ddd;
+  border-radius: 5px;
+}
+.lottie {
+  border: 1px solid white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 10px;
+  margin-top: 6rem;
+  box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05),
+    0 15px 40px rgba(166, 173, 201, 0.2);
+  background-color: white;
+  width: 15rem;
+  height: 7rem;
+  margin-right: 3rem;
+  margin-top: 2rem;
+  margin: 1rem;
+}
+
+/* .lottie > lottie-player {
+  display: flex;
+  justify-content: flex-start;
+} */
+@media screen and (max-width: 1080px) and (min-width: 845px) {
+  /* .lottie {
+    width: 15rem;
+  } */
+}
+@media screen and (max-width: 845px) and (min-width: 600px) {
+  .lottie {
+    width: 10rem;
+    display: flex;
+    flex-direction: column;
+    height: 10rem;
+    justify-content: center;
+    align-items: center;
+    /* border-radius: 50%; */
+  }
+  .text > h3 {
+    margin-top: -1rem;
+    margin-left: -1.5rem;
+  }
+  #lottie{
+    /* visibility: hidden; */
+    /* display: none; */
+  }
+}
+@media screen and (max-width: 600px) {
+  .lottie {
+    width: 6rem;
+    display: flex;
+    flex-direction: row;
+    height: 6rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+  .text > h3 {
+    margin-top: -1rem;
+    margin-left: -1.7rem;
+  }
+
+  #lottie{
+    /* visibility:hidden; */
+    display: none;
+  }
+}
+.text {
+  margin-left: 2rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-family: "Kantumruy", sans-serif;
+  font-size: 1.2rem;
+}
+.text > h3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#shaking{
+  animation: shake 0.5s;
+  animation-iteration-count: 1;
+  box-shadow: 1px 1px 18px 2px rgba(255,0,0,1);
+}
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+#popup {
+  position: absolute;
+  visibility: hidden;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  color: white;
+  overflow: hidden;
 }
 </style>
