@@ -74,12 +74,6 @@
     <div class="button-wrapper">
         <button :disabled="!isTimerChosen" @click="$router.push('/2')">បន្ត</button>
     </div>
-    <div>
-      <!-- <div class="circle-wrapper">
-        <div class="circle"></div>
-        <div class="circle"></div>
-      </div> -->
-    </div>
   </div>
 </template>
 
@@ -147,15 +141,25 @@ export default {
       }
 		},1000)
   }
-  
-  
- 
   }
 }
 </script>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Kantumruy:wght@700&display=swap');
+
+/* GLOBAL */
+h1 {
+    font-family: 'Kantumruy', sans-serif;
+    font-size: 3rem;
+}
+
+* {
+  overflow: visible !important;
+}
+/* END OF GLOBAL */
+
+/* CLASS */
 .button-wrapper{
   height: 13rem;
   display: flex;
@@ -180,16 +184,14 @@ export default {
   width: 100vw;
   overflow: hidden;
 }
-h1 {
-    font-family: 'Kantumruy', sans-serif;
-    font-size: 3rem;
-}
+
 .header {
   display: flex;
   justify-content: center;
   align-items: flex-end;
   height: 10rem;
 }
+
 .timer-wrapper {
   display: flex;
   justify-content: center;
@@ -198,6 +200,7 @@ h1 {
   margin-top: 3rem;
   height: 20rem;
 }
+
 .cards-wrapper {
   display: grid;
   justify-content: center;
@@ -206,12 +209,14 @@ h1 {
   width: 60%;
   position: relative;
 }
+
 .text-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: -3rem;
 }
+
 .card-text {
   display: grid;
   justify-content: center;
@@ -220,16 +225,18 @@ h1 {
   width: 60%;
   position: sticky;
 }
+
 .card-text h3 {
   margin: 2rem;
   height: 15rem;
   width: 15rem;
   align-items: center;
 }
+
 .card {
   margin: 2rem;
   background-color: white;
-  transition: 1s;
+  transition: 0.6s;
   box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05),
     0 15px 40px rgba(166, 173, 201, 0.2);
   border-radius: 50%;
@@ -244,6 +251,7 @@ h1 {
   cursor: pointer;
   position: relative;
 }
+
 .card:focus {
   border: 6px solid #005bb8;
   /* box-shadow: 0 0px 0px #005bb8,
@@ -251,7 +259,7 @@ h1 {
   /* fill: red; */
   height: 20rem;
   width: 20rem;
-  transition: 1s;
+  transition: 0.6s;
 }
 
 .check {
@@ -266,25 +274,19 @@ h1 {
 .card:focus .check {
   visibility: visible;
   left: 17.5rem;
-  transition: ease 1s;
+  transition: ease 0.6s;
 }
-
-* {
-  overflow: visible !important;
-}
-
-/* .card:after {
-    content: ' ';
-    display: block;
-    position: relative;
-} */
 
 .cls-1 {
   fill: #005bb8;
 }
+
 .cls-2 {
   fill: #f6f6f6;
 }
+/* END OF CLASS */
+
+/* MEDIA QUERIES */
 @media screen and (max-width: 920px) and (min-width: 720px) {
   .card {
     height: 12rem;
@@ -305,6 +307,7 @@ h1 {
     margin-top: -3rem;
   }
 }
+
 @media screen and (max-width: 720px) and (min-width: 660px) {
   .card {
     height: 10rem;
@@ -326,6 +329,7 @@ h1 {
     margin-top: -3rem;
   }
 }
+
 @media screen and (max-width: 660px) and (min-width: 610px) {
   .card {
     height: 9rem;
@@ -347,6 +351,7 @@ h1 {
     margin-top: -5rem;
   }
 }
+
 @media screen and (max-width: 610px) and (min-width: 555px) {
   .card {
     height: 8.5rem;
@@ -369,6 +374,7 @@ h1 {
     margin-top: -4rem;
   }
 }
+
 @media screen and (max-width: 555px) and (min-width: 492px) {
   .card {
     height: 7rem;
@@ -391,4 +397,5 @@ h1 {
     margin-top: -5rem;
   }
 }
+/* END OF MEDIA QUERIES */
 </style>
