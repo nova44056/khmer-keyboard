@@ -1,6 +1,7 @@
 <template>
   <main >
-    <div class="col" v-bind:class="{transparent: !$store.state.isKhmer}">
+     <!-- v-bind:class="{transparent: !$store.state.isKhmer}" -->
+    <div class="col">
       <div class="col1">
         <!-- timerstats -->
         <div class="lottie">
@@ -61,14 +62,13 @@
   import keyboard2 from './components/TypingPageComponents/keyboard2'
   import {wordsList} from './words-list'
   import khmerWord from "./mapping.js"
-  import keyboardMessage from './components/displayWrongKeyboard.vue'
+  // import keyboardMessage from './components/displayWrongKeyboard.vue'
 
   export default {
     name: 'Typefast',
     components: {
       keyboard2,
-      keyboardMessage,
-      result
+      // keyboardMessage,
     },
     data () {
       return {

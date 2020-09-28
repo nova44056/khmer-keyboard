@@ -1,7 +1,7 @@
 <template>
   <main>
-    <div class="col" v-bind:class="{transparent: !this.$store.state.isKhmer, transparent2: result}">
-			<!-- lottiecard -->
+    <!-- transparent: !this.$store.state.isKhmer, -->
+    <div class="col" v-bind:class="{ transparent2: result}">
       <div class="col1">
       	<!-- timerstats -->
       	<div class="lottie">
@@ -103,7 +103,7 @@ import hands from "./hands";
 import leftHand from "./LeftHand";
 import rightHand from "./RightHand";
 import khmerWord from "../mapping.js"
-import keyboardMessage from "../components/displayWrongKeyboard"
+// import keyboardMessage from "../components/displayWrongKeyboard"
 import threeVue from './TimeSelectorComponents/three.vue';
 import result from '../components/result.vue'
 
@@ -125,14 +125,13 @@ function initialState() {
 }
 
 export default {
-  props: ['isKhmer'],
   name: "VisualKeyboard",
   components: {
     leftHand,
     rightHand,
     keyboard,
     score,
-    keyboardMessage,
+    // keyboardMessage,
     result,
   },
   data: initialState,
