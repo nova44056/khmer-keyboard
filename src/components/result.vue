@@ -40,6 +40,7 @@ export default {};
   align-items: center;
   background-color: rgb(78, 38, 143);
   width: 50vh;
+  visibility: hidden;
   margin: auto;
   color: white;
   padding: 30px;

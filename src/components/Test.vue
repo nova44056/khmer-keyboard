@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div class="col" v-bind:class="{transparent: !this.$store.state.isKhmer}">
+    <div class="col" v-bind:class="{transparent: !this.$store.state.isKhmer, transparent2: result}">
       <div class="col1">
 
         <!-- timerstats -->
@@ -116,7 +116,8 @@
     </div>
 
     <keyboardMessage v-bind:class="{showError: !this.$store.state.isKhmer}" />
-    <result class="result"/>
+    <result v-bind:class="{showError: result}" class="result"/>
+    <button @click="showResult()">result</button>
     
   </main>
 </template>
@@ -150,6 +151,7 @@ function initialState() {
     errors: 0,
     alertError: false,
     idsBreakBefore: null,
+    result: false
   };
 }
 
@@ -209,6 +211,10 @@ export default {
 
       
     },
+
+    showResult(){
+      this.result = !this.result
+    }, 
     /**
      * Initializes the game by changing the DOM
      */
@@ -655,7 +661,10 @@ export default {
 
 .transparent {
     opacity: 0.1;
+}
 
+.transparent2 {
+  opacity: 0.1;
 }
 
 .col {
