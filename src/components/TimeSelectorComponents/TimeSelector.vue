@@ -72,7 +72,7 @@
     </div>
 
     <div class="button-wrapper">
-        <button :disabled="!isTimerChosen" @click="$router.push({name: 'SelectionPage2'})">បន្ត</button>
+        <button :disabled="!isTimerChosen" @click="$router.push('/2')">បន្ត</button>
     </div>
     <div>
       <!-- <div class="circle-wrapper">
@@ -118,13 +118,32 @@ export default {
 
   checkFocus () {
 		setInterval(() => {
+      // if ($(".card").is(":focus")) {
+      //   this.isTimerChosen = true
+      //   this.$store.dispatch('setTime')
+      // }else {
+      //   this.isTimerChosen = false
+      //   this.$store.dispatch('unSetTime')
+
+      // }
+      // $("#card1").click(function () {
+      //   $('#card1').focus()
+      // })
+
+      // $("#card2").click(function () {
+      //   $('#card2').focus()
+      // })
+
+      // $("#card3").click(function () {
+      //   $('#card3').focus()
+      // })
+
       if ($(".card").is(":focus")) {
         this.isTimerChosen = true
         this.$store.dispatch('setTime')
       }else {
         this.isTimerChosen = false
         this.$store.dispatch('unSetTime')
-
       }
 		},1000)
   }
