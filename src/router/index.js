@@ -7,6 +7,7 @@ import logIn from '../views/logIn.vue'
 import signIn from '../views/signIn.vue'
 import test from '../components/Test'
 import typeFast from '../Typefast'
+import store from '../store/index.js'
 
 Vue.use(VueRouter)
 
@@ -23,12 +24,26 @@ const routes = [
   {
     path: '/2',
     name: 'SelectionPage2',
-    component: typeselector
+    component: typeselector,
+    beforeEnter: (to,from,next)=>{
+      if(store.state.timer === null){
+        next('/1'); 
+      }else {
+        next();   
+      }
+    }
   },
   {
     path: '/3',
     name: 'TypingPage',
-    component: test
+    component: test,
+    beforeEnter: (to,from,next)=>{
+      if(store.state.typeOfWord === null){
+        next('/2'); 
+      }else {
+        next();   
+      }
+    }
   },
   {
     path: '/4',

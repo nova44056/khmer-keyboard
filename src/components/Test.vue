@@ -1,7 +1,8 @@
 <template>
   <main>
-    <div class="col">
+    <div class="col" v-bind:class="{transparent: !this.$store.state.isKhmer}">
       <div class="col1">
+
         <!-- timerstats -->
         <div class="lottie">
           <lottie-player
@@ -114,7 +115,7 @@
       </div>
     </div>
 
-    <keyboardMessage v-bind:class="{showError: !isKhmer}" />
+    <keyboardMessage v-bind:class="{showError: !this.$store.state.isKhmer}" />
   </main>
 </template>
 
@@ -146,11 +147,11 @@ function initialState() {
     errors: 0,
     alertError: false,
     idsBreakBefore: null,
-    isKhmer : true, 
   };
 }
 
 export default {
+  props: ['isKhmer'],
   name: "VisualKeyboard",
   components: {
     leftHand,
@@ -195,10 +196,10 @@ export default {
 
      isKhmerWord: function(userWord){
       if(khmerWord.includes(userWord)){
-        this.isKhmer = true
+        this.$store.dispatch('setKhmer')
         }
       else {
-        this.isKhmer = false
+        this.$store.dispatch('unSetKhmer')
       }
     
 

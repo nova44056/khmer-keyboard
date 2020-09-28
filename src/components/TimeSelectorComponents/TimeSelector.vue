@@ -120,8 +120,11 @@ export default {
 		setInterval(() => {
       if ($(".card").is(":focus")) {
         this.isTimerChosen = true
+        this.$store.dispatch('setTime')
       }else {
         this.isTimerChosen = false
+        this.$store.dispatch('unSetTime')
+
       }
 		},1000)
 	}

@@ -84,8 +84,11 @@ export default {
 		setInterval(() => {
       if ($(".card").is(":focus")) {
         this.isTypeSelected = true
+        this.$store.dispatch("setType")
       }else {
         this.isTypeSelected = false
+        this.$store.dispatch("unSetType")
+
       }
 		},1000)
 	}
