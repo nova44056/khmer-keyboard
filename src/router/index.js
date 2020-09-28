@@ -26,14 +26,14 @@ const routes = [
   {
     path: '/2',
     name: 'SelectionPage2',
-    component: typeselector
-    // beforeEnter: (to,from,next)=>{
-    //   if(store.state.timer === null){
-    //     next('/1'); 
-    //   }else {
-    //     next();   
-    //   }
-    // }
+    component: typeselector,
+    beforeEnter: (to,from,next)=>{
+      if(store.state.timer === null){
+        next('/1'); 
+      }else {
+        next();   
+      }
+    }
   },
   {
     path: '/3',
