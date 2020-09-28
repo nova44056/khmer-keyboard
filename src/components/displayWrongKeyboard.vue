@@ -15,9 +15,10 @@
 
 <style lang="scss" scoped>
 .container {
-    width: 500px;
-    height: 10rem;
-    background-color: rgb(104, 104, 104);
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.3;
+    background-color: black;
     display: flex;
     justify-content: center;
     align-items: center;    
@@ -25,10 +26,10 @@
     color: white;
     font-size: 2rem;
     position: absolute;
-    top: 30%; 
-    display: none;
-    border-radius: 30px;
-    left: 30%;
+    top: 0; 
+    // display: none;
+    visibility: hidden;
+    // border-radius: 30px;
     z-index: 1;
 }
 </style>

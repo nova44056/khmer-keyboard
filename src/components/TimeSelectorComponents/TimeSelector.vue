@@ -5,7 +5,7 @@
     </div>
     <div class="timer-wrapper">
       <div class="cards-wrapper">
-        <button class="card spin circle" @click="chooseTimer()">
+        <button class="card spin circle">
           <svg
             class="check"
             id="Layer_1"
@@ -26,7 +26,7 @@
           </svg>
           <one />
         </button>
-        <button class="card" @click="chooseTimer()" >
+        <button class="card">
           <three />
           <svg
             class="check"
@@ -47,7 +47,7 @@
             />
           </svg>
         </button>
-        <button class="card" @click="chooseTimer()">
+        <button class="card">
           <svg
             class="check"
             id="Layer_1"
@@ -101,19 +101,30 @@ export default {
   },
   created () {
     this.$store.dispatch('toggleActivePage1')
+    this.checkFocus()
   },
   destroyed () {
     this.$store.dispatch('toggleActivePage1')
   },
 
   methods:{
-  chooseTimer(){
-    this.isTimerChosen = true
-  },
+  // chooseTimer(){
+  //   this.isTimerChosen = true
+  // },
 
-  changeFalse(){
-    this.isTimerChosen = false 
-  }
+  // // changeFalse(){
+  // //   this.isTimerChosen = false 
+  // // },
+
+  checkFocus () {
+		setInterval(() => {
+      if ($(".card").is(":focus")) {
+        this.isTimerChosen = true
+      }else {
+        this.isTimerChosen = false
+      }
+		},1000)
+	}
 
  
   }
@@ -233,6 +244,10 @@ h1 {
   visibility: visible;
   left: 17.5rem;
   transition: ease 1s;
+}
+
+* {
+  overflow: visible !important;
 }
 
 /* .card:after {
