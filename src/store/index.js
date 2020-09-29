@@ -105,6 +105,12 @@ export default new Vuex.Store({
     showAboutUs(state) {
       state.showAbout = !state.showAbout;
     },
+
+    resetTimer(state){
+      state.onemin= false
+      state.fivemin = false 
+      state.threemin = false
+    },
   },
   actions: {
     set_totalWordsTyped({ commit }, totalWordsTyped) {
@@ -181,6 +187,10 @@ export default new Vuex.Store({
     showAbout({ commit }) {
       commit("showAboutUs");
     },
+
+    resetTimer({commit}){
+      commit('resetTimer')
+    }
   },
   modules: {},
 });

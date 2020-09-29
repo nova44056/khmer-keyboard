@@ -6,7 +6,7 @@
     <div class="text">
       <h1>ក្នុងរយះពេល​ {{convertToKhmerNum(this.$store.state.timerMinute)}} នាទីអ្នកវាយបាន {{convertToKhmerNum(this.$store.state.totalWordsTyped)}} ពាក្យ</h1>
     </div>
-    <button id="home"  @click="$router.push({name: 'SelectionPage1'})">ទៅទំព័រដើម</button>
+    <button id="home"  @click="$router.push({name: 'SelectionPage1'}), $store.dispatch('resetTimer')">ទៅទំព័រដើម</button>
   </div>
 </template>
 
