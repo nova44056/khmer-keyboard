@@ -19,6 +19,7 @@ export default new Vuex.Store({
     fivemin: false,
     isWord: false, 
     isArticle: false, 
+    showAbout: false, 
     show: true, 
   },
   mutations: {
@@ -100,6 +101,10 @@ export default new Vuex.Store({
     }, 
     close(state){
       state.show = false
+    }, 
+
+    showAboutUs(state){
+      state.showAbout = !state.showAbout
     }
 
 
@@ -176,6 +181,10 @@ export default new Vuex.Store({
 
     close({commit}){
       commit('close')
+    }, 
+
+    showAbout({commit}){
+      commit('showAboutUs')
     }
 
   },

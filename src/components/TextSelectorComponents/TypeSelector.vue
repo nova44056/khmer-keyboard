@@ -93,7 +93,7 @@ export default {
       }, 1000);
     },
     changePage() {
-      if (this.$store.state.wordType === 1) {
+    if (this.$store.state.wordType === 1) {
         this.$router.push("/typingWord");
       } else {
         this.$router.push("/typingArticle");

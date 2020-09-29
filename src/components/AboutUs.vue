@@ -1,5 +1,5 @@
 <template>
-  <div class="pop-up" v-if="show">
+  <div class="pop-up" v-if="$store.state.showAbout">
     <div class="ani">
       <h1>អំពីយើង</h1>
     </div>
@@ -20,7 +20,7 @@
         <h1>ម៉េងហាង</h1>
       </div>
     </div>
-    <button id="close" @click="close()">បិទ</button>
+    <button id="close" @click="$store.dispatch('showAbout')">បិទ</button>
   </div>
 </template>
 
@@ -30,21 +30,13 @@ import uyseng from "./AboutUsComponents/uyseng";
 import menghang from "./AboutUsComponents/menghang";
 export default {
   name: "aboutus",
-  data(){
-    return{
-      show: true, 
-    }
-  },
+ 
   components: {
     vitou,
     uyseng,
     menghang,
   },
-  methods: {
-    close () {
-      this.show = false
-    }
-  }
+  
 };
 </script>
 

@@ -1,14 +1,14 @@
 <template>
   <div id="app">
     <message/>
-    <button @click="toggleVisibility()" class="aboutButton"> About </button>
+    <button @click="$store.dispatch('showAbout')" class="aboutButton"> អំពីយើង </button>
     <!-- <timeselector/> -->
     <!-- <typeselector/> -->
     <vue-page-transition name="fade-in-right">
       <router-view/>
     </vue-page-transition>
 
-    <aboutUs class="aboutus" />
+    <aboutUs class="aboutus"/>
     <!-- <navbar/> -->
     <!-- <typingpage/> -->
     <pgIndicator/>
@@ -47,6 +47,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Kantumruy:wght@700&display=swap');
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -73,7 +74,6 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
-  visibility: hidden;
 }
 
 .aboutButton {
@@ -81,8 +81,19 @@ export default {
   display: block;
   margin-top: 1rem;
   margin-right: 1rem;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  font-family: 'Kantumruy', sans-serif;
+  // border-bottom: 1px solid #1b2448;
+  font-size: 1rem;
+  cursor: pointer;
 }
-
+.aboutButton:hover {
+  font-size: 1.1rem;
+  transition: 0.1s;
+  border-bottom: 2px solid #1b2448;
+}
 .show{
   visibility: visible;
 }
