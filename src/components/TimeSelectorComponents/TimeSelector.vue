@@ -187,7 +187,9 @@ h1 {
 .instruction {
   position: absolute;
   z-index: 2;
-  left: 22%;
+  top: 33%;
+  left: 50%;
+  transform: translate(-50%,-50%);
 }
 /* CLASS */
 .button-wrapper{
@@ -215,7 +217,8 @@ h1 {
   overflow: hidden;
 }
 .transparent {
-  opacity: 0.01;
+  /* opacity: 0.01; */
+  filter: blur(8px);
 }
 .header {
   display: flex;

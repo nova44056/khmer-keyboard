@@ -77,9 +77,11 @@ export default {
 }
 
 .aboutButton {
-  float: right;
+  // float: right;
   display: block;
   margin-top: 1rem;
+  position: absolute;
+  right: 0;
   margin-right: 1rem;
   border: none;
   background-color: transparent;

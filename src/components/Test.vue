@@ -80,9 +80,9 @@
 			<!-- keyboard -->
       <div id="handsAndKeyboardWrap-vk">
         <div class="row">
-          <leftHand id="leftHand-vk" />
+          <!-- <leftHand id="leftHand-vk" /> -->
           <keyboard id="keyboard-vk" />
-          <rightHand id="rightHand-vk" />
+          <!-- <rightHand id="rightHand-vk" /> -->
         </div>
       </div>
     </div>
@@ -491,23 +491,23 @@ export default {
         var finger = currentFingers[i];
         var key = currentKeys[i];
         // Space is the only key where we can use two fingers
-        if (key === "SPACE") {
-          document
-            .getElementById("leftHand")
-            .getElementById("left-finger-1")
-            .setAttributeNS(null, "fill", color);
-          document
-            .getElementById("rightHand")
-            .getElementById("right-finger-1")
-            .setAttributeNS(null, "fill", color);
-        } else {
-          var hand = finger.split("-")[0];
-          // Highlight the correct finger on the correct hand
-          document
-            .getElementById(hand + "Hand")
-            .getElementById(finger)
-            .setAttributeNS(null, "fill", color);
-        }
+        // if (key === "SPACE") {
+        //   document
+        //     .getElementById("leftHand")
+        //     .getElementById("left-finger-1")
+        //     .setAttributeNS(null, "fill", color);
+        //   document
+        //     .getElementById("rightHand")
+        //     .getElementById("right-finger-1")
+        //     .setAttributeNS(null, "fill", color);
+        // } else {
+        //   var hand = finger.split("-")[0];
+        //   // Highlight the correct finger on the correct hand
+        //   document
+        //     .getElementById(hand + "Hand")
+        //     .getElementById(finger)
+        //     .setAttributeNS(null, "fill", color);
+        // }
         // Highlight the correct key on the keyboard
         document
           .getElementById("keyboard")
@@ -549,24 +549,24 @@ export default {
         "LEFT_SHIFT",
         "LEFT_CTRL",
       ];
-      var hand;
-      // Loop through all the fingers
-      for (var i = 0; i < fingers.length; i++) {
-        hand = fingers[i].split("-")[0];
-        document
-          .getElementById(hand + "Hand")
-          .getElementById(fingers[i])
-          .setAttributeNS(null, "fill", "none");
-      }
+      // var hand;
+      // // Loop through all the fingers
+      // for (var i = 0; i < fingers.length; i++) {
+      //   hand = fingers[i].split("-")[0];
+      //   document
+      //     .getElementById(hand + "Hand")
+      //     .getElementById(fingers[i])
+      //     .setAttributeNS(null, "fill", "none");
+      // }
       var svgKeyboard = document.getElementById("keyboard");
       // Loop through all the normal keys
-      for (i = 0; i < keys.length; i++) {
+      for (let i = 0; i < keys.length; i++) {
         svgKeyboard
           .getElementById(keys[i])
           .setAttributeNS(null, "fill", "white");
       }
       // Loop through all the grey keys
-      for (i = 0; i < greyKeys.length; i++) {
+      for (let i = 0; i < greyKeys.length; i++) {
         svgKeyboard
           .getElementById(greyKeys[i])
           .setAttributeNS(null, "fill", "#C1C0C0");
