@@ -5,7 +5,7 @@
     </div>
     <div class="timer-wrapper">
       <div class="cards-wrapper">
-        <button class="card spin circle" @click="$store.dispatch('timer1')"> 
+        <button class="card spin circle" ref = "time1" @click="$store.dispatch('timer1'), $store.dispatch('timerChosen1')"> 
           <svg
             class="check"
             id="Layer_1"
@@ -26,7 +26,7 @@
           </svg>
           <one />
         </button>
-        <button class="card" @click="$store.dispatch('timer3')">
+        <button class="card" ref = "time3" @click="$store.dispatch('timer3'), $store.dispatch('timerChosen3')">
           <three />
           <svg
             class="check"
@@ -47,7 +47,7 @@
             />
           </svg>
         </button>
-        <button class="card" @click="$store.dispatch('timer5')">
+        <button class="card" ref = "time5" @click="$store.dispatch('timer5'), $store.dispatch('timerChosen5')">
           <svg
             class="check"
             id="Layer_1"
@@ -74,6 +74,7 @@
     <div class="button-wrapper">
         <button :disabled="!isTimerChosen" @click="$router.push('/typeSelector')">បន្ត</button>
     </div>
+
   </div>
 </template>
 
@@ -91,12 +92,20 @@ export default {
   data(){
     return{
     isTimerChosen: false,
+    timerToBeWatched: this.$store.state.timerChosen
+  
     }
   },
   created () {
     this.$store.dispatch('toggleActivePage1')
     this.checkFocus()
+    // this.check()
   },
+
+  mounted () {
+    this.set_focus()
+  },
+ 
   destroyed () {
     this.$store.dispatch('toggleActivePage1')
   },
@@ -112,26 +121,6 @@ export default {
 
   checkFocus () {
 		setInterval(() => {
-      // if ($(".card").is(":focus")) {
-      //   this.isTimerChosen = true
-      //   this.$store.dispatch('setTime')
-      // }else {
-      //   this.isTimerChosen = false
-      //   this.$store.dispatch('unSetTime')
-
-      // }
-      // $("#card1").click(function () {
-      //   $('#card1').focus()
-      // })
-
-      // $("#card2").click(function () {
-      //   $('#card2').focus()
-      // })
-
-      // $("#card3").click(function () {
-      //   $('#card3').focus()
-      // })
-
       if ($(".card").is(":focus")) {
         this.isTimerChosen = true
         this.$store.dispatch('setTime')
@@ -140,7 +129,39 @@ export default {
         this.$store.dispatch('unSetTime')
       }
 		},1000)
+  },
+
+  set_focus () {
+    if (this.$store.state.onemin === true) {
+      this.$refs.time1.focus()
+    }
+
+    if (this.$store.state.threemin === true) {
+      this.$refs.time3.focus()
+    }
+
+    if (this.$store.state.fivemin === true) {
+      this.$refs.time5.focus()
+    }
   }
+  // check(){
+
+  //   setInterval(()=> {
+  //     if(this.timerToBeWatched === 1){
+  //       this.$refs.time1.focus()
+  //     }
+  //     else if (this.timerToBeWatched === 3){
+  //       this.$refs.time3.focus()
+  //     }
+  //     else if(this.timerToBeWatched === 5){
+  //       this.$refs.time5.focus()
+  //     }
+  //   },2000)
+   
+  // }, 
+  
+
+  
   }
 }
 </script>

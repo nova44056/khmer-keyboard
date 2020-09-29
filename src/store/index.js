@@ -13,7 +13,10 @@ export default new Vuex.Store({
     isKhmer: true, 
     typeOfWord: null,
     wordType: 0, 
-    totalWordsTyped: null
+    totalWordsTyped: null,
+    onemin: false,
+    threemin: false,
+    fivemin: false 
   },
   mutations: {
     set_totalWordsTyped(state, totalWordsTyped) {
@@ -58,7 +61,6 @@ export default new Vuex.Store({
 
     timer1(state){
       state.timerMinute = 1
-      console.log(state.timerMinute)
     }, 
     timer3(state){
       state.timerMinute = 3
@@ -66,6 +68,25 @@ export default new Vuex.Store({
     timer5(state){
       state.timerMinute = 5
     }, 
+
+    timerChosen1(state){
+      state.fivemin = false
+      state.threemin = false
+      state.onemin = true
+    },
+    timerChosen3(state){
+      state.fivemin = false
+      state.onemin = false
+      state.threemin = true
+    },
+
+    timerChosen5(state){
+      state.threemin = false
+      state.onemin = false
+      state.fivemin = true
+    },
+
+
 
   },
   actions: {
@@ -113,6 +134,23 @@ export default new Vuex.Store({
     timer5({commit}){
       commit('timer5')
     }, 
+
+    timerChosen1({commit,state}){
+      commit('timerChosen1')
+      console.log(state.onemin)
+      // console.log(state.timerChosen)
+    }, 
+    timerChosen3({commit,state}){
+      commit('timerChosen3')
+      console.log(state.threemin)
+
+    }, 
+    timerChosen5({commit,state}){
+      commit('timerChosen5')
+      console.log(state.fivemin)
+
+
+  }
 
   },
   modules: {

@@ -675,7 +675,8 @@ export default {
 }
 
 .transparent2 {
-  opacity: 0.1;
+  /* opacity: 0.1; */
+  filter: blur(8px);
 }
 
 .col {
