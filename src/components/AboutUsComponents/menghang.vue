@@ -239,12 +239,6 @@
     />
     <circle class="cls-36" cx="72.01" cy="54.23" r="1.3" />
     <circle class="cls-36" cx="86.09" cy="53.96" r="1.3" />
-    <!-- <image
-      width="512"
-      height="512"
-      transform="translate(73.98 117.57) scale(0.02 0.02)"
-      xlink:href="87373.png"
-    /> -->
   </svg>
 </template>
 

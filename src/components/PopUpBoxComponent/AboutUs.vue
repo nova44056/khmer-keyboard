@@ -41,6 +41,7 @@ export default {
 
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Kantumruy&display=swap");
+
 .pop-up {
   display: flex;
   flex-direction: column;
@@ -53,8 +54,6 @@ export default {
   border-radius: 2rem;
   box-shadow: 0px 0px 30px -6px rgba(0, 0, 0, 0.75);
   font-family: "Kantumruy", sans-serif;
-
-  // margin-top: 10rem;
 }
 
 .ani {
@@ -62,7 +61,6 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  //   color: white;
 }
 
 .card-wrapper {
@@ -73,6 +71,7 @@ export default {
   height: 20rem;
   width: 100%;
 }
+
 .card {
   height: 13rem;
   width: 10rem;
@@ -83,17 +82,17 @@ export default {
   font-family: "Kantumruy", sans-serif;
   padding: 2rem;
 }
+
 hr {
   margin-top: -1rem;
   padding: 0 !important;
   margin-bottom: 1rem;
 }
+
 .text {
   margin-top: 1rem;
 }
-* {
-  overflow: visible !important;
-}
+
 #close {
   margin-top: 3rem;
   height: 3.7rem;

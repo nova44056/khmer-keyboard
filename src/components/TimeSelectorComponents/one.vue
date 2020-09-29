@@ -39,10 +39,8 @@ export default {
   font-size: 324.93px;
   font-family: Khmer UI, sans-serif;
 }
+
 svg {
   height: 6rem;
 }
-/* svg:focus {
-  fill: ;
-} */
 </style>

@@ -153,7 +153,7 @@ export default {
       };
       let khmNum = "";
       for (let i = 0; i < num.toString().length; i++) {
-        khmNum += numData[(num.toString())[i]];
+        khmNum += numData[num.toString()[i]];
       }
       return khmNum;
     },
@@ -739,7 +739,6 @@ export default {
   animation: errorAnimationBackground 0.5s;
   animation: shake 0.5s;
   animation-iteration-count: 2;
-  box-shadow: 1px 1px 18px 2px rgba(255, 0, 0, 1) !important;
 }
 
 @keyframes errorAnimationBackground {
@@ -747,7 +746,7 @@ export default {
     background-color: #ddd;
   }
   33% {
-    background-color: #ffc10a;
+    background-color: red;
   }
   100% {
     background-color: #ddd;
@@ -760,20 +759,19 @@ export default {
 
 @keyframes errorAnimation {
   0% {
-    color: #ffc10a;
+    color: red;
   }
   33% {
     color: black;
   }
   100% {
-    color: #ffc10a;
+    color: red;
   }
 }
 
 #shaking {
   animation: shake 0.5s;
   animation-iteration-count: 1;
-  box-shadow: 1px 1px 18px 2px rgba(255, 0, 0, 1);
 }
 
 @keyframes shake {

@@ -204,7 +204,6 @@ h1 {
   overflow: hidden;
 }
 .transparent {
-  /* opacity: 0.01; */
   filter: blur(8px);
 }
 .header {
@@ -276,9 +275,6 @@ h1 {
 
 .card:focus {
   border: 6px solid #005bb8;
-  /* box-shadow: 0 0px 0px #005bb8,
-    0 10px 100px #005bb8; */
-  /* fill: red; */
   height: 20rem;
   width: 20rem;
   transition: 0.6s;

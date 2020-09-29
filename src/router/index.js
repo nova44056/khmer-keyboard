@@ -20,7 +20,7 @@ const routes = [
   },
   {
     path: '/timeSelector',
-    name: 'SelectionPage1',
+    name: 'timeSelector',
     component: timeSelector
   },
   {
@@ -30,7 +30,7 @@ const routes = [
     beforeRouteEnter: (to,from,next)=>{
       if(store.state.timer === null){
         //  router.push("/timeSelector")
-         next({name: 'timeSelector'})
+         next('/timeSelector')
         // next(false)
       }else 
       {
@@ -46,7 +46,7 @@ const routes = [
       if(store.state.typeOfWord === null){
         // next({path:'/1'}); 
         // router.push("/1")
-        next({ name: 'SelectionPage1' })
+        next('/timeSelector')
       }
       else {
         next()
@@ -59,7 +59,7 @@ const routes = [
     component: typingWord,
     beforeEnter: (to,from,next)=>{
       if(store.state.typeOfWord === null){
-        next({ name: 'SelectionPage1' })
+        next('/timeSelector')
       }else {
         // next({path:'/1'}); 
         next(); 

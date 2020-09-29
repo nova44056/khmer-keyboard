@@ -1,44 +1,60 @@
 <template>
-    <div class="indicator-wrapper" :class="{showPageIndicator1: isActivePage1, showPageIndicator2: isActivePage2}">
-        <div class="indicator" :class="{isActive: isActivePage1}" @click="$router.push({name: 'SelectionPage1'})"></div>
-        <div class="indicator" :class="{isActive: isActivePage2}" @click="$router.push({name: 'SelectionPage2'})"></div>
-    </div>
+  <div
+    class="indicator-wrapper"
+    :class="{
+      showPageIndicator1: isActivePage1,
+      showPageIndicator2: isActivePage2,
+    }"
+  >
+    <div
+      class="indicator"
+      :class="{ isActive: isActivePage1 }"
+      @click="$router.push({ name: 'SelectionPage1' })"
+    ></div>
+    <div
+      class="indicator"
+      :class="{ isActive: isActivePage2 }"
+      @click="$router.push({ name: 'SelectionPage2' })"
+    ></div>
+  </div>
 </template>
 <script>
 export default {
-  name: 'page-indicator',
+  name: "page-indicator",
   computed: {
-    isActivePage1 () {
-      return this.$store.state.isActivePage1
+    isActivePage1() {
+      return this.$store.state.isActivePage1;
     },
-    isActivePage2 () {
-      return this.$store.state.isActivePage2
-    }
-  }
-}
+    isActivePage2() {
+      return this.$store.state.isActivePage2;
+    },
+  },
+};
 </script>
 
 <style scoped>
-.showPageIndicator1{
+.showPageIndicator1 {
   visibility: visible !important;
 }
 
-.showPageIndicator2{
+.showPageIndicator2 {
   visibility: visible !important;
 }
-.isActive{
-    height: 2rem !important;
-    width: 2rem !important;
-    transition: 1s;
+
+.isActive {
+  height: 2rem !important;
+  width: 2rem !important;
+  transition: 1s;
 }
-.indicator-wrapper{
+
+.indicator-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
   visibility: hidden;
 }
 
-.indicator{
+.indicator {
   border-radius: 50%;
   height: 1rem;
   width: 1rem;
@@ -46,7 +62,7 @@ export default {
   margin: 1rem;
 }
 
-.indicator:hover{
+.indicator:hover {
   cursor: pointer;
 }
 </style>

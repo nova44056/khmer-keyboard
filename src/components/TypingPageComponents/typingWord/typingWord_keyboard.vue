@@ -2866,18 +2866,21 @@ svg {
   width: 65rem;
   margin-top: -1rem;
 }
+
 @media screen and (max-width: 1030px) and (min-width: 830px) {
   svg {
     height: 20rem;
     width: 55rem;
   }
 }
+
 @media screen and (max-width: 830px) and (min-width: 730px) {
   svg {
     height: 18rem;
     width: 45rem;
   }
 }
+
 @media screen and (max-width: 730px) and (min-width: 660px) {
   svg {
     margin-top: 0.7rem;
@@ -2885,6 +2888,7 @@ svg {
     width: 42rem;
   }
 }
+
 @media screen and (max-width: 660px) and (min-width: 570px) {
   svg {
     margin-top: 1rem;
@@ -2892,6 +2896,7 @@ svg {
     width: 35rem;
   }
 }
+
 @media screen and (max-width: 570px) and (min-width: 492px) {
   svg {
     margin-top: 2rem;

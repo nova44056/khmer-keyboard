@@ -1,18 +1,29 @@
 <template>
   <div class="pop-up">
     <div class="ani">
-      <lottie-player src="https://assets7.lottiefiles.com/datafiles/3RKIaYNZqu6RrV0/data.json" mode="bounce" background="transparent"  speed="0.3"  style="width: 300px; height: 300px;"  autoplay></lottie-player>
+      <lottie-player
+        src="https://assets7.lottiefiles.com/datafiles/3RKIaYNZqu6RrV0/data.json"
+        mode="bounce"
+        background="transparent"
+        speed="0.3"
+        style="width: 300px; height: 300px"
+        autoplay
+      ></lottie-player>
     </div>
     <div class="text">
-      <h1>ក្នុងរយះពេល​ {{convertToKhmerNum(this.$store.state.timerMinute)}} នាទីអ្នកវាយបាន {{convertToKhmerNum(this.$store.state.totalWordsTyped)}} ពាក្យ</h1>
+      <h1>
+        ក្នុងរយះពេល​
+        {{ convertToKhmerNum(this.$store.state.timerMinute) }} នាទីអ្នកវាយបាន
+        {{ convertToKhmerNum(this.$store.state.totalWordsTyped) }} ពាក្យ
+      </h1>
     </div>
-    <button id="home"  @click="$router.push({name: 'SelectionPage1'}), $store.dispatch('resetTimer')">ទៅទំព័រដើម</button>
+    <button id="home"  @click="$router.push('/timeSelector'), $store.dispatch('resetTimer')">ទៅទំព័រដើម</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'result',
+  name: "result",
   methods: {
     convertToKhmerNum(num) {
       let numData = {
@@ -33,7 +44,7 @@ export default {
       }
       return khmNum;
     },
-  }
+  },
 };
 </script>
 
@@ -49,8 +60,8 @@ export default {
   border: 2px solid white;
   background-color: white;
   border-radius: 2rem;
-  box-shadow: 0px 0px 30px -6px rgba(0,0,0,0.75);
-  font-family: 'Kantumruy', sans-serif;
+  box-shadow: 0px 0px 30px -6px rgba(0, 0, 0, 0.75);
+  font-family: "Kantumruy", sans-serif;
 }
 
 .ani {
@@ -70,7 +81,7 @@ export default {
   margin-top: 3rem;
   height: 3.7rem;
   width: 10rem;
-  font-family: 'Kantumruy', sans-serif;
+  font-family: "Kantumruy", sans-serif;
   font-size: 1.5rem;
   display: flex;
   justify-content: center;
@@ -86,7 +97,7 @@ export default {
 }
 
 #home:hover {
-  box-shadow: 0px 0px 8px 0px rgba(0,92,184,0.6);
+  box-shadow: 0px 0px 8px 0px rgba(0, 92, 184, 0.6);
   border: none;
 }
 </style>

@@ -1,30 +1,38 @@
 <template>
   <div class="pop-up" v-if="$store.state.show">
     <div class="ani">
-      <h1> មុនប្រេីប្រាស់កម្មវិធី​ </h1>
-      <h4> កម្មវិធីនេះតម្រូវឲ្យអ្នកមាន NiDa Unicode តម្លេីងក្នុងកំព្យូទ័រ</h4>
+      <h1>មុនប្រេីប្រាស់កម្មវិធី​</h1>
+      <h4>កម្មវិធីនេះតម្រូវឲ្យអ្នកមាន NiDa Unicode តម្លេីងក្នុងកំព្យូទ័រ</h4>
     </div>
 
     <div class="text">
-      <p>សម្រាប់អ្នកដែលប្រេី Mac សូមធ្វេីការតម្លេីង NiDa Unicode តាម Link ខាងក្រោម:</p>
+      <p>
+        សម្រាប់អ្នកដែលប្រេី Mac សូមធ្វេីការតម្លេីង NiDa Unicode តាម Link
+        ខាងក្រោម:
+      </p>
       <a href="https://www.rean.me/2017/06/khmer-unicode-mac-osx-apple.html">
         https://www.rean.me/2017/06/khmer-unicode-mac-osx-apple.html
       </a>
     </div>
 
     <div class="text">
-      <p>សម្រាប់អ្នកដែលប្រេី Window សូមធ្វេីការតម្លេីង NiDa Unicode តាម Link ខាងក្រោម:</p>
-      <a href="https://www.rean.me/2017/06/how-to-install-khmer-unicode-on-windows.html">
+      <p>
+        សម្រាប់អ្នកដែលប្រេី Window សូមធ្វេីការតម្លេីង NiDa Unicode តាម Link
+        ខាងក្រោម:
+      </p>
+      <a
+        href="https://www.rean.me/2017/06/how-to-install-khmer-unicode-on-windows.html"
+      >
         https://www.rean.me/2017/06/how-to-install-khmer-unicode-on-windows.html
       </a>
     </div>
-    <button id="close"  @click="$store.dispatch('close')">បិទ</button>
+    <button id="close" @click="$store.dispatch('close')">បិទ</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'instruction',
+  name: "instruction",
 };
 </script>
 
@@ -41,10 +49,8 @@ export default {
   border: 2px solid white;
   background-color: white;
   border-radius: 2rem;
-  box-shadow: 0px 0px 30px -6px rgba(0,0,0,0.75);
-  font-family: 'Kantumruy', sans-serif;
-
-
+  box-shadow: 0px 0px 30px -6px rgba(0, 0, 0, 0.75);
+  font-family: "Kantumruy", sans-serif;
   margin-top: 10rem;
 }
 
@@ -53,7 +59,6 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-//   color: white;
 }
 
 .text {
@@ -64,7 +69,7 @@ export default {
   margin-top: 3rem;
   height: 3.7rem;
   width: 10rem;
-  font-family: 'Kantumruy', sans-serif;
+  font-family: "Kantumruy", sans-serif;
   font-size: 1.5rem;
   display: flex;
   justify-content: center;
@@ -80,7 +85,7 @@ export default {
 }
 
 #close:hover {
-  box-shadow: 0px 0px 8px 0px rgba(0,92,184,0.6);
+  box-shadow: 0px 0px 8px 0px rgba(0, 92, 184, 0.6);
   border: none;
 }
 </style>

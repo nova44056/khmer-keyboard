@@ -27,8 +27,8 @@
 
 <script>
 export default {
-  name: 'five'
-}
+  name: "five",
+};
 </script>
 
 <style scoped>
@@ -39,6 +39,7 @@ export default {
   font-size: 324.93px;
   font-family: Khmer UI, sans-serif;
 }
+
 svg {
   height: 6rem;
 }
