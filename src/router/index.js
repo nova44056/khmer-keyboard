@@ -11,6 +11,7 @@ import typeFast from '../Typefast'
 import result from '../components/result'
 import store from '../store/index'
 import testing from '../components/Test2'
+import instruction from '../components/instruction'
 
 Vue.use(VueRouter)
 
@@ -86,6 +87,11 @@ const routes = [
     path: '/testing',
     name: 'testing',
     component: testing
+  },
+  {
+    path: '/instruction',
+    name: 'instruction',
+    component: instruction
   }
 ]
 
