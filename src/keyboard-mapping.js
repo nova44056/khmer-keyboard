@@ -1,6 +1,6 @@
 module.exports = {
   ឆ: ['Q'],
-  ឈ: ['RIGHT_SHIFT', 'Q'],​
+  ឈ: ['RIGHT_SHIFT', 'Q'],
   'ឹ': ['W'],
   'ឺ': ['RIGHT_SHIFT', 'W'],
   'េ': ['E'],
