@@ -12,6 +12,7 @@
 
 <script>
 export default {
+  name: 'result',
   methods: {
     convertToKhmerNum(num) {
       let numData = {

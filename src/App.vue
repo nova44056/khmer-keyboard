@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <div v-bind:class="{ transparent: $store.state.showAbout }">
+      <button @click="home()" class="homeButton">ទំព័រដើម</button>
       <button @click="$store.dispatch('showAbout')" class="aboutButton">
         អំពីយើង
       </button>
@@ -10,7 +11,10 @@
       </vue-page-transition>
       <pgIndicator />
     </div>
-    <aboutUs class="aboutus" />
+
+    <vue-page-transition name="fade">
+      <aboutUs class="aboutus" />
+    </vue-page-transition>
   </div>
 </template>
 
@@ -27,17 +31,17 @@ export default {
   },
   components: {
     message,
-    // timeselector,
-    // typeselector,
     pgIndicator,
     aboutUs,
-    // navbar,
-    // typingpage
   },
   methods: {
     toggleVisibility() {
       this.show = !this.show;
     },
+    home () {
+      this.$store.dispatch('clear')
+      this.$router.push({name: 'SelectionPage1'})
+    }
   },
 };
 </script>
@@ -91,6 +95,25 @@ export default {
   cursor: pointer;
 }
 .aboutButton:hover {
+  font-size: 1.1rem;
+  transition: 0.1s;
+  border-bottom: 2px solid #1b2448;
+}
+.homeButton {
+  display: block;
+  position: absolute;
+  right: 0;
+  margin-top: 1rem;
+  margin-right: 7rem;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  font-family: "Kantumruy", sans-serif;
+  // border-bottom: 1px solid #1b2448;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.homeButton:hover {
   font-size: 1.1rem;
   transition: 0.1s;
   border-bottom: 2px solid #1b2448;
