@@ -98,7 +98,7 @@ export default {
           this.isTypeSelected = false;
           this.$store.dispatch("unSetType");
         }
-      }, 1000);
+      }, 500);
     },
     changePage() {
       if (this.$store.state.wordType === 1) {

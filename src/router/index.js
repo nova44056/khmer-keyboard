@@ -27,11 +27,9 @@ const routes = [
     path: '/typeSelector',
     name: 'SelectionPage2',
     component: typeSelector,
-    beforeRouteEnter: (to,from,next)=>{
+    beforeRouteUpdate: (to,from,next)=>{
       if(store.state.timer === null){
-        //  router.push("/timeSelector")
          next('/timeSelector')
-        // next(false)
       }else 
       {
       next()

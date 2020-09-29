@@ -87,7 +87,7 @@
       <div class="button-wrapper">
         <button
           :disabled="!isTimerChosen"
-          @click="$router.push('/typeSelector')"
+          @click="checkType()"
         >
           បន្ត
         </button>
@@ -139,8 +139,14 @@ export default {
           this.isTimerChosen = false;
           this.$store.dispatch("unSetTime");
         }
-      }, 1000);
+      }, 500);
     },
+
+    checkType(){
+      if(this.$store.state.timer === true){
+        this.$router.push("/typeSelector")
+      }
+    }, 
 
     set_focus() {
       if (this.$store.state.onemin === true) {

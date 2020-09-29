@@ -17,7 +17,7 @@
         {{ convertToKhmerNum(this.$store.state.totalWordsTyped) }} ពាក្យ
       </h1>
     </div>
-    <button id="home"  @click="$router.push('/timeSelector'), $store.dispatch('resetTimer')">ទៅទំព័រដើម</button>
+    <button id="home"  @click="$router.push('/timeSelector'); $store.dispatch('resetTimer')">ទៅទំព័រដើម</button>
   </div>
 </template>
 
