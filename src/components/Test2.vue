@@ -31,7 +31,7 @@
           ></lottie-player>
           <span :class="{ error: alertError }">​{{ convertToKhmerNum(errors) }}</span>
         </div>
-				<!-- scorestats -->
+		<!-- scorestats -->
         <div class="lottie">
           <lottie-player
             id="lottie"

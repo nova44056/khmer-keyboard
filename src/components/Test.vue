@@ -6,7 +6,7 @@
       	<!-- timerstats -->
       	<div class="lottie">
           <lottie-player
-            id="lottie"
+            class="lottie-player"
             src="https://assets10.lottiefiles.com/packages/lf20_AMwwvI.json"
             background="transparent"
             speed="0.8"
@@ -21,12 +21,12 @@
         <!-- errorstats -->
         <div class="lottie" :class="{ 'error-bg': alertError }">
           <lottie-player
-            id="lottie"
+            id="error-lottie"
+            class="lottie-player"
             src="https://assets2.lottiefiles.com/private_files/lf30_jq4i7W.json"
             background="transparent"
-            speed="1"
+            speed="1.5"
             style="width: 100px; height: 110px"
-            loop
             autoplay
           ></lottie-player>
           <span :class="{ error: alertError }">​{{ convertToKhmerNum(errors) }}</span>
@@ -34,12 +34,12 @@
 				<!-- scorestats -->
         <div class="lottie">
           <lottie-player
-            id="lottie"
+            class="lottie-player"
+            id="score-lottie"
             src="https://assets4.lottiefiles.com/packages/lf20_Ex9JsF.json"
             background="transparent"
-            speed="0.5"
+            speed="1"
             style="width: 100px; height: 120px"
-            loop
             autoplay
           ></lottie-player>
           <span>{{ convertToKhmerNum(runesCounter) }}
@@ -106,6 +106,7 @@ import khmerWord from "../mapping.js"
 // import keyboardMessage from "../components/displayWrongKeyboard"
 import threeVue from './TimeSelectorComponents/three.vue';
 import result from '../components/result.vue'
+import "@lottiefiles/lottie-player";
 
 function initialState() {
   return {
@@ -237,6 +238,8 @@ export default {
       if(vm.$store.state.isKhmer){  
         vm.$refs.countdown.start();
         var isCorrect = vm.areRightKeysPressed(ev, listKeys, currentLetters);
+        const player = document.getElementById('score-lottie')
+        const lottie = player.getLottie()
         // Pressed key is correct
         if (isCorrect) {
           // completeText += ev.key
@@ -253,6 +256,8 @@ export default {
             // Current grapheme is completed, we start again to track the next one
             currentLetters = "";
             vm.letters = [];
+            lottie.stop()
+            lottie.play()
             vm.runesCounter++;
             // Display decomposition of the next grapheme if exists
             if (vm.runesCounter < listRunes.length) {
@@ -462,6 +467,11 @@ export default {
         vm.alertError = false;
       }, 500);
       // Incrementation
+      const player = document.getElementById('error-lottie')
+      console.log(player)
+      const lottie = player.getLottie()
+      lottie.stop()
+      lottie.play()
       this.errors++;
     },
     /**
@@ -1065,7 +1075,7 @@ h2 {
     margin-top: -1rem;
     margin-left: -1.7rem;
   }
-  #lottie{
+  .lottie-player{
     display: none;
   }
 }
