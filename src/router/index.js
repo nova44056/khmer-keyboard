@@ -25,7 +25,7 @@ const routes = [
   },
   {
     path: '/typeSelector',
-    name: 'SelectionPage2',
+    name: 'typeSelector',
     component: typeSelector,
     // beforeRouteUpdate: (to,from,next)=>{
     //   if(store.state.timer === null){
