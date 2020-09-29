@@ -16,7 +16,9 @@ export default new Vuex.Store({
     totalWordsTyped: null,
     onemin: false,
     threemin: false,
-    fivemin: false 
+    fivemin: false,
+    isWord: false, 
+    isArticle: false, 
   },
   mutations: {
     set_totalWordsTyped(state, totalWordsTyped) {
@@ -86,6 +88,16 @@ export default new Vuex.Store({
       state.fivemin = true
     },
 
+    choseWord(state){
+      state.isWord = true
+      state.isArticle = false
+    },
+
+    choseArticle(state){
+      state.isWord = false
+      state.isArticle = true 
+    }
+
 
 
   },
@@ -148,9 +160,15 @@ export default new Vuex.Store({
     timerChosen5({commit,state}){
       commit('timerChosen5')
       console.log(state.fivemin)
+  }, 
 
+    choseWord({commit}){
+      commit('choseWord')
+    }, 
 
-  }
+    choseArticle({commit}){
+      commit('choseArticle')
+    }
 
   },
   modules: {

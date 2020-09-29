@@ -5,7 +5,7 @@
     </div>
     <div class="type-wrapper">
       <div class="cards-wrapper">
-        <button class="card" @click="$store.dispatch('wordType1')">
+        <button class="card"  ref="word" @click="$store.dispatch('wordType1'), $store.dispatch('choseWord')">
           <svg
             class="check"
             id="Layer_1"
@@ -26,7 +26,7 @@
           </svg>
           <h2>ពាក្យ</h2>
         </button>
-        <button class="card" @click="$store.dispatch('wordType2')">
+        <button class="card" ref="article" @click="$store.dispatch('wordType2'),$store.dispatch('choseArticle')">
           <svg
             class="check"
             id="Layer_1"
@@ -72,6 +72,11 @@ export default {
     this.$store.dispatch("toggleActivePage2");
     this.checkFocus();
   },
+  
+  mounted(){
+    this.set_focus()
+  }, 
+
   destroyed() {
     this.$store.dispatch("toggleActivePage2");
   },
@@ -94,7 +99,21 @@ export default {
         this.$router.push("/typingArticle");
       }
     },
+
+     set_focus () {
+    if (this.$store.state.isWord === true) {
+      this.$refs.word.focus()
+    }
+
+    if (this.$store.state.isArticle === true) {
+      this.$refs.article.focus()
+    }
+
+    
+  }
   },
+
+ 
 };
 </script>
 

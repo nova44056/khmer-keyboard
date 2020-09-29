@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@chenfengyuan/vue-countdown": "^1.1.5",
+    "@lottiefiles/lottie-player": "^0.5.1",
     "core-js": "^3.6.5",
     "grapheme-splitter": "^1.0.4",
     "register-service-worker": "^1.7.1",
