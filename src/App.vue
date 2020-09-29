@@ -40,7 +40,7 @@ export default {
     },
     home () {
       this.$store.dispatch('clear')
-      this.$router.push({name: 'SelectionPage1'})
+      this.$router.push('/timeSelector')
     }
   },
 };
