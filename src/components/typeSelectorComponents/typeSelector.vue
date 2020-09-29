@@ -69,6 +69,8 @@
 </template>
 
 <script>
+import store from '@/store/index'
+
 export default {
   name: "typeSelector",
   data() {
@@ -76,6 +78,8 @@ export default {
       isTypeSelected: false,
     };
   },
+
+  
   created() {
     this.$store.dispatch("toggleActivePage2");
     this.checkFocus();
@@ -118,6 +122,15 @@ export default {
       }
     },
   },
+
+  beforeRouteEnter(to,from,next) {
+    if(store.state.timer === null){
+         next('/timeSelector')
+      }else 
+      {
+      next()
+    }
+  }
 };
 </script>
 

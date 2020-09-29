@@ -53,6 +53,7 @@ import result from "../../PopUpBoxComponent/Result";
 import typingWordKeyboard from "./typingWord_keyboard";
 import { wordsList } from "../../JS/words-list";
 import khmerWord from "../../JS/mapping.js";
+import store from "@/store/index.js"
 
 export default {
   name: "typingWord",
@@ -245,6 +246,15 @@ export default {
       }
     },
   },
+
+   beforeRouteEnter: (to,from,next)=>{
+      if(store.state.typeOfWord === null){
+        next('/timeSelector')
+      }else {
+        next(); 
+      }
+    },
+  
   beforeDestroy() {
     document.onkeypress = null;
     document.onkeydown = null;

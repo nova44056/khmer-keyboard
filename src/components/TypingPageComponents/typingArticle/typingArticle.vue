@@ -475,6 +475,16 @@ export default {
       }
     },
   },
+   beforeEnter: (to,from,next)=>{
+      if(store.state.typeOfWord === null){
+        // next({path:'/1'}); 
+        // router.push("/1")
+        next('/timeSelector')
+      }
+      else {
+        next()
+      }
+    }, 
   beforeDestroy() {
     document.onkeypress = null;
     clearInterval(this.timer);

@@ -27,15 +27,16 @@ const routes = [
     path: '/typeSelector',
     name: 'SelectionPage2',
     component: typeSelector,
-    beforeRouteUpdate: (to,from,next)=>{
-      if(store.state.timer === null){
-         next('/timeSelector')
-      }else 
-      {
-      next()
-    }
-    }
+    // beforeRouteUpdate: (to,from,next)=>{
+    //   if(store.state.timer === null){
+    //      next('/timeSelector')
+    //   }else 
+    //   {
+    //   next()
+    // }
+    // }
   },
+
   {
     path: '/typingArticle',
     name: 'typingArticle',
@@ -55,17 +56,18 @@ const routes = [
     path: '/typingWord',
     name: 'typingWord',
     component: typingWord,
-    beforeEnter: (to,from,next)=>{
-      if(store.state.typeOfWord === null){
-        next('/timeSelector')
-      }else {
-        // next({path:'/1'}); 
-        next(); 
-        // router.push("/1")
-      }
-    }
+    // beforeEnter: (to,from,next)=>{
+    //   if(store.state.typeOfWord === null){
+    //     next('/timeSelector')
+    //   }else {
+    //     // next({path:'/1'}); 
+    //     next(); 
+    //     // router.push("/1")
+    //   }
+    // }
   }
 ]
+
 
 const router = new VueRouter({
   mode: 'history',
