@@ -12,7 +12,7 @@ import result from '../components/result'
 import store from '../store/index'
 import testing from '../components/Test2'
 import instruction from '../components/instruction'
-
+import aboutus from '../components/AboutUs'
 Vue.use(VueRouter)
 
 const routes = [
@@ -92,6 +92,11 @@ const routes = [
     path: '/instruction',
     name: 'instruction',
     component: instruction
+  },
+  {
+    path: '/aboutus',
+    name: 'aboutus',
+    component: aboutus
   }
 ]
 
