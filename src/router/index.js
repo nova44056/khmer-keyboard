@@ -10,10 +10,10 @@ import typingWord from '../components/TypingPageComponents/typingWord/typingWord
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    redirect: '/timeSelector'
-  },
+  // {
+  //   path: '/',
+  //   redirect: '/timeSelector'
+  // },
   {
     path: '*',
     redirect: '/timeSelector'
@@ -41,16 +41,16 @@ const routes = [
     path: '/typingArticle',
     name: 'typingArticle',
     component: typingArticle,
-    beforeEnter: (to,from,next)=>{
-      if(store.state.typeOfWord === null){
-        // next({path:'/1'}); 
-        // router.push("/1")
-        next('/timeSelector')
-      }
-      else {
-        next()
-      }
-    }
+    // beforeEnter: (to,from,next)=>{
+    //   if(store.state.typeOfWord === null){
+    //     // next({path:'/1'}); 
+    //     // router.push("/1")
+    //     next('/timeSelector')
+    //   }
+    //   else {
+    //     next()
+    //   }
+    // }
   },
   {
     path: '/typingWord',

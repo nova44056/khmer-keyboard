@@ -12,7 +12,7 @@ export default new Vuex.Store({
     isKhmer: true,
     typeOfWord: null,
     wordType: 0,
-    totalWordsTyped: null,
+    totalWordsTyped: 0,
     onemin: false,
     threemin: false,
     fivemin: false,
@@ -22,6 +22,9 @@ export default new Vuex.Store({
     show: true,
   },
   mutations: {
+    set_defaultTimer(state) {
+      state.timerMinute = 1
+    },
     set_totalWordsTyped(state, totalWordsTyped) {
       state.totalWordsTyped = totalWordsTyped;
     },

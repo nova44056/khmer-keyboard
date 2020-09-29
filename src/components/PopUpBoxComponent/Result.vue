@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  name: "result",
+  name: 'result',
   methods: {
     convertToKhmerNum(num) {
       let numData = {
