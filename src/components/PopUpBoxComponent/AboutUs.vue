@@ -12,17 +12,17 @@
       <div class="card">
         <vitou />
         <hr />
-        <h1>វិទូ</h1>
+        <h1><a href="https://www.facebook.com/shadowXlykress">វិទូ</a></h1>
       </div>
       <div class="card">
         <uyseng />
         <hr />
-        <h1>សេងអុ៊យ</h1>
+        <h1><a href="https://www.facebook.com/nova.d.ark44056">សេងអុ៊យ</a></h1>
       </div>
       <div class="card">
         <menghang />
         <hr />
-        <h1>ម៉េងហាង</h1>
+        <h1><a href="https://www.facebook.com/menghang.hean">ម៉េងហាង</a></h1>
       </div>
     </div>
     <button id="close" @click="$store.dispatch('showAbout')">បិទ</button>
@@ -52,13 +52,14 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 40rem;
+  height: 45rem;
   width: 70rem;
   border: 2px solid white;
   background-color: white;
   border-radius: 2rem;
   box-shadow: 0px 0px 30px -6px rgba(0, 0, 0, 0.75);
   font-family: "Kantumruy", sans-serif;
+  box-sizing: border-box;
 }
 
 .ani {
@@ -66,6 +67,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 2rem;
 }
 
 .card-wrapper {
@@ -120,5 +122,10 @@ hr {
 #close:hover {
   box-shadow: 0px 0px 8px 0px rgba(0, 92, 184, 0.6);
   border: none;
+}
+
+a {
+  text-decoration: none;
+  color: #1b2448;
 }
 </style>
