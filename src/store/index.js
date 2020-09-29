@@ -111,6 +111,13 @@ export default new Vuex.Store({
       state.fivemin = false 
       state.threemin = false
     },
+    clear (state) {
+      state.onemin = false
+      state.threemin = false
+      state.fivemin = false
+      state.isWord = false
+      state.isArticle = false
+    }
   },
   actions: {
     set_totalWordsTyped({ commit }, totalWordsTyped) {
@@ -190,6 +197,9 @@ export default new Vuex.Store({
 
     resetTimer({commit}){
       commit('resetTimer')
+    },
+    clear ( { commit }) {
+      commit("clear")
     }
   },
   modules: {},

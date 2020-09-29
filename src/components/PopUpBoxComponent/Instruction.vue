@@ -24,8 +24,7 @@
 
 <script>
 export default {
-  
- 
+  name: 'instruction',
 };
 </script>
 
