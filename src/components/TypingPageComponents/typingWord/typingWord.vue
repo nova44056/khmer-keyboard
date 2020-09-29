@@ -1,6 +1,5 @@
 <template>
-  <main >
-     <!-- v-bind:class="{transparent: !$store.state.isKhmer}" -->
+  <main>
     <div class="col">
       <div class="col1">
         <!-- timerstats -->
@@ -10,78 +9,68 @@
             src="https://assets10.lottiefiles.com/packages/lf20_AMwwvI.json"
             background="transparent"
             speed="0.8"
-            style="width: 100px; height: 110px;"
+            style="width: 100px; height: 110px"
             loop
             autoplay
           ></lottie-player>
-              <!-- <countdown :time="this.time * 30000" @end="endGame" ref="countdown" :auto-start="false">
-              <template slot-scope="props">{{ props.minutes }} : {{ props.seconds }} </template>
-            </countdown> -->
-            <span>{{convertToKhmerNum(seconds)}} វិនាទី​</span>
+          <span>{{ convertToKhmerNum(seconds) }} វិនាទី​</span>
         </div>
         <div class="lottie">
           <lottie-player
-            id="lottie"
+            id="score-lottie"
             src="https://assets4.lottiefiles.com/packages/lf20_Ex9JsF.json"
             background="transparent"
             speed="0.5"
             style="width: 100px; height: 120px"
-            loop
             autoplay
           ></lottie-player>
-            <span>{{ score }}</span>
+          <span>{{ score }}</span>
         </div>
       </div>
       <div class="box">
         <div class="wordsWrap">
-        <p class="words">
-          <span
-            class="spans"
-            v-for="span in spans"
-            :key="span.id"
-          >{{ span }}</span>
-        </p>
+          <p class="words">
+            <span class="spans" v-for="span in spans" :key="span.id">{{
+              span
+            }}</span>
+          </p>
         </div>
         <div class="buffer">
-        <span>{{ buffer }}</span>
+          <span>{{ buffer }}</span>
         </div>
       </div>
-      <keyboard2 />
-
+      <typingWordKeyboard />
     </div>
-    <!-- <div id="keyboardWrap-tf">
-    </div> -->
-    <keyboardMessage v-bind:class="{showError: !$store.state.isKhmer}" />
-    <result :class="{showError: result}"  class="result"/>
+
+    <keyboardMessage v-bind:class="{ showError: !$store.state.isKhmer }" />
+    <result :class="{ showError: result }" class="result" />
   </main>
 </template>
 
 <script>
-  import splitKhmerRunes from './split-khmer'
-  import result from './components/result'
-  import keyboard2 from './components/TypingPageComponents/keyboard2'
-  import {wordsList} from './words-list'
-  import khmerWord from "./mapping.js"
-  // import keyboardMessage from './components/displayWrongKeyboard.vue'
+import splitKhmerRunes from "../../JS/split-khmer";
+import result from "../../PopUpBoxComponent/Result";
+import typingWordKeyboard from "./typingWord_keyboard";
+import { wordsList } from "../../JS/words-list";
+import khmerWord from "../../JS/mapping.js";
 
-  export default {
-    name: 'Typefast',
-    components: {
-      keyboard2,
-      // keyboardMessage,
-    },
-    data () {
-      return {
-        list: wordsList,
-        score: 0,
-        seconds: 0,
-        spans: [],
-        buffer: '',
-        result: false
-      }
-    },
-    methods: {
-      convertToKhmerNum(num) {
+export default {
+  name: "typingWord",
+  components: {
+    typingWordKeyboard,
+  },
+  data() {
+    return {
+      list: wordsList,
+      score: 0,
+      seconds: 0,
+      spans: [],
+      buffer: "",
+      result: false,
+    };
+  },
+  methods: {
+    convertToKhmerNum(num) {
       let numData = {
         0: "០",
         1: "១",
@@ -101,164 +90,170 @@
       }
       return khmNum;
     },
-      /**
-       * Starts the game by running the timer, changing the DOM, setting th first word
-       * and listenning to the user's typing inputs
-       */
-      startGame: function () {
-        var timer
-        this.seconds = this.$store.state.timerMinute * 60 
-        this.score = 0
-        // Start the timer
-        clearInterval(timer)
-        this.timer = timer = setInterval(() => {
-          this.seconds--
-          // Here is the end of the game, do something for final score
-          if (this.seconds === 0) {
-            this.spans = ''
-            clearInterval(timer)
-            this.endGame()
-          }
-        }, 1000)
-        // Sets the first word to type
-        this.random()
-        this.buffer = ''
-        // Listen to typing events
-        document.onkeypress = this.typing
-        document.onkeydown = this.clear
-      },
 
-      isKhmerWord: function(userWord){
-      if(khmerWord.includes(userWord)){
-        this.$store.dispatch('setKhmer')
+    startGame() {
+      var timer;
+      this.seconds = this.$store.state.timerMinute * 60;
+      this.score = 0;
+      // Start the timer
+      clearInterval(timer);
+      this.timer = timer = setInterval(() => {
+        this.seconds--;
+        // Here is the end of the game, do something for final score
+        if (this.seconds === 0) {
+          this.spans = "";
+          clearInterval(timer);
+          this.endGame();
         }
-      else {
-        this.$store.dispatch('unSetKhmer')
-      }
-    
-
-      
+      }, 1000);
+      // Sets the first word to type
+      this.random();
+      this.buffer = "";
+      // Listen to typing events
+      document.onkeypress = this.typing;
+      document.onkeydown = this.clear;
     },
-      /**
-       * Displays the modal with the scores
-       * Also saves the highest score
-       * In case user wants to play again, resets data
-       */
-      endGame: function () {
-        // Store highest score
-        this.result = true
-        this.$store.dispatch('set_totalWordsTyped', this.score)
-        var previousHighest = localStorage.getItem('typefast.score') ? localStorage.getItem('typefast.score') : 0
-        if (this.score > previousHighest) {
-          localStorage.setItem('typefast.score', this.score)
+
+    isKhmerWord(userWord) {
+      if (khmerWord.includes(userWord)) {
+        this.$store.dispatch("setKhmer");
+      } else {
+        this.$store.dispatch("unSetKhmer");
+      }
+    },
+    /**
+     * Displays the modal with the scores
+     * In case user wants to play again, resets data
+     */
+    endGame() {
+      // Store highest score
+      this.result = true;
+      this.$store.dispatch("set_totalWordsTyped", this.score);
+    },
+    random() {
+      var random = Math.floor(Math.random() * this.list.length);
+      const word = this.list[random];
+      let graphemes = splitKhmerRunes(word);
+      this.spans = []; // resets spans
+      for (let i = 0; i < graphemes.length; i++) {
+        // building the word with spans around the letters
+        this.spans.push(graphemes[i]);
+      }
+    },
+    clear: function (e) {
+      switch (e.keyCode) {
+        case 8:
+          this.buffer = this.buffer.substring(0, this.buffer.length - 1);
+          break;
+        case 46:
+          this.buffer = this.buffer.substring(0, this.buffer.length - 1);
+          break;
+      }
+    },
+    typing(e) {
+      var vue = this;
+      vue.isKhmerWord(e.key);
+      const noChars = [
+        "Shift",
+        "Control",
+        "Alt",
+        "Tab",
+        "CapsLock",
+        "Home",
+        "PageUp",
+        "PageDown",
+        "End",
+        "ScrollLock",
+        "Pause",
+        "Insert",
+        "Delete",
+        "Enter",
+      ];
+      let spans = document.getElementsByClassName("spans");
+      if (!noChars.includes(e.key)) {
+        let typed = e.key;
+        this.buffer += typed;
+        let graphemes = splitKhmerRunes(this.buffer);
+        let lastGrapheme = graphemes[graphemes.length - 1];
+        this.buffer = lastGrapheme; // If more than one 'grapheme', it means that the ones before were wrong
+        // Check all span elements one by one as each one contains one letter of the word
+        for (let i = 0; i < spans.length; i++) {
+          // Checks that the letter typed is the one we want
+          if (
+            spans[i].innerHTML === typed ||
+            spans[i].innerHTML === lastGrapheme
+          ) {
+            if (spans[i].classList.contains("bg")) {
+              // if it's alerady highlighted then check the next one
+              continue;
+              // If it isn't highlighted yet and if the letter before is already highlighted (or if it's the first letter) (this is done to avoid
+              // highlighting the letters who are not in order for being checked, for example if you have two "A"s it's to avoid marking both)
+            } else if (
+              !spans[i].classList.contains("bg") &&
+              (spans[i - 1] === undefined ||
+                spans[i - 1].classList.contains("bg"))
+            ) {
+              spans[i].classList.add("bg");
+              break;
+            }
+          }
         }
-      },
-      /**
-       * Selects a random word from the words list and displays it
-       */
-      random: function () {
-        var random = Math.floor(Math.random() * (this.list.length))
-        const word = this.list[random]
-        let graphemes = splitKhmerRunes(word)
-        this.spans = [] // resets spans
-        for (let i = 0; i < graphemes.length; i++) { // building the word with spans around the letters
-          this.spans.push(graphemes[i])
-        }
-      },
-      /**
-       * Clears buffer if DEL or backspace is pressed
-       * @param e keydown event
-       */
-      clear: function (e) {
-        switch (e.keyCode) {
-          case 8:
-            this.buffer = this.buffer.substring(0, this.buffer.length - 1)
-            break
-          case 46:
-            this.buffer = this.buffer.substring(0, this.buffer.length - 1)
-            break
-        }
-      },
-      /**
-       * Checks letter typed by the player, highlights it if it's correct and changes word
-       * when one word is completly typed
-       * @param e keypress event
-       */
-      typing: function (e) {
-        var vue = this
-        vue.isKhmerWord(e.key)
-        const noChars = ['Shift', 'Control', 'Alt', 'Tab', 'CapsLock', 'Home', 'PageUp',
-          'PageDown', 'End', 'ScrollLock', 'Pause', 'Insert', 'Delete', 'Enter'
-        ]
-        let spans = document.getElementsByClassName('spans')
-        if (!noChars.includes(e.key)) {
-          let typed = e.key
-          this.buffer += typed
-          let graphemes = splitKhmerRunes(this.buffer)
-          let lastGrapheme = graphemes[graphemes.length - 1]
-          this.buffer = lastGrapheme // If more than one 'grapheme', it means that the ones before were wrong
-          // Check all span elements one by one as each one contains one letter of the word
-          for (let i = 0; i < spans.length; i++) {
-            // Checks that the letter typed is the one we want
-            if (spans[i].innerHTML === typed || spans[i].innerHTML === lastGrapheme) {
-              if (spans[i].classList.contains('bg')) { // if it's alerady highlighted then check the next one
-                continue
-                // If it isn't highlighted yet and if the letter before is already highlighted (or if it's the first letter) (this is done to avoid
-                // highlighting the letters who are not in order for being checked, for example if you have two "A"s it's to avoid marking both)
-              } else if ((!spans[i].classList.contains('bg')) && ((spans[i - 1] === undefined) || (spans[i - 1].classList.contains('bg')))) {
-                spans[i].classList.add('bg')
-                break
+        // Check if the player has typed all the letters of the word
+        var checker = 0;
+        for (var j = 0; j < spans.length; j++) {
+          if (spans[j].className === "spans bg") {
+            checker++;
+          }
+          // If all letters are highlighted (meaning correct)
+          // and if the last letter typed is the last letter that should be typed
+          // (to prevent the player from scoring points during the word 'fading' time)
+          // then the word is over, player scores one point and we set a new random word
+          if (checker === spans.length && this.buffer === spans[j].innerHTML) {
+            const player = document.getElementById('score-lottie')
+            const lottie = player.getLottie()
+            lottie.stop()
+            lottie.play()
+            this.score++; // increment score and display it
+            document
+              .getElementsByClassName("words")[0]
+              .classList.add("fadeout"); // make word disappears
+            setTimeout(function () {
+              vue.buffer = ""; // resets buffers
+              // Resets spans class so nothing is highlighted
+              for (let k = 0; k < spans.length; k++) {
+                spans[k].classList = "spans";
               }
-            }
+              vue.random(); // pick another word
+              document.getElementsByClassName("words")[0].classList = "words";
+            }, 200); // happen when the word has finished disappearing
           }
-          // Check if the player has typed all the letters of the word
-          var checker = 0
-          for (var j = 0; j < spans.length; j++) {
-            if (spans[j].className === 'spans bg') {
-              checker++
-            }
-            // If all letters are highlighted (meaning correct) 
-            // and if the last letter typed is the last letter that should be typed 
-            // (to prevent the player from scoring points during the word 'fading' time)
-            // then the word is over, player scores one point and we set a new random word
-            if ((checker === spans.length)&&(this.buffer === spans[j].innerHTML)) {
-              this.score++ // increment score and display it
-              document.getElementsByClassName('words')[0].classList.add('fadeout') // make word disappears
-              setTimeout(function () {
-                vue.buffer = '' // resets buffers
-                // Resets spans class so nothing is highlighted
-                for (let k = 0; k < spans.length; k++) {
-                  spans[k].classList = 'spans'
-                }
-                vue.random() // pick another word
-                document.getElementsByClassName('words')[0].classList = 'words'
-              }, 200) // happen when the word has finished disappearing
-            }
-          }
-        }
-      },
-      zoomKeyboard: function () {
-        var kb = document.getElementById('keyboard-tf')
-        if (kb.style.width === '100%') { // it's big, make smaller
-          kb.style.width = '10%'
-          kb.style.height = 'auto'
-          kb.style.cursor = 'zoom-in'
-        } else { // it's small, make bigger
-          kb.style.width = '100%'
-          kb.style.height = (screen.availHeight - kb.offsetTop) + 'px'
-          kb.style.cursor = 'zoom-out'
         }
       }
     },
-    beforeDestroy () {
-      document.onkeypress = null
-      document.onkeydown = null
-      clearInterval(this.timer)
+    zoomKeyboard() {
+      var kb = document.getElementById("keyboard-tf");
+      if (kb.style.width === "100%") {
+        // it's big, make smaller
+        kb.style.width = "10%";
+        kb.style.height = "auto";
+        kb.style.cursor = "zoom-in";
+      } else {
+        // it's small, make bigger
+        kb.style.width = "100%";
+        kb.style.height = screen.availHeight - kb.offsetTop + "px";
+        kb.style.cursor = "zoom-out";
+      }
     },
-    created () {
-      this.startGame();
-    }
-  }
+  },
+  beforeDestroy() {
+    document.onkeypress = null;
+    document.onkeydown = null;
+    clearInterval(this.timer);
+  },
+  created() {
+    this.startGame();
+  },
+};
 </script>
 
 <style scoped>
@@ -269,7 +264,7 @@ main {
   align-items: center;
 }
 
-.transparent{
+.transparent {
   opacity: 0.3;
 }
 * {
@@ -364,7 +359,6 @@ main {
   cursor: zoom-in;
 }
 
-
 /* Test.vue css */
 #leftHand-vk,
 #rightHand-vk {
@@ -374,7 +368,7 @@ main {
   animation: errorAnimationBackground 0.5s;
   animation: shake 0.5s;
   animation-iteration-count: 2;
-  box-shadow: 1px 1px 18px 2px rgba(255,0,0,1) !important;
+  box-shadow: 1px 1px 18px 2px rgba(255, 0, 0, 1) !important;
 }
 
 @keyframes errorAnimationBackground {
@@ -406,9 +400,7 @@ main {
 }
 
 .transparent {
-  
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
 .col {
@@ -470,7 +462,6 @@ h2 {
   border: 2px solid #1b2448;
   border-radius: 10px;
   margin-top: -2rem;
-  /* margin-left: -3rem; */
   padding: 1rem;
   text-align: start;
   background-color: white;
@@ -479,7 +470,6 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* min-width: 500px; */
 }
 
 #text-wrapper {
@@ -515,12 +505,9 @@ h2 {
   align-items: center;
   width: 60rem;
   height: 30rem;
-  /* margin-left: 6.5rem; */
-  /* margin-left: -1rem; */
-  /* margin-top: 3rem; */
 }
 
-.showError{
+.showError {
   visibility: visible;
 }
 
@@ -536,7 +523,6 @@ h2 {
   border: 2px solid #1b2448;
   border-radius: 10px;
   margin-top: -1rem;
-  /* margin-left: 2rem; */
   padding: 1rem;
   text-align: start;
   background-color: white;
@@ -601,7 +587,7 @@ h2 {
   .col1 {
     width: 40rem;
   }
-  #keyboard{
+  #keyboard {
     height: 10rem !important;
     width: 10rem !important;
   }
@@ -633,9 +619,6 @@ h2 {
   #text-wrapper {
     font-size: 2.2em;
   }
-  .col1 {
-    /* width: 30rem; */
-  }
   #handsAndKeyboardWrap-vk {
     display: none;
   }
@@ -648,9 +631,6 @@ h2 {
   }
   #text-wrapper {
     font-size: 2em;
-  }
-  .col1 {
-    /* width: 20rem; */
   }
   #handsAndKeyboardWrap-vk {
     display: none;
@@ -665,9 +645,6 @@ h2 {
   #text-wrapper {
     font-size: 1.8em;
   }
-  .col1 {
-    /* width: 15rem; */
-  }
   #handsAndKeyboardWrap-vk {
     display: none;
   }
@@ -680,9 +657,6 @@ h2 {
   }
   #text-wrapper {
     font-size: 1.6em;
-  }
-  .col1 {
-    /* width: 15rem; */
   }
   #handsAndKeyboardWrap-vk {
     display: none;
@@ -697,9 +671,6 @@ h2 {
   #text-wrapper {
     font-size: 1.4em;
   }
-  .col1 {
-    /* width: 15rem; */
-  }
   #handsAndKeyboardWrap-vk {
     display: none;
   }
@@ -712,9 +683,6 @@ h2 {
   }
   #text-wrapper {
     font-size: 1.4em;
-  }
-  .col1 {
-    /* width: 10rem; */
   }
   #handsAndKeyboardWrap-vk {
     display: none;
@@ -795,15 +763,6 @@ h2 {
   margin: 1rem;
 }
 
-/* .lottie > lottie-player {
-  display: flex;
-  justify-content: flex-start;
-} */
-@media screen and (max-width: 1080px) and (min-width: 845px) {
-  /* .lottie {
-    width: 15rem;
-  } */
-}
 @media screen and (max-width: 845px) and (min-width: 600px) {
   .lottie {
     width: 10rem;
@@ -818,10 +777,6 @@ h2 {
     margin-top: -1rem;
     margin-left: -1.5rem;
   }
-  #lottie{
-    /* visibility: hidden; */
-    /* display: none; */
-  }
 }
 @media screen and (max-width: 600px) {
   .lottie {
@@ -831,16 +786,10 @@ h2 {
     height: 10rem;
     justify-content: center;
     align-items: center;
-    /* border-radius: 50%; */
   }
   .text > h3 {
     margin-top: -1rem;
     margin-left: -1.7rem;
-  }
-
-  #lottie{
-    /* visibility:hidden; */
-    /* display: none; */
   }
 }
 .text {
@@ -856,23 +805,45 @@ h2 {
   justify-content: center;
   align-items: center;
 }
-#shaking{
+#shaking {
   animation: shake 0.5s;
   animation-iteration-count: 1;
-  box-shadow: 1px 1px 18px 2px rgba(255,0,0,1);
+  box-shadow: 1px 1px 18px 2px rgba(255, 0, 0, 1);
 }
 @keyframes shake {
-  0% { transform: translate(1px, 1px) rotate(0deg); }
-  10% { transform: translate(-1px, -2px) rotate(-1deg); }
-  20% { transform: translate(-3px, 0px) rotate(1deg); }
-  30% { transform: translate(3px, 2px) rotate(0deg); }
-  40% { transform: translate(1px, -1px) rotate(1deg); }
-  50% { transform: translate(-1px, 2px) rotate(-1deg); }
-  60% { transform: translate(-3px, 1px) rotate(0deg); }
-  70% { transform: translate(3px, 1px) rotate(-1deg); }
-  80% { transform: translate(-1px, -1px) rotate(1deg); }
-  90% { transform: translate(1px, 2px) rotate(0deg); }
-  100% { transform: translate(1px, -2px) rotate(-1deg); }
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
 }
 #popup {
   position: absolute;
@@ -887,16 +858,16 @@ h2 {
   overflow: hidden;
 }
 
-.showError{
+.showError {
   visibility: visible;
 }
 
-.result{
+.result {
   position: absolute;
   z-index: 2;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   visibility: hidden;
 }
 </style>

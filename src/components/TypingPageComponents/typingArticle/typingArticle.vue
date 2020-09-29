@@ -1,52 +1,63 @@
 <template>
   <main>
-    <!-- transparent: !this.$store.state.isKhmer, -->
-    <div class="col" v-bind:class="{ transparent2: result}">
+    <div class="col" v-bind:class="{ transparent2: result }">
       <div class="col1">
-      	<!-- timerstats -->
-      	<div class="lottie">
+        <!-- timerstats -->
+        <div class="lottie">
           <lottie-player
-            id="lottie"
+            class="lottie-player"
             src="https://assets10.lottiefiles.com/packages/lf20_AMwwvI.json"
             background="transparent"
             speed="0.8"
-            style="width: 100px; height: 110px;"
-            loop
-            autoplay
-          ></lottie-player>
-          <countdown :time="this.time * 60000" @end="endGame" ref="countdown" :auto-start="false">
-            <template slot-scope="props">{{ convertToKhmerNum(props.minutes) }} នាទី {{ convertToKhmerNum(props.seconds) }}​​ វិនាទី</template>
-          </countdown>
-      	</div>
-        <!-- errorstats -->
-        <div class="lottie" :class="{ 'error-bg': alertError }">
-          <lottie-player
-            id="lottie"
-            src="https://assets2.lottiefiles.com/private_files/lf30_jq4i7W.json"
-            background="transparent"
-            speed="1"
             style="width: 100px; height: 110px"
             loop
             autoplay
           ></lottie-player>
-          <span :class="{ error: alertError }">​{{ convertToKhmerNum(errors) }}</span>
+          <countdown
+            :time="this.time * 60000"
+            @end="endGame"
+            ref="countdown"
+            :auto-start="false"
+          >
+            <template slot-scope="props"
+              >{{ convertToKhmerNum(props.minutes) }} នាទី
+              {{ convertToKhmerNum(props.seconds) }}​​ វិនាទី</template
+            >
+          </countdown>
         </div>
-		<!-- scorestats -->
-        <div class="lottie">
+        <!-- errorstats -->
+        <div class="lottie" :class="{ 'error-bg': alertError }">
           <lottie-player
-            id="lottie"
-            src="https://assets4.lottiefiles.com/packages/lf20_Ex9JsF.json"
+            id="error-lottie"
+            class="lottie-player"
+            src="https://assets2.lottiefiles.com/private_files/lf30_jq4i7W.json"
             background="transparent"
-            speed="0.5"
-            style="width: 100px; height: 120px"
-            loop
+            speed="1.5"
+            style="width: 100px; height: 110px"
             autoplay
           ></lottie-player>
-          <span>{{ convertToKhmerNum(runesCounter) }}
-          / {{ convertToKhmerNum(totalRunes) }}</span>
+          <span :class="{ error: alertError }"
+            >​{{ convertToKhmerNum(errors) }}</span
+          >
+        </div>
+        <!-- scorestats -->
+        <div class="lottie">
+          <lottie-player
+            class="lottie-player"
+            id="score-lottie"
+            src="https://assets4.lottiefiles.com/packages/lf20_Ex9JsF.json"
+            background="transparent"
+            speed="1"
+            style="width: 100px; height: 120px"
+            autoplay
+          ></lottie-player>
+          <span
+            >{{ convertToKhmerNum(runesCounter) }} /
+            {{ convertToKhmerNum(totalRunes) }}</span
+          >
         </div>
       </div>
-			<!-- textbox -->
+      <!-- textbox -->
       <div id="text-div">
         <h2 id="text-wrapper">
           <span
@@ -64,7 +75,7 @@
           >
         </h2>
       </div>
-			<!-- letters from word -->
+      <!-- letters from word -->
       <div>
         <h4 id="decomposition-vk">
           <span>​</span>
@@ -77,41 +88,33 @@
           >
         </h4>
       </div>
-			<!-- keyboard -->
+      <!-- Keyboard -->
       <div id="handsAndKeyboardWrap-vk">
         <div class="row">
-          <!-- <leftHand id="leftHand-vk" /> -->
-          <keyboard id="keyboard-vk" />
-          <!-- <rightHand id="rightHand-vk" /> -->
+          <typingArticleKeyboard id="keyboard-vk" />
         </div>
       </div>
     </div>
 
-    <keyboardMessage v-bind:class="{showError: !this.$store.state.isKhmer}" />
-    <result v-bind:class="{showError: result}" class="result"/>    
-    
+    <!-- Popup result  -->
+    <result v-bind:class="{ showError: result }" class="result" />
   </main>
 </template>
 
 <script>
-import score from "./TypingPageComponents/score";
-import keyboard from "./TypingPageComponents/keyboard";
-import splitKhmerRunes from "../split-khmer";
-import { textsList } from "./texts-list";
-import mapping from "../keyboard-mapping";
-import hands from "./hands";
-import leftHand from "./LeftHand";
-import rightHand from "./RightHand";
-import khmerWord from "../mapping.js"
-// import keyboardMessage from "../components/displayWrongKeyboard"
-import threeVue from './TimeSelectorComponents/three.vue';
-import result from '../components/result.vue'
+import typingArticleKeyboard from "./typingArticle_keyboard";
+import splitKhmerRunes from "../../JS/split-khmer";
+import { textsList } from "../../JS/texts-list";
+import mapping from "../../JS/keyboard-mapping";
+import hands from "../../JS/hands";
+import khmerWord from "../../JS/mapping.js";
+import result from "../../PopUpBoxComponent/Result";
+import "@lottiefiles/lottie-player";
 
 function initialState() {
   return {
     text: "",
     time: this.$store.state.timerMinute,
-    test: null,
     seconds: 0,
     runes: [],
     letters: [],
@@ -120,18 +123,14 @@ function initialState() {
     errors: 0,
     alertError: false,
     idsBreakBefore: null,
-    result: false
+    result: false,
   };
 }
 
 export default {
-  name: "keyboard",
+  name: "typingArticle",
   components: {
-    leftHand,
-    rightHand,
-    keyboard,
-    score,
-    // keyboardMessage,
+    typingArticleKeyboard,
     result,
   },
   data: initialState,
@@ -139,9 +138,6 @@ export default {
     this.startGame();
   },
   methods: {
-    testFunction () {
-      console.log('Hello World')
-    },
     convertToKhmerNum(num) {
       let numData = {
         0: "០",
@@ -157,37 +153,24 @@ export default {
       };
       let khmNum = "";
       for (let i = 0; i < num.toString().length; i++) {
-        khmNum += numData[num.toString()[i]];
+        khmNum += numData[(num.toString())[i]];
       }
       return khmNum;
     },
-    isKhmerWord: function(userWord){
-      if(khmerWord.includes(userWord)){
-        this.$store.dispatch('setKhmer')
-        }
-      else {
-        this.$store.dispatch('unSetKhmer')
+    isKhmerWord: function (userWord) {
+      if (khmerWord.includes(userWord)) {
+        this.$store.dispatch("setKhmer");
+      } else {
+        this.$store.dispatch("unSetKhmer");
       }
     },
-    showResult(){
-      this.result = !this.result
-    }, 
-    /**
-     * Initializes the game by changing the DOM
-     */
-    startGame: function () {
-      // Make the game content visible
-      // document.getElementById('gameWrap-vk').style.display = 'inline'
-
+    showResult() {
+      this.result = !this.result;
+    },
+    startGame() {
       // Select random text from the texts list
       var random = Math.floor(Math.random() * textsList.list.length);
       this.text = textsList.list[random];
-      // Start the timer
-      clearInterval(this.timer);
-      var vm = this;
-      this.timer = setInterval(() => {
-        vm.seconds++;
-      }, 1000);
       // Start playing
       this.play();
     },
@@ -196,9 +179,7 @@ export default {
      * The user has to type a text in khmer
      */
     play: function () {
-      var vm = this;
-      // Initialization
-      // var completeText = ''
+      var vm = this; // use vm to fix this scope
 
       // set runes counter to  0
       this.runesCounter = 0;
@@ -223,113 +204,95 @@ export default {
       // Game progress
       document.onkeypress = function (ev) {
         ev.preventDefault();
-        // console.log(ev.shiftKey)
-      // if(ev.shiftKey) {
-      //     if (ev.shiftLeft) {
-      //       console.log('shift-left'); 
-      //     }
-      //     else
-      //     {
-      //       console.log('shift-right');
-      //     }
-      // }
-      vm.isKhmerWord(ev.key)
-      if(vm.$store.state.isKhmer){  
-        vm.$refs.countdown.start();
-        var isCorrect = vm.areRightKeysPressed(ev, listKeys, currentLetters);
-        // Pressed key is correct
-        if (isCorrect) {
-          // completeText += ev.key
-          currentLetters += ev.key;
-          // Highlight correct letter
-          vm.letters[currentLetters.length - 1].isCurrent = false;
-          vm.letters[currentLetters.length - 1].isCorrect = true;
-          // Check if a grapheme has been completed
-          var graphemes = splitKhmerRunes(currentLetters);
-          if (graphemes[0] === listRunes[vm.runesCounter]) {
-            // We show to the user that the grapheme is completed
-            vm.runes[vm.runesCounter].isCurrent = false;
-            vm.runes[vm.runesCounter].isCorrect = true;
-            // Current grapheme is completed, we start again to track the next one
-            currentLetters = "";
-            vm.letters = [];
-            vm.runesCounter++;
-            // Display decomposition of the next grapheme if exists
-            if (vm.runesCounter < listRunes.length) {
-              vm.splitRuneIntoSpannedLetters(listRunes[vm.runesCounter]);
+        vm.isKhmerWord(ev.key);
+        if (vm.$store.state.isKhmer) {
+          vm.$refs.countdown.start();
+          var isCorrect = vm.areRightKeysPressed(ev, listKeys, currentLetters);
+          const player = document.getElementById("score-lottie");
+          const lottie = player.getLottie();
+          // Pressed key is correct
+          if (isCorrect) {
+            currentLetters += ev.key;
+            // Highlight correct letter
+            vm.letters[currentLetters.length - 1].isCurrent = false;
+            vm.letters[currentLetters.length - 1].isCorrect = true;
+            // Check if a grapheme has been completed
+            var graphemes = splitKhmerRunes(currentLetters);
+            if (graphemes[0] === listRunes[vm.runesCounter]) {
+              // We show to the user that the grapheme is completed
+              vm.runes[vm.runesCounter].isCurrent = false;
+              vm.runes[vm.runesCounter].isCorrect = true;
+              // Current grapheme is completed, we start again to track the next one
+              currentLetters = "";
+              vm.letters = [];
+              lottie.stop();
+              lottie.play();
+              vm.runesCounter++;
+              // Display decomposition of the next grapheme if exists
+              if (vm.runesCounter < listRunes.length) {
+                vm.splitRuneIntoSpannedLetters(listRunes[vm.runesCounter]);
+              }
+              // If we arrive at the end of a line, hide it
+              vm.scrollSync();
             }
-            // If we arrive at the end of a line, hide it
-            vm.scrollSync();
-          }
-          // Current action is done
-          listKeys.shift();
-          // No next action, game is won
-          if (listKeys.length === 0) {
-            currentLetters = "";
-            vm.endGame();
+            // Current action is done
+            listKeys.shift();
+            // No next action, game is won
+            if (listKeys.length === 0) {
+              currentLetters = "";
+              vm.endGame();
+            } else {
+              // We display hints for the next action
+              vm.runes[vm.runesCounter].isCurrent = true;
+              vm.letters[currentLetters.length].isCurrent = true;
+              vm.resetHints();
+              vm.nextHint(listKeys);
+            }
           } else {
-            // We display hints for the next action
-            vm.runes[vm.runesCounter].isCurrent = true;
-            vm.letters[currentLetters.length].isCurrent = true;
-            vm.resetHints();
-            vm.nextHint(listKeys);
+            // Pressed key is wrong
+            vm.alertWrongKey();
           }
-        } else {
-          // Pressed key is wrong
-          vm.alertWrongKey();
         }
-      }
-      }
+      };
     },
-    /**
-     * Displays the modal with the scores
-     * Also saves the highest score
-     * In case user wants to play again, resets data
-     */
-    endGame: function () {
-      this.$store.dispatch('set_totalWordsTyped', this.runesCounter)
-      this.result = true
-      clearInterval(this.timer);
-      var minutes = Math.round((this.seconds / 60) * 100) / 100;
-      var newSpeed = this.runesCounter / (this.seconds / 60);
-      this.seconds = 0;
-      // Save highest scores in terms of speed and accuracy
-      var oldErrors = localStorage.getItem("visualKeyboard.acc.errors")
-        ? localStorage.getItem("visualKeyboard.acc.errors")
-        : Infinity;
-      if (this.errors < oldErrors) {
-        // best in terms of accuracy
-        localStorage.setItem("visualKeyboard.acc.time", minutes);
-        localStorage.setItem("visualKeyboard.acc.errors", this.errors);
-        localStorage.setItem("visualKeyboard.acc.runes", this.runesCounter);
-      }
-      var oldMinutes = localStorage.getItem("visualKeyboard.speed.time")
-        ? localStorage.getItem("visualKeyboard.speed.time")
-        : Infinity;
-      var oldRunes = localStorage.getItem("visualKeyboard.speed.runes")
-        ? localStorage.getItem("visualKeyboard.speed.runes")
-        : 0;
-      var oldSpeed = oldRunes / oldMinutes;
-      if (newSpeed > oldSpeed) {
-        // best in terms of accuracy
-        localStorage.setItem("visualKeyboard.speed.time", minutes);
-        localStorage.setItem("visualKeyboard.speed.errors", this.errors);
-        localStorage.setItem("visualKeyboard.speed.runes", this.runesCounter);
-      }
+    endGame() {
+      this.$store.dispatch("set_totalWordsTyped", this.runesCounter);
+      this.result = true;
+      // clearInterval(this.timer);
+      // var minutes = Math.round((this.seconds / 60) * 100) / 100;
+      // var newSpeed = this.runesCounter / (this.seconds / 60);
+      // this.seconds = 0;
+      // // Save highest scores in terms of speed and accuracy
+      // var oldErrors = localStorage.getItem("visualKeyboard.acc.errors")
+      //   ? localStorage.getItem("visualKeyboard.acc.errors")
+      //   : Infinity;
+      // if (this.errors < oldErrors) {
+      //   // best in terms of accuracy
+      //   localStorage.setItem("visualKeyboard.acc.time", minutes);
+      //   localStorage.setItem("visualKeyboard.acc.errors", this.errors);
+      //   localStorage.setItem("visualKeyboard.acc.runes", this.runesCounter);
+      // }
+      // var oldMinutes = localStorage.getItem("visualKeyboard.speed.time")
+      //   ? localStorage.getItem("visualKeyboard.speed.time")
+      //   : Infinity;
+      // var oldRunes = localStorage.getItem("visualKeyboard.speed.runes")
+      //   ? localStorage.getItem("visualKeyboard.speed.runes")
+      //   : 0;
+      // var oldSpeed = oldRunes / oldMinutes;
+      // if (newSpeed > oldSpeed) {
+      //   // best in terms of accuracy
+      //   localStorage.setItem("visualKeyboard.speed.time", minutes);
+      //   localStorage.setItem("visualKeyboard.speed.errors", this.errors);
+      //   localStorage.setItem("visualKeyboard.speed.runes", this.runesCounter);
+      // }
     },
-    /**
-     * Display the text to be typed by the user
-     * with each rune encapsulated in a span and with a specific id
-     * to facilitate their highlighting later
-     * @param text the text to be typed by the user
-     */
-    splitTextIntoSpannedRunes: function (text) {
+    splitTextIntoSpannedRunes(text) {
       // Split the string to an array of grapheme clusters (one string each)
       var graphemes = splitKhmerRunes(text);
       for (var i = 0; i < graphemes.length; i++) {
         var isSpace = false;
         if (graphemes[i].charCodeAt(0) === 32) {
-          graphemes[i] = "⎵";
+          graphemes[i] = "⎵"; // fix the space key problem when displaying as spam
           isSpace = true;
         }
         this.runes.push({
@@ -342,13 +305,7 @@ export default {
         });
       }
     },
-    /**
-     * Display the rune to be typed by the user
-     * with each letter encapsulated in a span and with a specific id
-     * to facilitate their highlighting later
-     * @param text the text to be typed by the user
-     */
-    splitRuneIntoSpannedLetters: function (rune) {
+    splitRuneIntoSpannedLetters(rune) {
       // Split the graph to an array of strings
       var letters = rune.split("");
       for (var i = 0; i < letters.length; i++) {
@@ -368,7 +325,7 @@ export default {
     /**
      * Computes where the overflowed text is broken to begin new lines
      */
-    getRunesIdsBreakBefore: function () {
+    getRunesIdsBreakBefore() {
       var idBreakBefore = [];
       var runes = document.getElementsByClassName("runes");
       // console.log(runes);
@@ -381,13 +338,7 @@ export default {
       }
       return idBreakBefore;
     },
-    /**
-     * When the user arrives at the end of a line
-     * Scroll to display the next one
-     * @param ids the list of ids of the runes that are at the beginnig of each line
-     * @param currentId the id of the current rune, ie the one after the last rune validated
-     */
-    scrollSync: function (currentId) {
+    scrollSync(currentId) {
       // We are at a break point
       if (this.idsBreakBefore.includes(this.runesCounter)) {
         // Hide all the runes before the current one, ie hide the line
@@ -396,13 +347,7 @@ export default {
         }
       }
     },
-    /**
-     * Get the list of ordered keys to type
-     * @param text the text to be typed by the user
-     * @param hands the object defining which key should be typed with which finger
-     * @return an array containing the ordered list of keys to type
-     */
-    getAllKeys: function (text) {
+    getAllKeys(text) {
       // Array of arrays
       var listKeys = [];
       // Get the list of actions to be done by the user
@@ -417,13 +362,7 @@ export default {
       }
       return listKeys;
     },
-    /**
-     * Checks if the keys the user typed fit with what the action should be
-     * @param event the pressedKey event generated when the user typed a new character
-     * @param listKeys the current ordered list of keys to type
-     * @return a boolean, true if the right keys have have been pressed, false otherwise
-     */
-    areRightKeysPressed: function (event, listKeys, currentLetters) {
+    areRightKeysPressed(event, listKeys, currentLetters) {
       var keyPressed = mapping[event.key];
       var isCorrect = true;
       var keyToPress = listKeys[0];
@@ -462,14 +401,14 @@ export default {
         vm.alertError = false;
       }, 500);
       // Incrementation
+      const player = document.getElementById("error-lottie");
+      console.log(player);
+      const lottie = player.getLottie();
+      lottie.stop();
+      lottie.play();
       this.errors++;
     },
-    /**
-     * Highlights the fingers and keys to use for the current action in orange
-     * To help the user type the text correctly
-     * @param listKeys the current ordered list of keys to type
-     */
-    nextHint: function (listKeys) {
+    nextHint(listKeys) {
       // These are arrays
       var currentKeys = listKeys[0];
       var currentFingers = [];
@@ -480,24 +419,6 @@ export default {
       for (var i = 0; i < currentFingers.length; i++) {
         var finger = currentFingers[i];
         var key = currentKeys[i];
-        // Space is the only key where we can use two fingers
-        // if (key === "SPACE") {
-        //   document
-        //     .getElementById("leftHand")
-        //     .getElementById("left-finger-1")
-        //     .setAttributeNS(null, "fill", color);
-        //   document
-        //     .getElementById("rightHand")
-        //     .getElementById("right-finger-1")
-        //     .setAttributeNS(null, "fill", color);
-        // } else {
-        //   var hand = finger.split("-")[0];
-        //   // Highlight the correct finger on the correct hand
-        //   document
-        //     .getElementById(hand + "Hand")
-        //     .getElementById(finger)
-        //     .setAttributeNS(null, "fill", color);
-        // }
         // Highlight the correct key on the keyboard
         document
           .getElementById("keyboard")
@@ -539,15 +460,6 @@ export default {
         "LEFT_SHIFT",
         "LEFT_CTRL",
       ];
-    //   var hand;
-    //   // Loop through all the fingers
-    //   for (var i = 0; i < fingers.length; i++) {
-    //     hand = fingers[i].split("-")[0];
-    //     document
-    //       .getElementById(hand + "Hand")
-    //       .getElementById(fingers[i])
-    //       .setAttributeNS(null, "fill", "none");
-    //   }
       var svgKeyboard = document.getElementById("keyboard");
       // Loop through all the normal keys
       for (let i = 0; i < keys.length; i++) {
@@ -671,11 +583,12 @@ export default {
 
 /* CLASS */
 .transparent {
-    opacity: 0.1;
+  opacity: 0.1;
 }
 
 .transparent2 {
-  opacity: 0.1;
+  /* opacity: 0.1; */
+  filter: blur(8px);
 }
 
 .col {
@@ -705,12 +618,12 @@ export default {
   margin-bottom: 1rem;
 }
 
-.result{
+.result {
   position: absolute;
   z-index: 2;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   visibility: hidden;
 }
 
@@ -748,7 +661,7 @@ export default {
   height: 30rem;
 }
 
-.showError{
+.showError {
   visibility: visible;
 }
 
@@ -802,6 +715,7 @@ export default {
   margin-right: 3rem;
   margin-top: 2rem;
   margin: 1rem;
+  font-family: "Kantumruy", sans-serif;
 }
 
 .text {
@@ -825,7 +739,7 @@ export default {
   animation: errorAnimationBackground 0.5s;
   animation: shake 0.5s;
   animation-iteration-count: 2;
-  box-shadow: 1px 1px 18px 2px rgba(255,0,0,1) !important;
+  box-shadow: 1px 1px 18px 2px rgba(255, 0, 0, 1) !important;
 }
 
 @keyframes errorAnimationBackground {
@@ -856,24 +770,46 @@ export default {
   }
 }
 
-#shaking{
+#shaking {
   animation: shake 0.5s;
   animation-iteration-count: 1;
-  box-shadow: 1px 1px 18px 2px rgba(255,0,0,1);
+  box-shadow: 1px 1px 18px 2px rgba(255, 0, 0, 1);
 }
 
 @keyframes shake {
-  0% { transform: translate(1px, 1px) rotate(0deg); }
-  10% { transform: translate(-1px, -2px) rotate(-1deg); }
-  20% { transform: translate(-3px, 0px) rotate(1deg); }
-  30% { transform: translate(3px, 2px) rotate(0deg); }
-  40% { transform: translate(1px, -1px) rotate(1deg); }
-  50% { transform: translate(-1px, 2px) rotate(-1deg); }
-  60% { transform: translate(-3px, 1px) rotate(0deg); }
-  70% { transform: translate(3px, 1px) rotate(-1deg); }
-  80% { transform: translate(-1px, -1px) rotate(1deg); }
-  90% { transform: translate(1px, 2px) rotate(0deg); }
-  100% { transform: translate(1px, -2px) rotate(-1deg); }
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
 }
 /* END OF ANIMATIONS */
 
@@ -1063,7 +999,7 @@ h2 {
     margin-top: -1rem;
     margin-left: -1.7rem;
   }
-  #lottie{
+  .lottie-player {
     display: none;
   }
 }

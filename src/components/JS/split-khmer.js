@@ -7,6 +7,7 @@ import GraphemeSplitter from 'grapheme-splitter'
  * @param text the text to split
  * @return an array of graphemes
  */
+
 export default function splitKhmerRunes (text) {
   text.normalize()
   const splitter = new GraphemeSplitter()

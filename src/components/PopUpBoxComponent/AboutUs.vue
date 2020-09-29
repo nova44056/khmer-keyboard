@@ -6,17 +6,17 @@
     <div class="card-wrapper">
       <div class="card">
         <vitou />
-        <hr>
+        <hr />
         <h1>វិទូ</h1>
       </div>
       <div class="card">
         <uyseng />
-        <hr>
+        <hr />
         <h1>សេងអុ៊យ</h1>
       </div>
       <div class="card">
         <menghang />
-        <hr>
+        <hr />
         <h1>ម៉េងហាង</h1>
       </div>
     </div>
@@ -25,18 +25,17 @@
 </template>
 
 <script>
-import vitou from "./AboutUsComponents/vitou";
-import uyseng from "./AboutUsComponents/uyseng";
-import menghang from "./AboutUsComponents/menghang";
+import vitou from "../AboutUsComponents/vitou";
+import uyseng from "../AboutUsComponents/uyseng";
+import menghang from "../AboutUsComponents/menghang";
 export default {
-  name: "aboutus",
- 
+  name: "aboutUs",
+
   components: {
     vitou,
     uyseng,
     menghang,
   },
-  
 };
 </script>
 

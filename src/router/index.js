@@ -1,18 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import timeselector from '../components/TimeSelectorComponents/TimeSelector'
-import typeselector from '../components/TextSelectorComponents/TypeSelector'
-import typingpage from '../components/TypingPage'
-import logIn from '../views/logIn.vue'
-import signIn from '../views/signIn.vue'
-import test from '../components/Test'
-import test2 from '../duplicate'
-import typeFast from '../Typefast'
-import result from '../components/result'
 import store from '../store/index'
-import testing from '../components/Test2'
-import instruction from '../components/instruction'
-import aboutus from '../components/AboutUs'
+
+import timeSelector from '../components/TimeSelectorComponents/timeSelector'
+import typeSelector from '../components/typeSelectorComponents/typeSelector'
+import typingArticle from '../components/TypingPageComponents/typingArticle/typingArticle'
+import typingWord from '../components/TypingPageComponents/typingWord/typingWord'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -22,20 +16,21 @@ const routes = [
   },
   {
     path: '*',
-    redirect: '/1'
+    redirect: '/timeSelector'
   },
   {
-    path: '/1',
+    path: '/timeSelector',
     name: 'SelectionPage1',
-    component: timeselector
+    component: timeSelector
   },
   {
     path: '/typeSelector',
     name: 'SelectionPage2',
-    component: typeselector,
-    beforeEnter: (to,from,next)=>{
+    component: typeSelector,
+    beforeRouteEnter: (to,from,next)=>{
       if(store.state.timer === null){
-         router.push("/timeSelector")
+        //  router.push("/timeSelector")
+         next({name: 'timeSelector'})
         // next(false)
       }else 
       {
@@ -45,13 +40,13 @@ const routes = [
   },
   {
     path: '/typingArticle',
-    name: 'TypingPage',
-    component: test,
+    name: 'typingArticle',
+    component: typingArticle,
     beforeEnter: (to,from,next)=>{
       if(store.state.typeOfWord === null){
         // next({path:'/1'}); 
-        router.push("/1")
-        // next({ name: 'SelectionPage1' })
+        // router.push("/1")
+        next({ name: 'SelectionPage1' })
       }
       else {
         next()
@@ -60,8 +55,8 @@ const routes = [
   },
   {
     path: '/typingWord',
-    name: 'typeFast',
-    component: test2,
+    name: 'typingWord',
+    component: typingWord,
     beforeEnter: (to,from,next)=>{
       if(store.state.typeOfWord === null){
         next({ name: 'SelectionPage1' })
@@ -71,32 +66,6 @@ const routes = [
         // router.push("/1")
       }
     }
-    
-  },
-  {
-    path: '/test',
-    name: 'test',
-    component: test2
-  },
-  {
-    path: '/result',
-    name: 'result',
-    component: result
-  },
-  {
-    path: '/testing',
-    name: 'testing',
-    component: testing
-  },
-  {
-    path: '/instruction',
-    name: 'instruction',
-    component: instruction
-  },
-  {
-    path: '/aboutus',
-    name: 'aboutus',
-    component: aboutus
   }
 ]
 

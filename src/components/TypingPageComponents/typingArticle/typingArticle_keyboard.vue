@@ -2856,47 +2856,14 @@
 
 <script>
 export default {
-  name: 'keyboard2'
-}
+  name: "typingArticleKeyboard",
+};
 </script>
 
 <style scoped>
 svg {
-  height: 25rem;
+  height: 20rem;
   width: 65rem;
-  margin-top: -1rem;
-}
-@media screen and (max-width: 1030px) and (min-width: 830px) {
-    svg {
-        height: 20rem;
-        width: 55rem;
-    }
-}
-@media screen and (max-width: 830px) and (min-width: 730px) {
-    svg {
-        height: 18rem;
-        width: 45rem;
-    }
-}
-@media screen and (max-width: 730px) and (min-width: 660px){
-    svg {
-        margin-top: 0.7rem;
-        height: 16rem;
-        width: 42rem;
-    }
-}
-@media screen and (max-width: 660px) and (min-width: 570px) {
-    svg {
-        margin-top: 1rem;
-        height: 14rem;
-        width: 35rem;
-    }
-}
-@media screen and (max-width: 570px) and (min-width: 492px) {
-    svg {
-        margin-top: 2rem;
-        height: 12rem;
-        width: 30rem;
-    }
+  margin-top: -2rem;
 }
 </style>
