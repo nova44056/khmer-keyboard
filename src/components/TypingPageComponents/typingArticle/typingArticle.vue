@@ -540,7 +540,7 @@ export default {
 
 #decomposition-vk {
   font-size: 2em;
-  margin: 1% auto 3% auto;
+  margin: 3% auto 0.6rem auto;
 }
 
 #textWrap-vk {

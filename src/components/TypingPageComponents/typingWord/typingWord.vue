@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div class="col">
+    <div class="col" v-bind:class="{ transparent2: result }">
       <div class="col1">
         <!-- timerstats -->
         <div class="lottie">
@@ -31,11 +31,11 @@
             id="score-lottie"
             src="https://assets4.lottiefiles.com/packages/lf20_Ex9JsF.json"
             background="transparent"
-            speed="0.5"
+            speed="1"
             style="width: 100px; height: 120px"
             autoplay
           ></lottie-player>
-          <span>{{ score }}</span>
+          <span>{{ convertToKhmerNum(score) }}</span>
         </div>
       </div>
       <div class="box">
@@ -141,6 +141,7 @@ export default {
     endGame() {
       // Store highest score
       this.$store.dispatch("set_totalWordsTyped", this.score);
+      this.result = true
     },
     random() {
       var random = Math.floor(Math.random() * this.list.length);
@@ -277,6 +278,10 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.transparent2 {
+  filter: blur(8px);
 }
 
 .transparent {

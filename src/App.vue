@@ -5,7 +5,6 @@
       <button @click="$store.dispatch('showAbout')" class="aboutButton">
         អំពីយើង
       </button>
-      <message />
       <vue-page-transition name="fade-in-right">
         <router-view />
       </vue-page-transition>
@@ -19,7 +18,6 @@
 </template>
 
 <script>
-import message from "./components/StaticComponent/Message";
 import pgIndicator from "./components/StaticComponent/PageIndicator";
 import aboutUs from "./components/PopUpBoxComponent/AboutUs";
 
@@ -30,9 +28,8 @@ export default {
     };
   },
   components: {
-    message,
     pgIndicator,
-    aboutUs,
+    aboutUs
   },
   methods: {
     toggleVisibility() {
