@@ -1,5 +1,6 @@
 <template>
   <div class="page-wrapper">
+    <div v-bind:class="{transparent: $store.state.show}"> 
     <div class="header">
       <h1>ជ្រើសរើសនាទី</h1>
     </div>
@@ -74,20 +75,24 @@
     <div class="button-wrapper">
         <button :disabled="!isTimerChosen" @click="$router.push('/typeSelector')">បន្ត</button>
     </div>
+    </div>
 
-  </div>
+    <instruction class="instruction"/>
+</div>
 </template>
 
 <script>
 import one from './one.vue'
 import three from './three.vue'
 import five from './five.vue'
+import instruction from '@/components/instruction'
 export default {
   name: 'timeselector',
   components: {
     one,
     three,
-    five
+    five,
+    instruction
   },
   data(){
     return{
@@ -179,7 +184,11 @@ h1 {
   overflow: visible !important;
 }
 /* END OF GLOBAL */
-
+.instruction {
+  position: absolute;
+  z-index: 2;
+  left: 22%;
+}
 /* CLASS */
 .button-wrapper{
   height: 13rem;
@@ -205,7 +214,9 @@ h1 {
   width: 100vw;
   overflow: hidden;
 }
-
+.transparent {
+  opacity: 0.01;
+}
 .header {
   display: flex;
   justify-content: center;

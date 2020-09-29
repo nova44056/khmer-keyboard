@@ -19,6 +19,7 @@ export default new Vuex.Store({
     fivemin: false,
     isWord: false, 
     isArticle: false, 
+    show: true, 
   },
   mutations: {
     set_totalWordsTyped(state, totalWordsTyped) {
@@ -96,6 +97,9 @@ export default new Vuex.Store({
     choseArticle(state){
       state.isWord = false
       state.isArticle = true 
+    }, 
+    close(state){
+      state.show = false
     }
 
 
@@ -168,6 +172,10 @@ export default new Vuex.Store({
 
     choseArticle({commit}){
       commit('choseArticle')
+    }, 
+
+    close({commit}){
+      commit('close')
     }
 
   },

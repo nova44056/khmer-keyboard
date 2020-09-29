@@ -1,5 +1,5 @@
 <template>
-  <div class="pop-up">
+  <div class="pop-up" v-if="$store.state.show">
     <div class="ani">
       <h1> មុនប្រេីប្រាស់កម្មវិធី​ </h1>
       <h4> កម្មវិធីនេះតម្រូវឲ្យអ្នកមាន NiDa Unicode តម្លេីងក្នុងកំព្យូទ័រ</h4>
@@ -18,12 +18,14 @@
         https://www.rean.me/2017/06/how-to-install-khmer-unicode-on-windows.html
       </a>
     </div>
-    <button id="close"  @click="close">បិទ</button>
+    <button id="close"  @click="$store.dispatch('close')">បិទ</button>
   </div>
 </template>
 
 <script>
 export default {
+  
+ 
 };
 </script>
 
@@ -34,6 +36,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   height: 30rem;
   width: 50rem;
   border: 2px solid white;
@@ -52,7 +55,6 @@ export default {
   justify-content: center;
   align-items: center;
 //   color: white;
-  margin-top: -10rem;
 }
 
 .text {

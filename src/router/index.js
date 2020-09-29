@@ -33,7 +33,7 @@ const routes = [
     path: '/typeSelector',
     name: 'SelectionPage2',
     component: typeselector,
-    beforeRouteEnter: (to,from,next)=>{
+    beforeEnter: (to,from,next)=>{
       if(store.state.timer === null){
          router.push("/timeSelector")
         // next(false)
