@@ -595,7 +595,6 @@ export default {
   justify-content: center;
   flex-direction: row;
   align-items: center;
-  margin-top: 1rem;
   margin-bottom: 1rem;
 }
 
