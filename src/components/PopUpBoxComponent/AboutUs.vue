@@ -18,7 +18,7 @@
       <div class="card">
         <uyseng />
         <hr />
-        <h1><a href="https://www.facebook.com/nova.d.ark44056">សេងអុ៊យ</a></h1>
+        <h1><a href="https://www.facebook.com/nova.d.ark44056">សេងអ៊ុយ</a></h1>
       </div>
       <div class="card">
         <menghang />

@@ -8,7 +8,7 @@
         <button
           class="card"
           ref="word"
-          @click="$store.dispatch('wordType1'), $store.dispatch('choseWord')"
+          @click="$store.dispatch('wordType1'); $store.dispatch('choseWord'); focusWord()"
         >
           <svg
             class="check"
@@ -33,7 +33,7 @@
         <button
           class="card"
           ref="article"
-          @click="$store.dispatch('wordType2'), $store.dispatch('choseArticle')"
+          @click="$store.dispatch('wordType2'); $store.dispatch('choseArticle'); focusArticle()"
         >
           <svg
             class="check"
@@ -104,6 +104,15 @@ export default {
         }
       }, 500);
     },
+
+    focusWord(){
+      this.$refs.word.focus()
+    }, 
+
+    focusArticle(){
+      this.$refs.article.focus()
+
+    }, 
     changePage() {
       if (this.$store.state.wordType === 1) {
         this.$router.push("/typingWord");

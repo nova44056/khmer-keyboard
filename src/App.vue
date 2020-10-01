@@ -1,13 +1,13 @@
 <template>
   <div id="app">
     <div v-bind:class="{ transparent: $store.state.showAbout }">
-      <button @click="home()" class="homeButton">ទំព័រដើម</button>
+      <button @click="home()" class="homeButton">ទំព័រដើមតម្លើង</button>
       <button @click="$store.dispatch('showAbout')" class="aboutButton">
         អំពីយើង
       </button>
-      <!-- <vue-page-transition name="fade-in-right"> -->
+       <vue-page-transition name="fade-in-right"> 
         <router-view />
-      <!-- </vue-page-transition> -->
+      </vue-page-transition>
       <pgIndicator />
     </div>
 
@@ -44,7 +44,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import url("https://fonts.googleapis.com/css2?family=Kantumruy:wght@700&display=swap");
+// @import url("https://fonts.googleapis.com/css2?family=Kantumruy:wght@700&display=swap");
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

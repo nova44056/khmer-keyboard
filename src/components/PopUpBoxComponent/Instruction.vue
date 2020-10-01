@@ -37,7 +37,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import url("https://fonts.googleapis.com/css2?family=Kantumruy&display=swap");
+// @import url("https://fonts.googleapis.com/css2?family=Kantumruy&display=swap");
 .pop-up {
   display: flex;
   flex-direction: column;
@@ -50,7 +50,7 @@ export default {
   background-color: white;
   border-radius: 2rem;
   box-shadow: 0px 0px 30px -6px rgba(0, 0, 0, 0.75);
-  font-family: "Kantumruy", sans-serif;
+  // font-family: "Kantumruy", sans-serif;
   margin-top: 10rem;
 }
 
@@ -69,7 +69,7 @@ export default {
   margin-top: 3rem;
   height: 3.7rem;
   width: 10rem;
-  font-family: "Kantumruy", sans-serif;
+  // font-family: "Kantumruy", sans-serif;
   font-size: 1.5rem;
   display: flex;
   justify-content: center;

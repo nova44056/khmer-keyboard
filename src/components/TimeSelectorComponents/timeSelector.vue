@@ -10,7 +10,7 @@
             class="card spin circle"
             ref="time1"
             tabindex="1"
-            @click="$store.dispatch('timer1'), $store.dispatch('timerChosen1')"
+            @click="$store.dispatch('timer1'); $store.dispatch('timerChosen1'); focus1()"
           >
             <svg
               class="check"
@@ -36,7 +36,7 @@
             class="card"
             ref="time3"
             tabindex="1"
-            @click="$store.dispatch('timer3'), $store.dispatch('timerChosen3')"
+            @click="$store.dispatch('timer3'); $store.dispatch('timerChosen3'); focus3()"
           >
             <three />
             <svg
@@ -62,7 +62,7 @@
             class="card"
             ref="time5"
             tabindex="1"
-            @click="$store.dispatch('timer5'), $store.dispatch('timerChosen5')"
+            @click="$store.dispatch('timer5'), $store.dispatch('timerChosen5'); focus5()"
           >
             <svg
               class="check"
@@ -98,9 +98,7 @@
       </div>
     </div>
 
-    <button @click="focus()">haha</button>
-    <br>
-    <button ref="test">fuck</button>
+   
     <instruction class="instruction" />
   </div>
 </template>
@@ -152,8 +150,16 @@ export default {
       }, 500);
     },
 
-    focus(){
-      this.$refs.test.focus()
+    focus5(){
+      this.$refs.time5.focus()
+    },
+
+      focus3(){
+      this.$refs.time3.focus()
+    },
+
+      focus1(){
+      this.$refs.time1.focus()
     },
 
 
@@ -181,10 +187,9 @@ export default {
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Kantumruy:wght@700&display=swap");
 /* GLOBAL */
 h1 {
-  font-family: "Kantumruy", sans-serif;
+  /* font-family: "Kantumruy", sans-serif; */
   font-size: 3rem;
 }
 
