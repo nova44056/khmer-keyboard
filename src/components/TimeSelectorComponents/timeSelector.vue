@@ -9,6 +9,7 @@
           <button
             class="card spin circle"
             ref="time1"
+            tabindex="1"
             @click="$store.dispatch('timer1'), $store.dispatch('timerChosen1')"
           >
             <svg
@@ -34,6 +35,7 @@
           <button
             class="card"
             ref="time3"
+            tabindex="1"
             @click="$store.dispatch('timer3'), $store.dispatch('timerChosen3')"
           >
             <three />
@@ -59,6 +61,7 @@
           <button
             class="card"
             ref="time5"
+            tabindex="1"
             @click="$store.dispatch('timer5'), $store.dispatch('timerChosen5')"
           >
             <svg
