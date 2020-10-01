@@ -98,7 +98,9 @@
       </div>
     </div>
 
-    
+    <button @click="focus()">haha</button>
+    <br>
+    <button ref="test">fuck</button>
     <instruction class="instruction" />
   </div>
 </template>
@@ -148,6 +150,10 @@ export default {
           this.$store.dispatch("unSetTime");
         }
       }, 500);
+    },
+
+    focus(){
+      this.$refs.test.focus()
     },
 
 

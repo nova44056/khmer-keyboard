@@ -5,9 +5,9 @@
       <button @click="$store.dispatch('showAbout')" class="aboutButton">
         អំពីយើង
       </button>
-      <vue-page-transition name="fade-in-right">
+      <!-- <vue-page-transition name="fade-in-right"> -->
         <router-view />
-      </vue-page-transition>
+      <!-- </vue-page-transition> -->
       <pgIndicator />
     </div>
 
