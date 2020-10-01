@@ -9,12 +9,12 @@
     <div
       class="indicator"
       :class="{ isActive: isActivePage1 }"
-      @click="$router.push({ name: 'SelectionPage1' })"
+      @click="$router.push('/timeSelector')"
     ></div>
     <div
       class="indicator"
       :class="{ isActive: isActivePage2 }"
-      @click="$router.push({ name: 'SelectionPage2' })"
+      @click="$router.push('/typeSelector')"
     ></div>
   </div>
 </template>

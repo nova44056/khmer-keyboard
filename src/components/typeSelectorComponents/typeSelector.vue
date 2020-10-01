@@ -61,7 +61,7 @@
       <button @click="$router.push('/timeSelector')">
         ត្រឡប់ក្រោយ
       </button>
-      <button :disabled="!isTypeSelected" @click="changePage()">
+      <button :disabled="!isTypeSelected" @click="changePage()" :class="{enable: isTypeSelected}">
         ចាប់ផ្តើម
       </button>
     </div>
@@ -121,15 +121,6 @@ export default {
         this.$refs.article.focus();
       }
     },
-  },
-
-  beforeRouteEnter(to,from,next) {
-    if(store.state.timer === null){
-         next('/timeSelector')
-      }else 
-      {
-      next()
-    }
   }
 };
 </script>
@@ -155,6 +146,11 @@ h2 {
 /* END OF GLOBAL */
 
 /* CLASS */
+.enable {
+  background-color: #005bb8;
+  color: white;
+}
+
 .button-wrapper {
   height: 13rem;
   display: flex;

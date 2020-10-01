@@ -114,7 +114,7 @@ import "@lottiefiles/lottie-player";
 function initialState() {
   return {
     text: "",
-    time: this.$store.state.timerMinute,
+    time: null,
     seconds: 0,
     runes: [],
     letters: [],
@@ -136,8 +136,16 @@ export default {
   data: initialState,
   mounted() {
     this.startGame();
+    this.set_defaultTimer();
   },
   methods: {
+    set_defaultTimer (){
+      if(this.$store.state.timerMinute === 0) {
+        this.time = 1
+      } else {
+        this.time = this.$store.state.timerMinute
+      }
+    },
     convertToKhmerNum(num) {
       let numData = {
         0: "០",
@@ -258,33 +266,6 @@ export default {
     endGame() {
       this.$store.dispatch("set_totalWordsTyped", this.runesCounter);
       this.result = true;
-      // clearInterval(this.timer);
-      // var minutes = Math.round((this.seconds / 60) * 100) / 100;
-      // var newSpeed = this.runesCounter / (this.seconds / 60);
-      // this.seconds = 0;
-      // // Save highest scores in terms of speed and accuracy
-      // var oldErrors = localStorage.getItem("visualKeyboard.acc.errors")
-      //   ? localStorage.getItem("visualKeyboard.acc.errors")
-      //   : Infinity;
-      // if (this.errors < oldErrors) {
-      //   // best in terms of accuracy
-      //   localStorage.setItem("visualKeyboard.acc.time", minutes);
-      //   localStorage.setItem("visualKeyboard.acc.errors", this.errors);
-      //   localStorage.setItem("visualKeyboard.acc.runes", this.runesCounter);
-      // }
-      // var oldMinutes = localStorage.getItem("visualKeyboard.speed.time")
-      //   ? localStorage.getItem("visualKeyboard.speed.time")
-      //   : Infinity;
-      // var oldRunes = localStorage.getItem("visualKeyboard.speed.runes")
-      //   ? localStorage.getItem("visualKeyboard.speed.runes")
-      //   : 0;
-      // var oldSpeed = oldRunes / oldMinutes;
-      // if (newSpeed > oldSpeed) {
-      //   // best in terms of accuracy
-      //   localStorage.setItem("visualKeyboard.speed.time", minutes);
-      //   localStorage.setItem("visualKeyboard.speed.errors", this.errors);
-      //   localStorage.setItem("visualKeyboard.speed.runes", this.runesCounter);
-      // }
     },
     splitTextIntoSpannedRunes(text) {
       // Split the string to an array of grapheme clusters (one string each)
@@ -475,16 +456,6 @@ export default {
       }
     },
   },
-   beforeEnter: (to,from,next)=>{
-      if(store.state.typeOfWord === null){
-        // next({path:'/1'}); 
-        // router.push("/1")
-        next('/timeSelector')
-      }
-      else {
-        next()
-      }
-    }, 
   beforeDestroy() {
     document.onkeypress = null;
     clearInterval(this.timer);
@@ -569,7 +540,7 @@ export default {
 
 #decomposition-vk {
   font-size: 2em;
-  margin: 1% auto 3% auto;
+  margin: 3% auto 0.6rem auto;
 }
 
 #textWrap-vk {

@@ -88,6 +88,7 @@
         <button
           :disabled="!isTimerChosen"
           @click="checkType()"
+          :class="{enable: isTimerChosen}"
         >
           បន្ត
         </button>
@@ -185,6 +186,10 @@ h1 {
   transform: translate(-50%, -50%);
 }
 /* CLASS */
+.enable {
+  background-color: #005bb8;
+  color: white;
+}
 .button-wrapper {
   height: 13rem;
   display: flex;
