@@ -151,7 +151,10 @@ export default {
 
     set_focus() {
       if (this.$store.state.onemin === true) {
-        this.$refs.time1.focus();
+        setTimeout(function() {
+          this.$refs.time1.focus();
+        }, 0)
+          
       }
 
       if (this.$store.state.threemin === true) {
