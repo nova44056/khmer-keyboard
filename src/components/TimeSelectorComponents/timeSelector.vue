@@ -134,6 +134,9 @@ export default {
   methods: {
     checkFocus() {
       setInterval(() => {
+        $(".card").mouseup(function(e){
+          e.preventDefault();
+        })
         if ($(".card").is(":focus")) {
           this.isTimerChosen = true;
           this.$store.dispatch("setTime");
@@ -153,10 +156,7 @@ export default {
 
     set_focus() {
       if (this.$store.state.onemin === true) {
-        setTimeout(function() {
-          this.$refs.time1.focus();
-        }, 0)
-          
+        this.$refs.time1.focus();
       }
 
       if (this.$store.state.threemin === true) {
