@@ -9,8 +9,7 @@
           <button
             class="card spin circle"
             ref="time1"
-            tabindex="1"
-            @click="$store.dispatch('timer1'), $store.dispatch('timerChosen1')"
+            @click="$store.dispatch('timer1'); $store.dispatch('timerChosen1')"
           >
             <svg
               class="check"
@@ -35,8 +34,7 @@
           <button
             class="card"
             ref="time3"
-            tabindex="1"
-            @click="$store.dispatch('timer3'), $store.dispatch('timerChosen3')"
+            @click="$store.dispatch('timer3'); $store.dispatch('timerChosen3')"
           >
             <three />
             <svg
@@ -61,8 +59,7 @@
           <button
             class="card"
             ref="time5"
-            tabindex="1"
-            @click="$store.dispatch('timer5'), $store.dispatch('timerChosen5')"
+            @click="$store.dispatch('timer5'); $store.dispatch('timerChosen5'); fiveminClicked()"
           >
             <svg
               class="check"
@@ -134,6 +131,15 @@ export default {
   },
 
   methods: {
+    oneminClicked() {
+      this.$refs.time1.focus()
+    },
+    threeminClicked () {
+      this.$refs.time3.focus()
+    },
+    fiveminClicked () {
+      this.$refs.time5.focus()
+    },
     checkFocus() {
       setInterval(() => {
         $(".card").mouseup(function(e){
