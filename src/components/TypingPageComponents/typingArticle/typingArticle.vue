@@ -194,6 +194,7 @@ export default {
 
       // return array of decomposited khmer words
       var listRunes = splitKhmerRunes(this.text);
+      // console.log(listRunes)
 
       // set total Runes equal to the words in listRunes
       this.totalRunes = listRunes.length;
@@ -212,8 +213,10 @@ export default {
       // Game progress
       document.onkeypress = function (ev) {
         ev.preventDefault();
+        // if(ev.key === "") {console.log('buntheorn found')}
+        // console.log(ev.key)
         vm.isKhmerWord(ev.key);
-        if (vm.$store.state.isKhmer) {
+        // if (vm.$store.state.isKhmer) {
           vm.$refs.countdown.start();
           var isCorrect = vm.areRightKeysPressed(ev, listKeys, currentLetters);
           const player = document.getElementById("score-lottie");
@@ -221,6 +224,7 @@ export default {
           // Pressed key is correct
           if (isCorrect) {
             currentLetters += ev.key;
+            console.log(currentLetters)
             // Highlight correct letter
             vm.letters[currentLetters.length - 1].isCurrent = false;
             vm.letters[currentLetters.length - 1].isCorrect = true;
@@ -260,7 +264,7 @@ export default {
             // Pressed key is wrong
             vm.alertWrongKey();
           }
-        }
+        // }
       };
     },
     endGame() {
