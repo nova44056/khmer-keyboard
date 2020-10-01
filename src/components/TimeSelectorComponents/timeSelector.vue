@@ -290,7 +290,7 @@ h1 {
   position: relative;
 }
 
-.card:focus {
+.card:focus-within {
   border: 6px solid #005bb8;
   height: 20rem;
   width: 20rem;
@@ -306,7 +306,7 @@ h1 {
   visibility: hidden;
 }
 
-.card:focus .check {
+.card:focus-within .check {
   visibility: visible;
   left: 17.5rem;
   transition: ease 0.6s;
