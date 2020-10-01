@@ -1,6 +1,7 @@
 <template>
   <div class="page-wrapper">
     <div v-bind:class="{ transparent: $store.state.show }">
+      <navBar class="nav"/>
       <div class="header">
         <h1>ជ្រើសរើសនាទី</h1>
       </div>
@@ -9,8 +10,8 @@
           <button
             class="card spin circle"
             ref="time1"
-            @click="$store.dispatch('timer1'); $store.dispatch('timerChosen1'); focus1()"
-          >
+            @click="$store.dispatch('timer1'); $store.dispatch('timerChosen1'); focus1();"
+            >
             <svg
               class="check"
               id="Layer_1"
@@ -34,7 +35,7 @@
           <button
             class="card"
             ref="time3"
-            @click="$store.dispatch('timer3'); $store.dispatch('timerChosen3'); focus3()"
+            @click="$store.dispatch('timer3'); $store.dispatch('timerChosen3'); focus3();"
           >
             <three />
             <svg
@@ -105,6 +106,8 @@ import one from "./one.vue";
 import three from "./three.vue";
 import five from "./five.vue";
 import instruction from "../PopUpBoxComponent/Instruction";
+import navBar from "@/components/navBar.vue"
+
 export default {
   name: "timeSelector",
   components: {
@@ -112,6 +115,7 @@ export default {
     three,
     five,
     instruction,
+    navBar,
   },
   data() {
     return {
@@ -232,7 +236,9 @@ h1 {
   font-family: "Kantumruy", sans-serif;
   font-size: 1.5rem;
 }
-
+.nav{
+  margin-top: 1rem;
+}
 .page-wrapper {
   display: flex;
   flex-direction: column;

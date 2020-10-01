@@ -1,10 +1,8 @@
 <template>
   <div id="app">
     <div v-bind:class="{ transparent: $store.state.showAbout }">
-      <button @click="home()" class="homeButton">ទំព័រដើមតម្លើង</button>
-      <button @click="$store.dispatch('showAbout')" class="aboutButton">
-        អំពីយើង
-      </button>
+    
+
        <vue-page-transition name="fade-in-right"> 
         <router-view />
       </vue-page-transition>
@@ -14,6 +12,8 @@
     <vue-page-transition name="fade">
       <aboutUs class="aboutus" />
     </vue-page-transition>
+
+
   </div>
 </template>
 
@@ -29,7 +29,7 @@ export default {
   },
   components: {
     pgIndicator,
-    aboutUs
+    aboutUs,
   },
   methods: {
     toggleVisibility() {
@@ -38,13 +38,18 @@ export default {
     home () {
       this.$store.dispatch('clear')
       this.$router.push('/timeSelector')
+    }, 
+
+    test(){
+      this.$router.push('/typeSelector')
     }
   },
 };
 </script>
 
-<style lang="scss">
-// @import url("https://fonts.googleapis.com/css2?family=Kantumruy:wght@700&display=swap");
+<style scoped>
+
+/* // @import url("https://fonts.googleapis.com/css2?family=Kantumruy:wght@700&display=swap"); */
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -53,18 +58,7 @@ export default {
   color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
 .aboutus {
   position: absolute;
   z-index: 2;
@@ -77,7 +71,6 @@ export default {
 }
 
 .aboutButton {
-  // float: right;
   display: block;
   margin-top: 1rem;
   position: absolute;
@@ -87,7 +80,6 @@ export default {
   background-color: transparent;
   outline: none;
   font-family: "Kantumruy", sans-serif;
-  // border-bottom: 1px solid #1b2448;
   font-size: 1rem;
   cursor: pointer;
 }
@@ -106,7 +98,6 @@ export default {
   background-color: transparent;
   outline: none;
   font-family: "Kantumruy", sans-serif;
-  // border-bottom: 1px solid #1b2448;
   font-size: 1rem;
   cursor: pointer;
 }

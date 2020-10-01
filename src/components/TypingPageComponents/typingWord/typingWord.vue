@@ -37,6 +37,8 @@
           ></lottie-player>
           <span>{{ convertToKhmerNum(score) }}</span>
         </div>
+              <navBar class="nav"/>
+
       </div>
       <div class="box">
         <div class="wordsWrap">
@@ -50,6 +52,7 @@
           <span>{{ buffer }}</span>
         </div>
       </div>
+
       <typingWordKeyboard />
     </div>
 
@@ -64,13 +67,16 @@ import result from "../../PopUpBoxComponent/Result";
 import typingWordKeyboard from "./typingWord_keyboard";
 import { wordsList } from "../../JS/words-list";
 import khmerWord from "../../JS/mapping.js";
-import store from "@/store/index.js"
+import store from "@/store/index.js";
+import navBar from "@/components/navBar.vue";
+
 
 export default {
   name: "typingWord",
   components: {
     typingWordKeyboard,
-    result
+    result,
+    navBar, 
   },
   data() {
     return {
@@ -286,6 +292,10 @@ main {
 
 .transparent {
   opacity: 0.3;
+}
+
+.nav{
+  margin-bottom: 10rem;
 }
 * {
   overflow: visible !important;

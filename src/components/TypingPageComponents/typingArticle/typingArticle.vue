@@ -56,6 +56,8 @@
             {{ convertToKhmerNum(totalRunes) }}</span
           >
         </div>
+                <navBar class="nav"/>
+
       </div>
       <!-- textbox -->
       <div id="text-div">
@@ -110,6 +112,8 @@ import hands from "../../JS/hands";
 import khmerWord from "../../JS/mapping.js";
 import result from "../../PopUpBoxComponent/Result";
 import "@lottiefiles/lottie-player";
+import navBar from "@/components/navBar.vue"
+
 
 function initialState() {
   return {
@@ -132,6 +136,7 @@ export default {
   components: {
     typingArticleKeyboard,
     result,
+    navBar, 
   },
   data: initialState,
   mounted() {
@@ -494,7 +499,10 @@ export default {
   justify-content: center;
   align-items: center;
 }
-
+.nav{
+   margin-bottom: 10rem;
+   margin-right: 1rem;
+}
 #text-wrapper {
   font-weight: normal;
   word-break: break-all;

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '../store/index'
-
+import navBar from '../components/navBar.vue'
 import timeSelector from '../components/TimeSelectorComponents/timeSelector'
 import typeSelector from '../components/typeSelectorComponents/typeSelector'
 import typingArticle from '../components/TypingPageComponents/typingArticle/typingArticle'
@@ -65,6 +65,12 @@ const routes = [
     //     // router.push("/1")
     //   }
     // }
+  },
+
+  {
+    path: '/nav',
+    name: 'navBar', 
+    component: navBar, 
   }
 ]
 

@@ -2,7 +2,12 @@
   <div class="page-wrapper">
     <div class="header">
       <h1>ជ្រើសរើសប្រភេទនៃការវាយ</h1>
+          <navBar class="nav"/>
+
     </div>
+
+
+    
     <div class="type-wrapper">
       <div class="cards-wrapper">
         <button
@@ -70,9 +75,13 @@
 
 <script>
 import store from '@/store/index'
+import navBar from "@/components/navBar.vue"
 
 export default {
   name: "typeSelector",
+  components: {
+    navBar, 
+  }, 
   data() {
     return {
       isTypeSelected: false,
@@ -191,6 +200,10 @@ h2 {
   justify-content: center;
   align-items: flex-end;
   height: 10rem;
+}
+
+.nav{
+  margin-bottom: 9rem;
 }
 
 .type-wrapper {
