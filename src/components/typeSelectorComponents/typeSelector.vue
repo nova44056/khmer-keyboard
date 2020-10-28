@@ -89,15 +89,21 @@ export default {
   components: {
     // navBar,
   },
-  data() {
-    return {
-      isTypeSelected: false,
-    };
-  },
+  // data() {
+  //   return {
+  //     isTypeSelected: false,
+  //   };
+  // },
 
   created() {
     this.$store.dispatch("toggleActivePage2");
     // this.checkFocus();
+  },
+
+  computed: {
+    isTypeSelected: function () {
+      return this.$store.state.typeOfWord;
+    },
   },
 
   mounted() {
@@ -105,7 +111,7 @@ export default {
     const vm = this;
     const card = document.querySelector(".card");
     window.addEventListener("focusin", function () {
-      vm.isTypeSelected = true;
+      // vm.isTypeSelected = true;
       vm.$store.dispatch("setType");
     });
     const moveon = document.querySelector(".continue");
@@ -116,7 +122,7 @@ export default {
     const page = document.querySelector(".page-wrapper");
     page.addEventListener("focusout", function () {
       if (isClicked === false) {
-        vm.isTypeSelected = false;
+        // vm.isTypeSelected = false;
         vm.$store.dispatch("unSetType");
       }
     });

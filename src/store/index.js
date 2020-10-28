@@ -43,11 +43,11 @@ export default new Vuex.Store({
     },
 
     unSetTime(state) {
-      state.timer = null;
+      state.timer = false;
     },
 
     unSetType(state) {
-      state.typeOfWord = null;
+      state.typeOfWord = false;
     },
 
     setKhmer(state) {

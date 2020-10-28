@@ -129,13 +129,18 @@ export default {
     instruction,
     navBar,
   },
-  data() {
-    return {
-      isTimerChosen: false,
-    };
-  },
+  // data() {
+  //   return {
+  //     isTimerChosen: false,
+  //   };
+  // },
   created: function () {
     this.$store.dispatch("toggleActivePage1");
+  },
+  computed: {
+    isTimerChosen: function () {
+      return this.$store.state.timer;
+    },
   },
 
   mounted() {
@@ -144,8 +149,7 @@ export default {
     const vm = this;
     const card = document.querySelector(".card");
     window.addEventListener("focusin", function () {
-      console.log("focus in");
-      vm.isTimerChosen = true;
+      // vm.isTimerChosen = true;
       vm.$store.dispatch("setTime");
     });
     const moveon = document.querySelector(".continue");
@@ -157,8 +161,7 @@ export default {
     const page = document.querySelector(".page-wrapper");
     page.addEventListener("focusout", function () {
       if (isClicked === false) {
-        console.log("focus out");
-        vm.isTimerChosen = false;
+        // vm.isTimerChosen = false;
         vm.$store.dispatch("unSetTime");
       }
     });
@@ -169,9 +172,6 @@ export default {
   },
 
   methods: {
-    test() {
-      console.log("clicked 👍");
-    },
     oneminClicked() {
       this.$refs.time1.focus();
     },
