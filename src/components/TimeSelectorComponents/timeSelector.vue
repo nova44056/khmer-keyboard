@@ -1,7 +1,7 @@
 <template>
   <div class="page-wrapper">
     <div v-bind:class="{ transparent: $store.state.show }">
-      <navBar class="nav"/>
+      <navBar class="nav" />
       <div class="header">
         <h1>ជ្រើសរើសនាទី</h1>
       </div>
@@ -10,8 +10,12 @@
           <button
             class="card spin circle"
             ref="time1"
-            @click="$store.dispatch('timer1'); $store.dispatch('timerChosen1'); focus1();"
-            >
+            @click="
+              $store.dispatch('timer1');
+              $store.dispatch('timerChosen1');
+              oneminClicked();
+            "
+          >
             <svg
               class="check"
               id="Layer_1"
@@ -35,7 +39,11 @@
           <button
             class="card"
             ref="time3"
-            @click="$store.dispatch('timer3'); $store.dispatch('timerChosen3'); focus3();"
+            @click="
+              $store.dispatch('timer3');
+              $store.dispatch('timerChosen3');
+              threeminClicked();
+            "
           >
             <three />
             <svg
@@ -60,7 +68,11 @@
           <button
             class="card"
             ref="time5"
-            @click="$store.dispatch('timer5'), $store.dispatch('timerChosen5'); focus5()"
+            @click="
+              $store.dispatch('timer5');
+              $store.dispatch('timerChosen5');
+              fiveminClicked();
+            "
           >
             <svg
               class="check"
@@ -88,15 +100,15 @@
       <div class="button-wrapper">
         <button
           :disabled="!isTimerChosen"
-          @click="checkType()"
-          :class="{enable: isTimerChosen}"
+          @click.stop.prevent="checkType()"
+          :class="{ enable: isTimerChosen }"
+          class="continue"
         >
           បន្ត
         </button>
       </div>
     </div>
 
-   
     <instruction class="instruction" />
   </div>
 </template>
@@ -106,7 +118,7 @@ import one from "./one.vue";
 import three from "./three.vue";
 import five from "./five.vue";
 import instruction from "../PopUpBoxComponent/Instruction";
-import navBar from "@/components/navBar.vue"
+import navBar from "@/components/navBar.vue";
 
 export default {
   name: "timeSelector",
@@ -122,13 +134,34 @@ export default {
       isTimerChosen: false,
     };
   },
-  created() {
+  created: function () {
     this.$store.dispatch("toggleActivePage1");
-    this.checkFocus();
   },
 
   mounted() {
     this.set_focus();
+    // document.addEventListener("click", this.test());
+    const vm = this;
+    const card = document.querySelector(".card");
+    window.addEventListener("focusin", function () {
+      console.log("focus in");
+      vm.isTimerChosen = true;
+      vm.$store.dispatch("setTime");
+    });
+    const moveon = document.querySelector(".continue");
+    let isClicked = false;
+    moveon.addEventListener("mousedown", function () {
+      console.log("button clicked");
+      isClicked = true;
+    });
+    const page = document.querySelector(".page-wrapper");
+    page.addEventListener("focusout", function () {
+      if (isClicked === false) {
+        console.log("focus out");
+        vm.isTimerChosen = false;
+        vm.$store.dispatch("unSetTime");
+      }
+    });
   },
 
   destroyed() {
@@ -136,48 +169,38 @@ export default {
   },
 
   methods: {
+    test() {
+      console.log("clicked 👍");
+    },
     oneminClicked() {
-      this.$refs.time1.focus()
+      this.$refs.time1.focus();
     },
-    threeminClicked () {
-      this.$refs.time3.focus()
+    threeminClicked() {
+      this.$refs.time3.focus();
     },
-    fiveminClicked () {
-      this.$refs.time5.focus()
+    fiveminClicked() {
+      this.$refs.time5.focus();
     },
     checkFocus() {
-      setInterval(() => {
-        $(".card").mouseup(function(e){
-          e.preventDefault();
-        })
-        if ($(".card").is(":focus")) {
-          this.isTimerChosen = true;
-          this.$store.dispatch("setTime");
-        } else {
-          this.isTimerChosen = false;
-          this.$store.dispatch("unSetTime");
-        }
-      }, 500);
-    },
-
-    focus5(){
-      this.$refs.time5.focus()
-    },
-
-      focus3(){
-      this.$refs.time3.focus()
-    },
-
-      focus1(){
-      this.$refs.time1.focus()
-    },
-
-
-    checkType(){
-      if(this.$store.state.timer === true){
-        this.$router.push("/typeSelector")
+      $(".card").mouseup(function (e) {
+        e.preventDefault();
+      });
+      if ($(".card").is(":focus")) {
+        this.isTimerChosen = true;
+        this.$store.dispatch("setTime");
+      } else {
+        this.isTimerChosen = false;
+        this.$store.dispatch("unSetTime");
       }
-    }, 
+    },
+
+    checkType() {
+      if (this.$store.state.timer === true) {
+        this.$router.push("/typeSelector");
+      } else {
+        console.log("not working ");
+      }
+    },
 
     set_focus() {
       if (this.$store.state.onemin === true) {
@@ -198,6 +221,10 @@ export default {
 
 <style scoped>
 /* GLOBAL */
+.continue {
+  z-index: 3;
+  margin-top: 100px;
+}
 h1 {
   /* font-family: "Kantumruy", sans-serif; */
   font-size: 3rem;
@@ -236,7 +263,7 @@ h1 {
   font-family: "Kantumruy", sans-serif;
   font-size: 1.5rem;
 }
-.nav{
+.nav {
   margin-top: 1rem;
 }
 .page-wrapper {
@@ -299,7 +326,7 @@ h1 {
 .card {
   margin: 2rem;
   background-color: white;
-  transition: 0.6s;
+  transition: 0.3s;
   box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05),
     0 15px 40px rgba(166, 173, 201, 0.2);
   border-radius: 50%;

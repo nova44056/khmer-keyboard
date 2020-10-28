@@ -2,18 +2,19 @@
   <div class="page-wrapper">
     <div class="header">
       <h1>ជ្រើសរើសប្រភេទនៃការវាយ</h1>
-          <navBar class="nav"/>
-
+      <!-- <navBar class="nav" /> -->
     </div>
 
-
-    
     <div class="type-wrapper">
       <div class="cards-wrapper">
         <button
           class="card"
           ref="word"
-          @click="$store.dispatch('wordType1'); $store.dispatch('choseWord'); focusWord()"
+          @click="
+            $store.dispatch('wordType1');
+            $store.dispatch('choseWord');
+            focusWord();
+          "
         >
           <svg
             class="check"
@@ -38,7 +39,11 @@
         <button
           class="card"
           ref="article"
-          @click="$store.dispatch('wordType2'); $store.dispatch('choseArticle'); focusArticle()"
+          @click="
+            $store.dispatch('wordType2');
+            $store.dispatch('choseArticle');
+            focusArticle();
+          "
         >
           <svg
             class="check"
@@ -63,10 +68,13 @@
       </div>
     </div>
     <div class="button-wrapper">
-      <button @click="$router.push('/timeSelector')">
-        ត្រឡប់ក្រោយ
-      </button>
-      <button :disabled="!isTypeSelected" @click="changePage()" :class="{enable: isTypeSelected}">
+      <button @click="$router.push('/timeSelector')">ត្រឡប់ក្រោយ</button>
+      <button
+        class="continue"
+        :disabled="!isTypeSelected"
+        @click="changePage()"
+        :class="{ enable: isTypeSelected }"
+      >
         ចាប់ផ្តើម
       </button>
     </div>
@@ -74,54 +82,61 @@
 </template>
 
 <script>
-import store from '@/store/index'
-import navBar from "@/components/navBar.vue"
+import store from "@/store/index";
 
 export default {
   name: "typeSelector",
   components: {
-    navBar, 
-  }, 
+    // navBar,
+  },
   data() {
     return {
       isTypeSelected: false,
     };
   },
 
-  
   created() {
     this.$store.dispatch("toggleActivePage2");
-    this.checkFocus();
+    // this.checkFocus();
   },
 
   mounted() {
     this.set_focus();
+    const vm = this;
+    const card = document.querySelector(".card");
+    window.addEventListener("focusin", function () {
+      vm.isTypeSelected = true;
+      vm.$store.dispatch("setType");
+    });
+    const moveon = document.querySelector(".continue");
+    let isClicked = false;
+    moveon.addEventListener("mousedown", function () {
+      isClicked = true;
+    });
+    const page = document.querySelector(".page-wrapper");
+    page.addEventListener("focusout", function () {
+      if (isClicked === false) {
+        vm.isTypeSelected = false;
+        vm.$store.dispatch("unSetType");
+      }
+    });
   },
 
   destroyed() {
     this.$store.dispatch("toggleActivePage2");
   },
   methods: {
-    checkFocus() {
-      setInterval(() => {
-        if ($(".card").is(":focus")) {
-          this.isTypeSelected = true;
-          this.$store.dispatch("setType");
-        } else {
-          this.isTypeSelected = false;
-          this.$store.dispatch("unSetType");
-        }
-      }, 500);
-    },
-
-    focusWord(){
-      this.$refs.word.focus()
-    }, 
-
-    focusArticle(){
-      this.$refs.article.focus()
-
-    }, 
+    // checkFocus() {
+    //   setInterval(() => {
+    //     if ($(".card").is(":focus")) {
+    //       this.isTypeSelected = true;
+    //       this.$store.dispatch("setType");
+    //     } else {
+    //       this.isTypeSelected = false;
+    //       this.$store.dispatch("unSetType");
+    //     }
+    //   }, 500);
+    // },
     changePage() {
       if (this.$store.state.wordType === 1) {
         this.$router.push("/typingWord");
@@ -139,7 +154,7 @@ export default {
         this.$refs.article.focus();
       }
     },
-  }
+  },
 };
 </script>
 
@@ -202,7 +217,7 @@ h2 {
   height: 10rem;
 }
 
-.nav{
+.nav {
   margin-bottom: 9rem;
 }
 
