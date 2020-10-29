@@ -113,6 +113,7 @@ export default {
     window.addEventListener("focusin", function () {
       // vm.isTypeSelected = true;
       vm.$store.dispatch("setType");
+      console.log("testing for deployment");
     });
     const moveon = document.querySelector(".continue");
     let isClicked = false;
