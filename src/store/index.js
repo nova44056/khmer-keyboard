@@ -170,16 +170,16 @@ export default new Vuex.Store({
 
     timerChosen1({ commit, state }) {
       commit("timerChosen1");
-      console.log(state.onemin);
+      // console.log(state.onemin);
       // console.log(state.timerChosen)
     },
     timerChosen3({ commit, state }) {
       commit("timerChosen3");
-      console.log(state.threemin);
+      // console.log(state.threemin);
     },
     timerChosen5({ commit, state }) {
       commit("timerChosen5");
-      console.log(state.fivemin);
+      // console.log(state.fivemin);
     },
 
     choseWord({ commit }) {
