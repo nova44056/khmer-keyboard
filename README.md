@@ -1,24 +1,7 @@
-# khmkeyboard
+# Khmer Keyboard App
+## Author
+- Chea Vitou Lay (Version002)
+- Menghang Hean (Menghang01)
+- Uy Seng (nova44056)
 
-## Project setup
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Link to project: [click here](khmer-keyboard.vercel.app)
