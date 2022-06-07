@@ -4,4 +4,4 @@
 - Menghang Hean (Menghang01)
 - Uy Seng (nova44056)
 
-## Link to project: [click here](khmer-keyboard.vercel.app)
+## Link to project: khmer-keyboard.vercel.app
